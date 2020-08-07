@@ -11,13 +11,8 @@ import SwiftUI
 struct SettingsView: View {
     var body: some View {
         NavigationView {
-            if #available(iOS 14.0, *) {
-                SettingsContentView()
-                    .navigationTitle("Settings")
-            } else {
                 SettingsContentView()
                     .navigationBarTitle("Settings")
-            }
         }
     }
 }

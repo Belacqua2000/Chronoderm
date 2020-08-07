@@ -22,26 +22,26 @@ struct PDFView: View {
                     
                     Spacer()
                     
-                    ConfigurationVStack(entriesPerPage: $entriesPerPage, showNotes: $showNotes, showDate: $showDate, numberOfEntries: (passedCondition?.entry!.count)!)
+                    ConfigurationVStack(entriesPerPage: self.$entriesPerPage, showNotes: self.$showNotes, showDate: self.$showDate, numberOfEntries: (self.passedCondition?.entry!.count)!)
                     
                     Spacer()
                     
-                    PDFPreview(entriesPerPage: entriesPerPage, showNotes: showNotes, showDate: showDate)
+                    PDFPreview(entriesPerPage: self.entriesPerPage, showNotes: self.showNotes, showDate: self.showDate)
                         .frame(width: geometry.size.height * 0.5 * 1/sqrt(2), height: geometry.size.height * 0.5)
                         .aspectRatio(contentMode: .fit)
                         .border(Color.primary)
                     
                     Spacer()
                     
-                    if #available(iOS 13.4, *) {
+               /*     if #available(iOS 13.4, *) {
                         generatePDFButton(generatePDF: self.drawPDF(), activitySheetShown: $activitySheetShown)
                             .hoverEffect(.lift)
-                    } else {
-                        generatePDFButton(generatePDF: self.drawPDF(), activitySheetShown: $activitySheetShown)
-                    }
+                    } else { */
+                    generatePDFButton(generatePDF: self.drawPDF(), activitySheetShown: self.$activitySheetShown)
+                  // }
                 }
                 .navigationBarTitle("Generate PDF")
-                .navigationBarItems(trailing: Button("Done", action: { vc?.dismiss(animated: true, completion: nil) }))
+                .navigationBarItems(trailing: Button("Done", action: { self.vc?.dismiss(animated: true, completion: nil) }))
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
@@ -221,7 +221,7 @@ struct generatePDFButton: View {
     var generatePDF: [Any]
     @Binding var activitySheetShown: Bool
     var body: some View {
-        Button(action: {activitySheetShown = true}) {
+        Button(action: {self.activitySheetShown = true}) {
             CompatibleLabel(symbolName: "doc.richtext", text: "Generate PDF")
                 .font(.title)
                 .foregroundColor(.white)
@@ -231,7 +231,7 @@ struct generatePDFButton: View {
         .cornerRadius(8.0)
         .padding()
         .popover(isPresented: $activitySheetShown, arrowEdge: .bottom) {
-            ActivityViewController(isPresented: $activitySheetShown, activityItems: generatePDF)
+            ActivityViewController(isPresented: self.$activitySheetShown, activityItems: self.generatePDF)
                 .frame(minWidth: 320, minHeight: 500)
         }
     }

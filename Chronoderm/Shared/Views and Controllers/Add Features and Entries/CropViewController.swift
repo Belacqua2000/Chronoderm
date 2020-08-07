@@ -198,13 +198,17 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
             case .authorized: // The user has previously granted access to the camera.
                 status = .authorized
-                //self.setupCaptureSession()
+                sessionQueue.async {
+                    self.setupCameraSession()
+                }
             
             case .notDetermined: // The user has not yet been asked for camera access.
                 AVCaptureDevice.requestAccess(for: .video) { granted in
                     if granted {
                         self.status = .authorized
-                        //self.setupCaptureSession()
+                        self.sessionQueue.async {
+                            self.setupCameraSession()
+                        }
                     }
                 }
             
@@ -419,12 +423,12 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func addPhoto() {
-        if #available(iOS 14, *) {
+        if #available(iOS 14, *) {/*
             var configuration = PHPickerConfiguration()
             configuration.filter = .images
             let picker = PHPickerViewController(configuration: configuration)
             picker.delegate = self
-            present(picker, animated: true)
+            present(picker, animated: true)*/
         } else {
             let picker = UIImagePickerController()
             picker.allowsEditing = false
@@ -472,9 +476,6 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
         overlayText.isHidden = previousImage == nil
         overlaySlider.isHidden = previousImage == nil
         checkAuthorisation()
-        sessionQueue.async {
-            self.setupCameraSession()
-        }
         #endif
     }
     
@@ -664,7 +665,7 @@ extension CropViewController: UIImagePickerControllerDelegate, UINavigationContr
     }
 }
 
-
+/*
 @available(iOS 14, *)
 extension CropViewController: PHPickerViewControllerDelegate {
     
@@ -687,4 +688,4 @@ extension CropViewController: PHPickerViewControllerDelegate {
         }
     }
     
-}
+}*/

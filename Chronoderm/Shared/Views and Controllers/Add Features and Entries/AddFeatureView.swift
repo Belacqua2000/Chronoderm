@@ -19,7 +19,7 @@ struct AddFeatureView: View {
     @State var firstEntry: Entry?
     var body: some View {
         NavigationView {
-            if #available(iOS 13.4, *) {
+          /*  if #available(iOS 13.4, *) {
                 SkinFeatureDetailForm(date: $date, featureName: $featureName, featureArea: $featureArea, context: $context, firstEntry: $firstEntry)
                     .navigationBarTitle(Text("Add Feature"))
                     .navigationBarItems(leading:
@@ -31,7 +31,7 @@ struct AddFeatureView: View {
                                             .padding(.all, 10.0)
                                             .hoverEffect(.automatic)
                                             .disabled(featureName == ""))
-            } else {
+            } else {*/
                 SkinFeatureDetailForm(date: $date, featureName: $featureName, featureArea: $featureArea, context: $context, firstEntry: $firstEntry)
                     .navigationBarTitle(Text("Add Feature"))
                     .navigationBarItems(leading:
@@ -39,7 +39,7 @@ struct AddFeatureView: View {
                                         trailing:
                                             Button("Done", action: save)
                                             .disabled(featureName == ""))
-            }
+ //           }
             
         }
         .navigationViewStyle(StackNavigationViewStyle())
@@ -100,7 +100,7 @@ struct SkinFeatureDetailForm: View {
                 }
                 
             }
-            Button(action: {addEntryShown.toggle()}) {
+            /*Button(action: {self.addEntryShown.toggle()}) {
                 HStack {
                     Spacer()
                     Image(systemName: "photo")
@@ -109,8 +109,8 @@ struct SkinFeatureDetailForm: View {
                 }
             }
             .sheet(isPresented: $addEntryShown) {
-                AddEntryView(context: $context, viewIsPresented: $addEntryShown, entry: $firstEntry, date: Date(), notes: "")
-            }
+                AddEntryView(context: self.$context, viewIsPresented: self.$addEntryShown, entry: self.$firstEntry, date: Date(), notes: "")
+            }*/
         }
     }
     

@@ -55,9 +55,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if let titlebar = windowScene.titlebar {
             titlebar.toolbar = toolbar
-            if #available(macCatalyst 14.0, *) {
+            /*if #available(macCatalyst 14.0, *) {
             titlebar.toolbarStyle = .automatic
-            }
+            }*/
         }
         #endif
         

@@ -2,33 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIApplicationShortcutItems</key>
-	<array>
-		<dict>
-			<key>UIApplicationShortcutItemIconType</key>
-			<string>UIApplicationShortcutIconTypeAdd</string>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>Add Condition</string>
-			<key>UIApplicationShortcutItemType</key>
-			<string>com.Baughan.Chronoderm.newCondition</string>
-		</dict>
-	</array>
-	<key>NSUserActivityTypes</key>
-	<array>
-		<string>com.Baughan.Chronoderm.openentry</string>
-		<string>com.Baughan.Chronoderm.openCondition</string>
-		<string>com.Baughan.Chronoderm.NewCondition</string>
-		<string>com.Baughan.Chronoderm.AddEntry</string>
-		<string>com.Baughan.Chronoderm.settings</string>
-		<string>com.Baughan.Chronoderm.tutorial</string>
-		<string>com.Baughan.Chronoderm.help</string>
-	</array>
-	<key>NSCameraUsageDescription</key>
-	<string>&quot;To add photos to an entry&quot;</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>&quot;To add photos taken with the app to your camera roll&quot;</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>&quot;To add photos to an entry&quot;</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -42,11 +15,29 @@
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.medical</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>"To add photos to an entry"</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>"To add photos taken with the app to your camera roll"</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>"To add photos to an entry"</string>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>com.Baughan.Chronoderm.openentry</string>
+		<string>com.Baughan.Chronoderm.openCondition</string>
+		<string>com.Baughan.Chronoderm.NewCondition</string>
+		<string>com.Baughan.Chronoderm.AddEntry</string>
+		<string>com.Baughan.Chronoderm.settings</string>
+		<string>com.Baughan.Chronoderm.tutorial</string>
+		<string>com.Baughan.Chronoderm.help</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -68,6 +59,17 @@
 			</array>
 		</dict>
 	</dict>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeAdd</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Add Condition</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.Baughan.Chronoderm.newCondition</string>
+		</dict>
+	</array>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

@@ -23,12 +23,12 @@ struct AddEntryView: View {
         NavigationView {
             Form {
                 Section {
-                    Button(action: {addPhotoIsPresented.toggle()}) {
+                    Button(action: {self.addPhotoIsPresented.toggle()}) {
                         (image == nil) ? CompatibleLabel(symbolName: "photo", text: "Add Photo") : CompatibleLabel(symbolName: "photo", text: "Edit Photo")
                     }
                     .sheet(isPresented: $addPhotoIsPresented, content: {
                         NavigationView() {
-                            AddPhotoView(image: $image)
+                            AddPhotoView(image: self.$image)
                                 .navigationBarItems(leading: Button("Cancel", action: {}))
                                 .navigationBarTitle("Capture", displayMode: .inline)
                         }
@@ -45,15 +45,15 @@ struct AddEntryView: View {
                     DatePicker("Date and Time", selection: $date, in: skinFeature?.startDate!... ?? Date(timeIntervalSince1970: 0)...)
                 }
                 Section(header: Text("Add Notes")) {
-                    if #available(iOS 14.0, *) {
+                   /* if #available(iOS 14.0, *) {
                       //  TextEditor(text: $notes)
-                    } else {
+                    } else {*/
                         TextField("E.g. Pain? Bleeding? Itch? Discharge?", text: $notes)
-                    }
+                  //  }
                 }
             }
             .navigationBarTitle("Add New Entry")
-            .navigationBarItems(leading: Button("Cancel", action: {viewIsPresented = false}), trailing: Button("Done", action: { saveEntry() }))
+            .navigationBarItems(leading: Button("Cancel", action: {self.viewIsPresented = false}), trailing: Button("Done", action: { self.saveEntry() }))
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }

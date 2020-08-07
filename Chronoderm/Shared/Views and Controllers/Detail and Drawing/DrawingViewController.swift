@@ -8,7 +8,7 @@
 
 import UIKit
 import PencilKit
-
+#if !targetEnvironment(macCatalyst)
 class DrawingViewController: UIViewController, PKCanvasViewDelegate, PKToolPickerObserver {
 
     override func viewDidLoad() {
@@ -38,7 +38,7 @@ class DrawingViewController: UIViewController, PKCanvasViewDelegate, PKToolPicke
     
     func setupTools() {
         if #available(iOS 14.0, *) {
-            toolPicker = PKToolPicker()
+            //   toolPicker = PKToolPicker()
         } else {
             // Set up the tool picker, using the window of our parent because our view has not
             // been added to a window yet.
@@ -65,3 +65,4 @@ class DrawingViewController: UIViewController, PKCanvasViewDelegate, PKToolPicke
     */
 
 }
+#endif

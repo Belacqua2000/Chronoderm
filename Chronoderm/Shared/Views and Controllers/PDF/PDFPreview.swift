@@ -16,11 +16,11 @@ struct PDFPreview: View {
         VStack {
             ForEach(0 ..< entriesPerPage, id: \.self) {_ in
                 VStack(alignment: .leading) {
-                    showDate ? Text("1st January 1970").bold() : Text("")
+                    self.showDate ? Text("1st January 1970").bold() : Text("")
                     HStack {
                         Image(systemName: "photo")
                             .font(.largeTitle)
-                        showNotes ? Text("Lorum ipsum dolor est") : Text("")
+                        self.showNotes ? Text("Lorum ipsum dolor est") : Text("")
                     }
                 }
                 .font(.footnote)

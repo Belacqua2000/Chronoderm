@@ -137,7 +137,7 @@ class EntriesCollectionViewController: UICollectionViewController, NSFetchedResu
         default:
             assert(false)
         }
-        
+        return UICollectionReusableView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     }
     
     func formatCell(_ cell: EntriesCollectionViewCell) {

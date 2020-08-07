@@ -18,6 +18,8 @@ struct OnboardingView: View {
         VStack(spacing: 10) {
             HStack {
                 Image("App Icon Inside")
+                    .resizable()
+                    .frame(width: 50.0, height: 50.0)
                     .cornerRadius(8.0)
                 
                 Text("Chronoderm")
@@ -88,7 +90,7 @@ A customisable summary of your skin features can be generated to make it easy to
             Spacer()
             
             HStack {
-                Button(action: {stage -= 1}, label: {
+                Button(action: {self.stage -= 1}, label: {
                     Text("Previous")
                 })
                 .frame(width: 100.0)
@@ -100,7 +102,7 @@ A customisable summary of your skin features can be generated to make it easy to
                 .animation(.easeInOut)
                 
                 if stage != maxStage {
-                    Button(action: {stage += 1}, label: {
+                    Button(action: {self.stage += 1}, label: {
                         Text("Next")
                     })
                     .frame(width: 100.0)
@@ -110,7 +112,7 @@ A customisable summary of your skin features can be generated to make it easy to
                     .foregroundColor(.white)
                     .cornerRadius(10)
                 } else {
-                    Button(action: {dismiss()}, label: {
+                    Button(action: {self.dismiss()}, label: {
                         Text("Get Started")
                     })
                     .frame(width: 100.0)
@@ -145,9 +147,6 @@ struct OnboardingView_Previews: PreviewProvider {
             OnboardingView()
                 .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
                 .previewDisplayName("iPhone 11")
-            OnboardingView()
-                .previewDevice(PreviewDevice(rawValue: "My Mac"))
-                .previewDisplayName("Mac")
         }
     }
 }
@@ -201,11 +200,11 @@ struct TextAndImage: View {
                 .frame(width: 100.0, height: 100.0)
             ScrollView {
                 Text(text)
-                    .font(.system(size: 30.0))
+                    .font(.system(size: 20.0))
                     .fontWeight(.heavy)
                     .animation(nil)
             }
-            .frame(height: 400.0)
+            .frame(height: 250.0)
             Spacer()
         }
         .opacity(currentStage == index ? 1 : 0)
