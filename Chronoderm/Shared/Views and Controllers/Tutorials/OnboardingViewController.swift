@@ -106,14 +106,14 @@ This app is designed to be used by individuals for their personal use.
     // MARK: - NSUserActivity
     
     var tutorialUserActivity: NSUserActivity {
-        let userActivity = NSUserActivity(activityType: "com.Baughan.MyHealingTest.tutorial")
+        let userActivity = NSUserActivity(activityType: "com.Baughan.Chronoderm.tutorial")
         userActivity.title = "Settings"
         return userActivity
     }
     
     func startNSUserActivity() {
         // NSUserActivity
-        let activity = NSUserActivity(activityType: "com.Baughan.MyHealingTest.tutorial")
+        let activity = NSUserActivity(activityType: "com.Baughan.Chronoderm.tutorial")
         activity.title = "Tutorial"
         userActivity = activity
         userActivity?.becomeCurrent()

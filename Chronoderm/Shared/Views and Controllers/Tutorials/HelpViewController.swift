@@ -50,7 +50,7 @@ class HelpViewController: UIViewController {
     // MARK: - NSUserActivity
     var NSUserActivityPresent = false
     func startUserActivity() {
-        let activity = NSUserActivity(activityType: "com.Baughan.MyHealingTest.help")
+        let activity = NSUserActivity(activityType: "com.Baughan.Chronoderm.help")
         activity.userInfo = ["currentPageNo": currentPageNo]
         userActivity = activity
         userActivity?.becomeCurrent()

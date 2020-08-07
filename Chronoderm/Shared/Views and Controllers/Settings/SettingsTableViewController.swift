@@ -165,14 +165,14 @@ class SettingsTableViewController: UITableViewController {
     // MARK: - NSUserActivity
     
     var settingsUserActivity: NSUserActivity {
-        let userActivity = NSUserActivity(activityType: "com.Baughan.MyHealingTest.settings")
+        let userActivity = NSUserActivity(activityType: "com.Baughan.Chronoderm.settings")
         userActivity.title = "Settings"
         return userActivity
     }
     
     func startNSUserActivity() {
         // NSUserActivity
-        let activity = NSUserActivity(activityType: "com.Baughan.MyHealingTest.settings")
+        let activity = NSUserActivity(activityType: "com.Baughan.Chronoderm.settings")
         activity.title = "Settings"
         userActivity = activity
         userActivity?.becomeCurrent()

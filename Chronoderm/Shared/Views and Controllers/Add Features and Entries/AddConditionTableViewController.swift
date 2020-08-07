@@ -1,6 +1,6 @@
 //
 //  AddConditionTableViewController.swift
-//  MyHealingTest
+//  Chronoderm
 //
 //  Created by Nick Baughan on 15/07/2019.
 //  Copyright © 2019 Nick Baughan. All rights reserved.
@@ -151,7 +151,7 @@ class AddConditionTableViewController: UITableViewController {
     
     func startNSUserActivity() {
         // NSUserActivity
-        let activity = NSUserActivity(activityType: "com.Baughan.MyHealingTest.NewCondition")
+        let activity = NSUserActivity(activityType: "com.Baughan.Chronoderm.NewCondition")
         activity.title = "New Condition"
         activity.userInfo = ["name": conditionTitle.text!, "startDate": conditionDatePicker.date, "areaOfBody" : conditionAreaOfBody.text!]
         userActivity = activity

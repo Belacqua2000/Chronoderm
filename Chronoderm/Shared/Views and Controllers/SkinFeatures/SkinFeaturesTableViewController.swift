@@ -1,6 +1,6 @@
 //
 //  ConditionsViewController.swift
-//  MyHealingTest
+//  Chronoderm
 //
 //  Created by Nick Baughan on 15/07/2019.
 //  Copyright © 2019 Nick Baughan. All rights reserved.
@@ -578,7 +578,7 @@ extension SkinFeaturesTableViewController {
             
             for conditionNumber in 0 ... number {
                 let condition = conditions[conditionNumber] 
-                let shortcutItem = UIApplicationShortcutItem(type: "com.Baughan.MyHealingTest.opencondition", localizedTitle: condition.name ?? "name", localizedSubtitle: nil, icon: UIApplicationShortcutIcon(systemImageName: "photo"), userInfo: ["conditionUUID": condition.uuid!.uuidString as NSString])
+                let shortcutItem = UIApplicationShortcutItem(type: "com.Baughan.Chronoderm.opencondition", localizedTitle: condition.name ?? "name", localizedSubtitle: nil, icon: UIApplicationShortcutIcon(systemImageName: "photo"), userInfo: ["conditionUUID": condition.uuid!.uuidString as NSString])
                 items.append(shortcutItem)
             }
         }

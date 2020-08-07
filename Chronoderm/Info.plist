@@ -10,7 +10,7 @@
 			<key>UIApplicationShortcutItemTitle</key>
 			<string>Add Condition</string>
 			<key>UIApplicationShortcutItemType</key>
-			<string>com.Baughan.MyHealingTest.newCondition</string>
+			<string>com.Baughan.Chronoderm.newCondition</string>
 		</dict>
 	</array>
 	<key>NSUserActivityTypes</key>

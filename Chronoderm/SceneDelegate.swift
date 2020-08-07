@@ -97,20 +97,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         print("Configure with activity")
         
         switch activity.activityType {
-        case "com.Baughan.MyHealingTest.openCondition" :
+        case "com.Baughan.Chronoderm.openCondition" :
             guard let conditionID = activity.userInfo?["conditionUUID"] as? String else { return false }
             return openCondition(conditionID: conditionID)!
-        case "com.Baughan.MyHealingTest.openentry" :
+        case "com.Baughan.Chronoderm.openentry" :
             guard let entryID = activity.userInfo?["entryUUID"] as? String else { return false }
             guard let conditionID = activity.userInfo?["conditionUUID"] as? String else { return false }
             return openEntry(entryID: entryID, conditionID: conditionID)!
-        case "com.Baughan.MyHealingTest.settings" :
+        case "com.Baughan.Chronoderm.settings" :
             return openSettings()!
-        case "com.Baughan.MyHealingTest.tutorial" :
+        case "com.Baughan.Chronoderm.tutorial" :
             return openTutorial(activity: activity)!
-        case "com.Baughan.MyHealingTest.help" :
+        case "com.Baughan.Chronoderm.help" :
             return openHelp(activity: activity)!
-        case "com.Baughan.MyHealingTest.newcondition" :
+        case "com.Baughan.Chronoderm.newcondition" :
             return openAddEntry()!
         default:
             return false
@@ -133,11 +133,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // Is there a shortcut item that has not yet been processed?
         if let shortcutItem = shortcutItemToProcess {
-            if shortcutItem.type == "com.Baughan.MyHealingTest.newCondition" {
+            if shortcutItem.type == "com.Baughan.Chronoderm.newCondition" {
                 tableVC.performSegue(withIdentifier: "addFeaature", sender: shortcutItem)
             }
             
-            if shortcutItem.type == "com.Baughan.MyHealingTest.settings" {
+            if shortcutItem.type == "com.Baughan.Chronoderm.settings" {
                 tableVC.performSegue(withIdentifier: "showSettings", sender: shortcutItem)
             }
             // Reset the shorcut item so it's never processed twice.

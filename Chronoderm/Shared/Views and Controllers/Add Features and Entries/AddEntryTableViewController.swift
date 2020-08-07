@@ -1,6 +1,6 @@
 //
 //  AddEntryTableViewController.swift
-//  MyHealingTest
+//  Chronoderm
 //
 //  Created by Nick Baughan on 16/07/2019.
 //  Copyright © 2019 Nick Baughan. All rights reserved.

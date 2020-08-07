@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  MyHealingTest
+//  Chronoderm
 //
 //  Created by Nick Baughan on 15/07/2019.
 //  Copyright © 2019 Nick Baughan. All rights reserved.
@@ -78,7 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("Application did become active")
         // Is there a shortcut item that has not yet been processed?
         if let shortcutItem = shortcutItemToProcess {
-            if shortcutItem.type == "com.Baughan.MyHealingTest.newCondition" {
+            if shortcutItem.type == "com.Baughan.Chronoderm.newCondition" {
                 guard let splitVC = window?.rootViewController as? SplitViewController else { return }
                 guard let navVC = splitVC.viewControllers[0] as? UINavigationController else { return }
                 guard let tableVC = navVC.viewControllers[0] as? SkinFeaturesTableViewController else { return }
@@ -115,10 +115,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let navVC = splitVC.viewControllers[0] as? UINavigationController else { return false }
         guard let tableVC = navVC.viewControllers[0] as? SkinFeaturesTableViewController else { return false }
         
-        if userActivity.activityType == "com.Baughan.MyHealingTest.NewCondition" {
+        if userActivity.activityType == "com.Baughan.Chronoderm.NewCondition" {
             tableVC.performSegue(withIdentifier: "addFeaature", sender: userActivity) // Performs segue and sends userActivity
             return true
-        } else if userActivity.activityType == "com.Baughan.MyHealingTest.settings" {
+        } else if userActivity.activityType == "com.Baughan.Chronoderm.settings" {
             tableVC.performSegue(withIdentifier: "showSettings", sender: userActivity)
             return true
         } else {
