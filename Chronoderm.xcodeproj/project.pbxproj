@@ -9,13 +9,58 @@
 /* Begin PBXBuildFile section */
 		17C3E96C24DDAF5100C02F8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E96B24DDAF5100C02F8A /* AppDelegate.swift */; };
 		17C3E96E24DDAF5100C02F8A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E96D24DDAF5100C02F8A /* SceneDelegate.swift */; };
-		17C3E97024DDAF5100C02F8A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E96F24DDAF5100C02F8A /* ViewController.swift */; };
 		17C3E97324DDAF5100C02F8A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17C3E97124DDAF5100C02F8A /* Main.storyboard */; };
 		17C3E97624DDAF5100C02F8A /* Chronoderm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E97424DDAF5100C02F8A /* Chronoderm.xcdatamodeld */; };
 		17C3E97824DDAF5200C02F8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17C3E97724DDAF5200C02F8A /* Assets.xcassets */; };
 		17C3E97B24DDAF5200C02F8A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17C3E97924DDAF5200C02F8A /* LaunchScreen.storyboard */; };
 		17C3E98624DDAF5300C02F8A /* ChronodermTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E98524DDAF5300C02F8A /* ChronodermTests.swift */; };
 		17C3E99124DDAF5300C02F8A /* ChronodermUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E99024DDAF5300C02F8A /* ChronodermUITests.swift */; };
+		17C3E9A324DDAFC400C02F8A /* CompatibleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E99F24DDAFC400C02F8A /* CompatibleLabel.swift */; };
+		17C3E9A424DDAFC400C02F8A /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9A024DDAFC400C02F8A /* NotificationName.swift */; };
+		17C3E9A524DDAFC400C02F8A /* PublicVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9A124DDAFC400C02F8A /* PublicVariables.swift */; };
+		17C3E9A624DDAFC400C02F8A /* MenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9A224DDAFC400C02F8A /* MenuBuilder.swift */; };
+		17C3E9D824DDAFDD00C02F8A /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9A924DDAFDD00C02F8A /* SettingsTableViewController.swift */; };
+		17C3E9D924DDAFDD00C02F8A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9AA24DDAFDD00C02F8A /* SettingsView.swift */; };
+		17C3E9DA24DDAFDD00C02F8A /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9AB24DDAFDD00C02F8A /* UserDefault.swift */; };
+		17C3E9DB24DDAFDD00C02F8A /* DetailNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9AD24DDAFDD00C02F8A /* DetailNavController.swift */; };
+		17C3E9DC24DDAFDD00C02F8A /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9AE24DDAFDD00C02F8A /* SplitViewController.swift */; };
+		17C3E9DD24DDAFDD00C02F8A /* SettingsNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9AF24DDAFDD00C02F8A /* SettingsNavController.swift */; };
+		17C3E9DE24DDAFDD00C02F8A /* MasterNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9B024DDAFDD00C02F8A /* MasterNavController.swift */; };
+		17C3E9DF24DDAFDD00C02F8A /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9B224DDAFDD00C02F8A /* DrawingViewController.swift */; };
+		17C3E9E024DDAFDD00C02F8A /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9B324DDAFDD00C02F8A /* DrawingView.swift */; };
+		17C3E9E124DDAFDD00C02F8A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9B424DDAFDD00C02F8A /* DetailViewController.swift */; };
+		17C3E9E224DDAFDD00C02F8A /* PDFPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9B624DDAFDD00C02F8A /* PDFPreview.swift */; };
+		17C3E9E324DDAFDD00C02F8A /* PDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9B724DDAFDD00C02F8A /* PDFView.swift */; };
+		17C3E9E424DDAFDD00C02F8A /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9B824DDAFDD00C02F8A /* ActivityView.swift */; };
+		17C3E9E524DDAFDD00C02F8A /* ConditionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17C3E9BA24DDAFDD00C02F8A /* ConditionsTableViewCell.xib */; };
+		17C3E9E624DDAFDD00C02F8A /* ConditionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9BB24DDAFDD00C02F8A /* ConditionsTableViewCell.swift */; };
+		17C3E9E724DDAFDD00C02F8A /* SkinFeaturesCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9BC24DDAFDD00C02F8A /* SkinFeaturesCellView.swift */; };
+		17C3E9E824DDAFDD00C02F8A /* ContextPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9BD24DDAFDD00C02F8A /* ContextPreviewViewController.swift */; };
+		17C3E9E924DDAFDD00C02F8A /* SkinFeaturesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9BE24DDAFDD00C02F8A /* SkinFeaturesTableViewController.swift */; };
+		17C3E9EA24DDAFDD00C02F8A /* InfoCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9C124DDAFDD00C02F8A /* InfoCollectionReusableView.swift */; };
+		17C3E9EB24DDAFDD00C02F8A /* EntriesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9C224DDAFDD00C02F8A /* EntriesCollectionViewController.swift */; };
+		17C3E9EC24DDAFDD00C02F8A /* EntriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9C324DDAFDD00C02F8A /* EntriesCollectionViewCell.swift */; };
+		17C3E9ED24DDAFDD00C02F8A /* EntriesFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9C424DDAFDD00C02F8A /* EntriesFlowLayout.swift */; };
+		17C3E9EE24DDAFDD00C02F8A /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9C624DDAFDD00C02F8A /* HelpViewController.swift */; };
+		17C3E9EF24DDAFDD00C02F8A /* Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9C724DDAFDD00C02F8A /* Help.swift */; };
+		17C3E9F024DDAFDD00C02F8A /* HelpContentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9C824DDAFDD00C02F8A /* HelpContentsTableViewController.swift */; };
+		17C3E9F124DDAFDD00C02F8A /* OnboardingPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9C924DDAFDD00C02F8A /* OnboardingPageController.swift */; };
+		17C3E9F224DDAFDD00C02F8A /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9CA24DDAFDD00C02F8A /* OnboardingViewController.swift */; };
+		17C3E9F324DDAFDD00C02F8A /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9CB24DDAFDD00C02F8A /* OnboardingView.swift */; };
+		17C3E9F424DDAFDD00C02F8A /* AddFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9CD24DDAFDD00C02F8A /* AddFeatureView.swift */; };
+		17C3E9F524DDAFDD00C02F8A /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9CE24DDAFDD00C02F8A /* CameraPreviewView.swift */; };
+		17C3E9F624DDAFDD00C02F8A /* AddPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9CF24DDAFDD00C02F8A /* AddPhotoView.swift */; };
+		17C3E9F724DDAFDD00C02F8A /* AddConditionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9D024DDAFDD00C02F8A /* AddConditionTableViewController.swift */; };
+		17C3E9F824DDAFDD00C02F8A /* PhotoCaptureProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9D124DDAFDD00C02F8A /* PhotoCaptureProcessor.swift */; };
+		17C3E9F924DDAFDD00C02F8A /* AddEntryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9D224DDAFDD00C02F8A /* AddEntryTableViewController.swift */; };
+		17C3E9FA24DDAFDD00C02F8A /* CropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9D324DDAFDD00C02F8A /* CropViewController.swift */; };
+		17C3E9FB24DDAFDD00C02F8A /* AddEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9D424DDAFDD00C02F8A /* AddEntryView.swift */; };
+		17C3E9FC24DDAFDD00C02F8A /* RemindersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9D624DDAFDD00C02F8A /* RemindersView.swift */; };
+		17C3E9FD24DDAFDD00C02F8A /* RemindersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9D724DDAFDD00C02F8A /* RemindersTableViewController.swift */; };
+		17C3EA0124DDAFE900C02F8A /* ToolbarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9FF24DDAFE900C02F8A /* ToolbarDelegate.swift */; };
+		17C3EA0524DDB0CC00C02F8A /* Entry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3EA0224DDB0CC00C02F8A /* Entry+CoreDataProperties.swift */; };
+		17C3EA0624DDB0CC00C02F8A /* Entry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3EA0324DDB0CC00C02F8A /* Entry+CoreDataClass.swift */; };
+		17C3EA0724DDB0CC00C02F8A /* SkinFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3EA0424DDB0CC00C02F8A /* SkinFeature.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +84,6 @@
 		17C3E96824DDAF5100C02F8A /* Chronoderm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chronoderm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17C3E96B24DDAF5100C02F8A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17C3E96D24DDAF5100C02F8A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		17C3E96F24DDAF5100C02F8A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		17C3E97224DDAF5100C02F8A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		17C3E97524DDAF5100C02F8A /* Chronoderm.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Chronoderm.xcdatamodel; sourceTree = "<group>"; };
 		17C3E97724DDAF5200C02F8A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -51,6 +95,52 @@
 		17C3E98C24DDAF5300C02F8A /* ChronodermUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChronodermUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		17C3E99024DDAF5300C02F8A /* ChronodermUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChronodermUITests.swift; sourceTree = "<group>"; };
 		17C3E99224DDAF5300C02F8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		17C3E99F24DDAFC400C02F8A /* CompatibleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompatibleLabel.swift; sourceTree = "<group>"; };
+		17C3E9A024DDAFC400C02F8A /* NotificationName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
+		17C3E9A124DDAFC400C02F8A /* PublicVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicVariables.swift; sourceTree = "<group>"; };
+		17C3E9A224DDAFC400C02F8A /* MenuBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBuilder.swift; sourceTree = "<group>"; };
+		17C3E9A924DDAFDD00C02F8A /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		17C3E9AA24DDAFDD00C02F8A /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		17C3E9AB24DDAFDD00C02F8A /* UserDefault.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
+		17C3E9AD24DDAFDD00C02F8A /* DetailNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailNavController.swift; sourceTree = "<group>"; };
+		17C3E9AE24DDAFDD00C02F8A /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
+		17C3E9AF24DDAFDD00C02F8A /* SettingsNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsNavController.swift; sourceTree = "<group>"; };
+		17C3E9B024DDAFDD00C02F8A /* MasterNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterNavController.swift; sourceTree = "<group>"; };
+		17C3E9B224DDAFDD00C02F8A /* DrawingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingViewController.swift; sourceTree = "<group>"; };
+		17C3E9B324DDAFDD00C02F8A /* DrawingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
+		17C3E9B424DDAFDD00C02F8A /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		17C3E9B624DDAFDD00C02F8A /* PDFPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFPreview.swift; sourceTree = "<group>"; };
+		17C3E9B724DDAFDD00C02F8A /* PDFView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFView.swift; sourceTree = "<group>"; };
+		17C3E9B824DDAFDD00C02F8A /* ActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		17C3E9BA24DDAFDD00C02F8A /* ConditionsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConditionsTableViewCell.xib; sourceTree = "<group>"; };
+		17C3E9BB24DDAFDD00C02F8A /* ConditionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionsTableViewCell.swift; sourceTree = "<group>"; };
+		17C3E9BC24DDAFDD00C02F8A /* SkinFeaturesCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkinFeaturesCellView.swift; sourceTree = "<group>"; };
+		17C3E9BD24DDAFDD00C02F8A /* ContextPreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextPreviewViewController.swift; sourceTree = "<group>"; };
+		17C3E9BE24DDAFDD00C02F8A /* SkinFeaturesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkinFeaturesTableViewController.swift; sourceTree = "<group>"; };
+		17C3E9C124DDAFDD00C02F8A /* InfoCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoCollectionReusableView.swift; sourceTree = "<group>"; };
+		17C3E9C224DDAFDD00C02F8A /* EntriesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntriesCollectionViewController.swift; sourceTree = "<group>"; };
+		17C3E9C324DDAFDD00C02F8A /* EntriesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntriesCollectionViewCell.swift; sourceTree = "<group>"; };
+		17C3E9C424DDAFDD00C02F8A /* EntriesFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntriesFlowLayout.swift; sourceTree = "<group>"; };
+		17C3E9C624DDAFDD00C02F8A /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		17C3E9C724DDAFDD00C02F8A /* Help.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Help.swift; sourceTree = "<group>"; };
+		17C3E9C824DDAFDD00C02F8A /* HelpContentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpContentsTableViewController.swift; sourceTree = "<group>"; };
+		17C3E9C924DDAFDD00C02F8A /* OnboardingPageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPageController.swift; sourceTree = "<group>"; };
+		17C3E9CA24DDAFDD00C02F8A /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		17C3E9CB24DDAFDD00C02F8A /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		17C3E9CD24DDAFDD00C02F8A /* AddFeatureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFeatureView.swift; sourceTree = "<group>"; };
+		17C3E9CE24DDAFDD00C02F8A /* CameraPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
+		17C3E9CF24DDAFDD00C02F8A /* AddPhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPhotoView.swift; sourceTree = "<group>"; };
+		17C3E9D024DDAFDD00C02F8A /* AddConditionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddConditionTableViewController.swift; sourceTree = "<group>"; };
+		17C3E9D124DDAFDD00C02F8A /* PhotoCaptureProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCaptureProcessor.swift; sourceTree = "<group>"; };
+		17C3E9D224DDAFDD00C02F8A /* AddEntryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEntryTableViewController.swift; sourceTree = "<group>"; };
+		17C3E9D324DDAFDD00C02F8A /* CropViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CropViewController.swift; sourceTree = "<group>"; };
+		17C3E9D424DDAFDD00C02F8A /* AddEntryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEntryView.swift; sourceTree = "<group>"; };
+		17C3E9D624DDAFDD00C02F8A /* RemindersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemindersView.swift; sourceTree = "<group>"; };
+		17C3E9D724DDAFDD00C02F8A /* RemindersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemindersTableViewController.swift; sourceTree = "<group>"; };
+		17C3E9FF24DDAFE900C02F8A /* ToolbarDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolbarDelegate.swift; sourceTree = "<group>"; };
+		17C3EA0224DDB0CC00C02F8A /* Entry+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Entry+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		17C3EA0324DDB0CC00C02F8A /* Entry+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Entry+CoreDataClass.swift"; sourceTree = "<group>"; };
+		17C3EA0424DDB0CC00C02F8A /* SkinFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkinFeature.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,14 +191,20 @@
 		17C3E96A24DDAF5100C02F8A /* Chronoderm */ = {
 			isa = PBXGroup;
 			children = (
+				17C3E9A724DDAFDD00C02F8A /* Views and Controllers */,
+				17C3E99E24DDAFC400C02F8A /* Helpers */,
+				17C3E9FE24DDAFE900C02F8A /* Mac */,
+				17C3EA0024DDAFE900C02F8A /* iOS */,
 				17C3E96B24DDAF5100C02F8A /* AppDelegate.swift */,
 				17C3E96D24DDAF5100C02F8A /* SceneDelegate.swift */,
-				17C3E96F24DDAF5100C02F8A /* ViewController.swift */,
 				17C3E97124DDAF5100C02F8A /* Main.storyboard */,
 				17C3E97724DDAF5200C02F8A /* Assets.xcassets */,
 				17C3E97924DDAF5200C02F8A /* LaunchScreen.storyboard */,
 				17C3E97C24DDAF5200C02F8A /* Info.plist */,
 				17C3E97424DDAF5100C02F8A /* Chronoderm.xcdatamodeld */,
+				17C3EA0324DDB0CC00C02F8A /* Entry+CoreDataClass.swift */,
+				17C3EA0224DDB0CC00C02F8A /* Entry+CoreDataProperties.swift */,
+				17C3EA0424DDB0CC00C02F8A /* SkinFeature.swift */,
 			);
 			path = Chronoderm;
 			sourceTree = "<group>";
@@ -129,6 +225,157 @@
 				17C3E99224DDAF5300C02F8A /* Info.plist */,
 			);
 			path = ChronodermUITests;
+			sourceTree = "<group>";
+		};
+		17C3E99E24DDAFC400C02F8A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				17C3E99F24DDAFC400C02F8A /* CompatibleLabel.swift */,
+				17C3E9A024DDAFC400C02F8A /* NotificationName.swift */,
+				17C3E9A124DDAFC400C02F8A /* PublicVariables.swift */,
+				17C3E9A224DDAFC400C02F8A /* MenuBuilder.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		17C3E9A724DDAFDD00C02F8A /* Views and Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				17C3E9A824DDAFDD00C02F8A /* Settings */,
+				17C3E9AC24DDAFDD00C02F8A /* Helper VCs */,
+				17C3E9B124DDAFDD00C02F8A /* Detail and Drawing */,
+				17C3E9B524DDAFDD00C02F8A /* PDF */,
+				17C3E9B924DDAFDD00C02F8A /* SkinFeatures */,
+				17C3E9BF24DDAFDD00C02F8A /* New Group */,
+				17C3E9C024DDAFDD00C02F8A /* AllEntriesView */,
+				17C3E9C524DDAFDD00C02F8A /* Tutorials */,
+				17C3E9CC24DDAFDD00C02F8A /* Add Features and Entries */,
+				17C3E9D524DDAFDD00C02F8A /* Reminders */,
+			);
+			path = "Views and Controllers";
+			sourceTree = "<group>";
+		};
+		17C3E9A824DDAFDD00C02F8A /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				17C3E9A924DDAFDD00C02F8A /* SettingsTableViewController.swift */,
+				17C3E9AA24DDAFDD00C02F8A /* SettingsView.swift */,
+				17C3E9AB24DDAFDD00C02F8A /* UserDefault.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		17C3E9AC24DDAFDD00C02F8A /* Helper VCs */ = {
+			isa = PBXGroup;
+			children = (
+				17C3E9AD24DDAFDD00C02F8A /* DetailNavController.swift */,
+				17C3E9AE24DDAFDD00C02F8A /* SplitViewController.swift */,
+				17C3E9AF24DDAFDD00C02F8A /* SettingsNavController.swift */,
+				17C3E9B024DDAFDD00C02F8A /* MasterNavController.swift */,
+			);
+			path = "Helper VCs";
+			sourceTree = "<group>";
+		};
+		17C3E9B124DDAFDD00C02F8A /* Detail and Drawing */ = {
+			isa = PBXGroup;
+			children = (
+				17C3E9B224DDAFDD00C02F8A /* DrawingViewController.swift */,
+				17C3E9B324DDAFDD00C02F8A /* DrawingView.swift */,
+				17C3E9B424DDAFDD00C02F8A /* DetailViewController.swift */,
+			);
+			path = "Detail and Drawing";
+			sourceTree = "<group>";
+		};
+		17C3E9B524DDAFDD00C02F8A /* PDF */ = {
+			isa = PBXGroup;
+			children = (
+				17C3E9B624DDAFDD00C02F8A /* PDFPreview.swift */,
+				17C3E9B724DDAFDD00C02F8A /* PDFView.swift */,
+				17C3E9B824DDAFDD00C02F8A /* ActivityView.swift */,
+			);
+			path = PDF;
+			sourceTree = "<group>";
+		};
+		17C3E9B924DDAFDD00C02F8A /* SkinFeatures */ = {
+			isa = PBXGroup;
+			children = (
+				17C3E9BA24DDAFDD00C02F8A /* ConditionsTableViewCell.xib */,
+				17C3E9BB24DDAFDD00C02F8A /* ConditionsTableViewCell.swift */,
+				17C3E9BC24DDAFDD00C02F8A /* SkinFeaturesCellView.swift */,
+				17C3E9BD24DDAFDD00C02F8A /* ContextPreviewViewController.swift */,
+				17C3E9BE24DDAFDD00C02F8A /* SkinFeaturesTableViewController.swift */,
+			);
+			path = SkinFeatures;
+			sourceTree = "<group>";
+		};
+		17C3E9BF24DDAFDD00C02F8A /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		17C3E9C024DDAFDD00C02F8A /* AllEntriesView */ = {
+			isa = PBXGroup;
+			children = (
+				17C3E9C124DDAFDD00C02F8A /* InfoCollectionReusableView.swift */,
+				17C3E9C224DDAFDD00C02F8A /* EntriesCollectionViewController.swift */,
+				17C3E9C324DDAFDD00C02F8A /* EntriesCollectionViewCell.swift */,
+				17C3E9C424DDAFDD00C02F8A /* EntriesFlowLayout.swift */,
+			);
+			path = AllEntriesView;
+			sourceTree = "<group>";
+		};
+		17C3E9C524DDAFDD00C02F8A /* Tutorials */ = {
+			isa = PBXGroup;
+			children = (
+				17C3E9C624DDAFDD00C02F8A /* HelpViewController.swift */,
+				17C3E9C724DDAFDD00C02F8A /* Help.swift */,
+				17C3E9C824DDAFDD00C02F8A /* HelpContentsTableViewController.swift */,
+				17C3E9C924DDAFDD00C02F8A /* OnboardingPageController.swift */,
+				17C3E9CA24DDAFDD00C02F8A /* OnboardingViewController.swift */,
+				17C3E9CB24DDAFDD00C02F8A /* OnboardingView.swift */,
+			);
+			path = Tutorials;
+			sourceTree = "<group>";
+		};
+		17C3E9CC24DDAFDD00C02F8A /* Add Features and Entries */ = {
+			isa = PBXGroup;
+			children = (
+				17C3E9CD24DDAFDD00C02F8A /* AddFeatureView.swift */,
+				17C3E9CE24DDAFDD00C02F8A /* CameraPreviewView.swift */,
+				17C3E9CF24DDAFDD00C02F8A /* AddPhotoView.swift */,
+				17C3E9D024DDAFDD00C02F8A /* AddConditionTableViewController.swift */,
+				17C3E9D124DDAFDD00C02F8A /* PhotoCaptureProcessor.swift */,
+				17C3E9D224DDAFDD00C02F8A /* AddEntryTableViewController.swift */,
+				17C3E9D324DDAFDD00C02F8A /* CropViewController.swift */,
+				17C3E9D424DDAFDD00C02F8A /* AddEntryView.swift */,
+			);
+			path = "Add Features and Entries";
+			sourceTree = "<group>";
+		};
+		17C3E9D524DDAFDD00C02F8A /* Reminders */ = {
+			isa = PBXGroup;
+			children = (
+				17C3E9D624DDAFDD00C02F8A /* RemindersView.swift */,
+				17C3E9D724DDAFDD00C02F8A /* RemindersTableViewController.swift */,
+			);
+			path = Reminders;
+			sourceTree = "<group>";
+		};
+		17C3E9FE24DDAFE900C02F8A /* Mac */ = {
+			isa = PBXGroup;
+			children = (
+				17C3E9FF24DDAFE900C02F8A /* ToolbarDelegate.swift */,
+			);
+			path = Mac;
+			sourceTree = "<group>";
+		};
+		17C3EA0024DDAFE900C02F8A /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = iOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,6 +482,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				17C3E97B24DDAF5200C02F8A /* LaunchScreen.storyboard in Resources */,
+				17C3E9E524DDAFDD00C02F8A /* ConditionsTableViewCell.xib in Resources */,
 				17C3E97824DDAF5200C02F8A /* Assets.xcassets in Resources */,
 				17C3E97324DDAF5100C02F8A /* Main.storyboard in Resources */,
 			);
@@ -261,10 +509,54 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17C3E9E924DDAFDD00C02F8A /* SkinFeaturesTableViewController.swift in Sources */,
+				17C3E9E224DDAFDD00C02F8A /* PDFPreview.swift in Sources */,
+				17C3E9A624DDAFC400C02F8A /* MenuBuilder.swift in Sources */,
+				17C3E9F224DDAFDD00C02F8A /* OnboardingViewController.swift in Sources */,
+				17C3E9DF24DDAFDD00C02F8A /* DrawingViewController.swift in Sources */,
+				17C3E9A524DDAFC400C02F8A /* PublicVariables.swift in Sources */,
+				17C3E9FB24DDAFDD00C02F8A /* AddEntryView.swift in Sources */,
+				17C3EA0724DDB0CC00C02F8A /* SkinFeature.swift in Sources */,
+				17C3E9DE24DDAFDD00C02F8A /* MasterNavController.swift in Sources */,
+				17C3E9DD24DDAFDD00C02F8A /* SettingsNavController.swift in Sources */,
+				17C3E9A324DDAFC400C02F8A /* CompatibleLabel.swift in Sources */,
+				17C3EA0624DDB0CC00C02F8A /* Entry+CoreDataClass.swift in Sources */,
+				17C3E9F724DDAFDD00C02F8A /* AddConditionTableViewController.swift in Sources */,
+				17C3E9DA24DDAFDD00C02F8A /* UserDefault.swift in Sources */,
+				17C3E9DB24DDAFDD00C02F8A /* DetailNavController.swift in Sources */,
+				17C3E9FD24DDAFDD00C02F8A /* RemindersTableViewController.swift in Sources */,
+				17C3E9F524DDAFDD00C02F8A /* CameraPreviewView.swift in Sources */,
+				17C3E9A424DDAFC400C02F8A /* NotificationName.swift in Sources */,
+				17C3E9E124DDAFDD00C02F8A /* DetailViewController.swift in Sources */,
+				17C3E9F324DDAFDD00C02F8A /* OnboardingView.swift in Sources */,
+				17C3E9E424DDAFDD00C02F8A /* ActivityView.swift in Sources */,
+				17C3E9ED24DDAFDD00C02F8A /* EntriesFlowLayout.swift in Sources */,
+				17C3E9E724DDAFDD00C02F8A /* SkinFeaturesCellView.swift in Sources */,
 				17C3E97624DDAF5100C02F8A /* Chronoderm.xcdatamodeld in Sources */,
-				17C3E97024DDAF5100C02F8A /* ViewController.swift in Sources */,
+				17C3E9FA24DDAFDD00C02F8A /* CropViewController.swift in Sources */,
+				17C3E9F924DDAFDD00C02F8A /* AddEntryTableViewController.swift in Sources */,
+				17C3E9D924DDAFDD00C02F8A /* SettingsView.swift in Sources */,
+				17C3E9EA24DDAFDD00C02F8A /* InfoCollectionReusableView.swift in Sources */,
+				17C3E9E824DDAFDD00C02F8A /* ContextPreviewViewController.swift in Sources */,
+				17C3E9EE24DDAFDD00C02F8A /* HelpViewController.swift in Sources */,
+				17C3E9E324DDAFDD00C02F8A /* PDFView.swift in Sources */,
+				17C3EA0524DDB0CC00C02F8A /* Entry+CoreDataProperties.swift in Sources */,
+				17C3E9DC24DDAFDD00C02F8A /* SplitViewController.swift in Sources */,
+				17C3E9FC24DDAFDD00C02F8A /* RemindersView.swift in Sources */,
+				17C3E9F124DDAFDD00C02F8A /* OnboardingPageController.swift in Sources */,
+				17C3E9E624DDAFDD00C02F8A /* ConditionsTableViewCell.swift in Sources */,
+				17C3EA0124DDAFE900C02F8A /* ToolbarDelegate.swift in Sources */,
+				17C3E9EB24DDAFDD00C02F8A /* EntriesCollectionViewController.swift in Sources */,
+				17C3E9F624DDAFDD00C02F8A /* AddPhotoView.swift in Sources */,
+				17C3E9E024DDAFDD00C02F8A /* DrawingView.swift in Sources */,
 				17C3E96C24DDAF5100C02F8A /* AppDelegate.swift in Sources */,
 				17C3E96E24DDAF5100C02F8A /* SceneDelegate.swift in Sources */,
+				17C3E9F424DDAFDD00C02F8A /* AddFeatureView.swift in Sources */,
+				17C3E9D824DDAFDD00C02F8A /* SettingsTableViewController.swift in Sources */,
+				17C3E9F824DDAFDD00C02F8A /* PhotoCaptureProcessor.swift in Sources */,
+				17C3E9EF24DDAFDD00C02F8A /* Help.swift in Sources */,
+				17C3E9F024DDAFDD00C02F8A /* HelpContentsTableViewController.swift in Sources */,
+				17C3E9EC24DDAFDD00C02F8A /* EntriesCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,6 +735,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 394ER38X9C;
 				INFOPLIST_FILE = Chronoderm/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -462,6 +755,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 394ER38X9C;
 				INFOPLIST_FILE = Chronoderm/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

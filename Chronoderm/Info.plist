@@ -2,6 +2,33 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeAdd</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Add Condition</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.Baughan.MyHealingTest.newCondition</string>
+		</dict>
+	</array>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>com.Baughan.Chronoderm.openentry</string>
+		<string>com.Baughan.Chronoderm.openCondition</string>
+		<string>com.Baughan.Chronoderm.NewCondition</string>
+		<string>com.Baughan.Chronoderm.AddEntry</string>
+		<string>com.Baughan.Chronoderm.settings</string>
+		<string>com.Baughan.Chronoderm.tutorial</string>
+		<string>com.Baughan.Chronoderm.help</string>
+	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>&quot;To add photos to an entry&quot;</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>&quot;To add photos taken with the app to your camera roll&quot;</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>&quot;To add photos to an entry&quot;</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -23,12 +50,14 @@
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
-		<false/>
+		<true/>
 		<key>UISceneConfigurations</key>
 		<dict>
 			<key>UIWindowSceneSessionRoleApplication</key>
 			<array>
 				<dict>
+					<key>UISceneClassName</key>
+					<string>UIWindowScene</string>
 					<key>UISceneConfigurationName</key>
 					<string>Default Configuration</string>
 					<key>UISceneDelegateClassName</key>

@@ -1,4 +1,57 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17162" systemVersion="19G73" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Attachment" representedClassName="Attachment" syncable="YES" codeGenerationType="class">
+        <attribute name="imageID" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="thumbnail" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <relationship name="entry" maxCount="1" deletionRule="Nullify" destinationEntity="Entry" inverseName="image" inverseEntity="Entry"/>
+        <relationship name="fullImage" maxCount="1" deletionRule="Cascade" destinationEntity="ImageData" inverseName="thumbnail" inverseEntity="ImageData"/>
+    </entity>
+    <entity name="ConditionNotification" representedClassName=".ConditionNotification" syncable="YES" codeGenerationType="class">
+        <attribute name="identifier" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="condition" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SkinFeature" inverseName="notification" inverseEntity="SkinFeature"/>
+    </entity>
+    <entity name="Entry" representedClassName="Entry" syncable="YES">
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dateSection" optional="YES" transient="YES" attributeType="String"/>
+        <attribute name="notes" optional="YES" attributeType="String"/>
+        <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="condition" maxCount="1" deletionRule="Nullify" destinationEntity="SkinFeature" inverseName="entry" inverseEntity="SkinFeature"/>
+        <relationship name="image" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Attachment" inverseName="entry" inverseEntity="Attachment"/>
+    </entity>
+    <entity name="ImageData" representedClassName="ImageData" syncable="YES" codeGenerationType="class">
+        <attribute name="fullImage" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <relationship name="thumbnail" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Attachment" inverseName="fullImage" inverseEntity="Attachment"/>
+    </entity>
+    <entity name="NotificationSettings" representedClassName="NotificationSettings" syncable="YES" codeGenerationType="class">
+        <attribute name="friday" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="monday" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="remindersOn" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="saturday" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="sunday" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="thursday" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="time" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="tuesday" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="wednesday" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="condition" maxCount="1" deletionRule="Nullify" destinationEntity="SkinFeature" inverseName="notificationSettings" inverseEntity="SkinFeature"/>
+    </entity>
+    <entity name="SkinFeature" representedClassName="SkinFeature" elementID="Condition" syncable="YES" codeGenerationType="class">
+        <attribute name="areaOfBody" optional="YES" attributeType="String"/>
+        <attribute name="complete" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="favourite" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="startDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="entry" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Entry" inverseName="condition" inverseEntity="Entry"/>
+        <relationship name="notification" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ConditionNotification" inverseName="condition" inverseEntity="ConditionNotification"/>
+        <relationship name="notificationSettings" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="NotificationSettings" inverseName="condition" inverseEntity="NotificationSettings"/>
+    </entity>
+    <elements>
+        <element name="Attachment" positionX="-63" positionY="-18" width="128" height="103"/>
+        <element name="Entry" positionX="-54" positionY="-9" width="128" height="133"/>
+        <element name="ImageData" positionX="-36" positionY="9" width="128" height="73"/>
+        <element name="NotificationSettings" positionX="-18" positionY="27" width="128" height="208"/>
+        <element name="SkinFeature" positionX="0" positionY="45" width="128" height="178"/>
+        <element name="ConditionNotification" positionX="18" positionY="63" width="128" height="73"/>
+    </elements>
 </model>
