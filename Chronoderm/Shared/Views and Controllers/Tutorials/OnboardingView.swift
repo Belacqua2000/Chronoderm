@@ -86,6 +86,7 @@ A customisable summary of your skin features can be generated to make it easy to
                         .opacity(stage == 4 ? 1 : 0)
                 }
             }
+            .frame(maxWidth: 600)
             
             Spacer()
             
@@ -133,7 +134,7 @@ A customisable summary of your skin features can be generated to make it easy to
     func dismiss() {
         guard confirmed else { print("T and C not confirmed"); return }
         let defaults = UserDefaults.standard
-        defaults.setValue(PublicVariables().termsAndConditionsCurrentVersion, forKey: "TermsAndConditions")
+        defaults.setValue(GlobalVariables().termsAndConditionsCurrentVersion, forKey: "TermsAndConditions")
         vc?.presentedViewController?.dismiss(animated: true, completion: nil)
     }
 }

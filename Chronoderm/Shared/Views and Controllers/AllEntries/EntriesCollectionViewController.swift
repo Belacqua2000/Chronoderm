@@ -544,6 +544,7 @@ class EntriesCollectionViewController: UICollectionViewController, NSFetchedResu
 extension EntriesCollectionViewController: UICollectionViewDragDelegate {
     
     func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        guard indexPath != IndexPath(row: fetchedResultsController?.fetchedObjects?.count ?? 0, section: 0) else { return [] }
         let selectedEntry = self.fetchedResultsController!.object(at: indexPath)
         
         let userActivity = selectedEntry.openDetailUserActivity

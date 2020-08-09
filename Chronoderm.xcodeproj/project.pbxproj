@@ -17,7 +17,7 @@
 		17C3E99124DDAF5300C02F8A /* ChronodermUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E99024DDAF5300C02F8A /* ChronodermUITests.swift */; };
 		17C3E9A324DDAFC400C02F8A /* CompatibleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E99F24DDAFC400C02F8A /* CompatibleLabel.swift */; };
 		17C3E9A424DDAFC400C02F8A /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9A024DDAFC400C02F8A /* NotificationName.swift */; };
-		17C3E9A524DDAFC400C02F8A /* PublicVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9A124DDAFC400C02F8A /* PublicVariables.swift */; };
+		17C3E9A524DDAFC400C02F8A /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9A124DDAFC400C02F8A /* GlobalVariables.swift */; };
 		17C3E9A624DDAFC400C02F8A /* MenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9A224DDAFC400C02F8A /* MenuBuilder.swift */; };
 		17C3EA0124DDAFE900C02F8A /* ToolbarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9FF24DDAFE900C02F8A /* ToolbarDelegate.swift */; };
 		17C3EA0524DDB0CC00C02F8A /* Entry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3EA0224DDB0CC00C02F8A /* Entry+CoreDataProperties.swift */; };
@@ -97,7 +97,7 @@
 		17C3E99224DDAF5300C02F8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		17C3E99F24DDAFC400C02F8A /* CompatibleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompatibleLabel.swift; sourceTree = "<group>"; };
 		17C3E9A024DDAFC400C02F8A /* NotificationName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
-		17C3E9A124DDAFC400C02F8A /* PublicVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicVariables.swift; sourceTree = "<group>"; };
+		17C3E9A124DDAFC400C02F8A /* GlobalVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 		17C3E9A224DDAFC400C02F8A /* MenuBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBuilder.swift; sourceTree = "<group>"; };
 		17C3E9FF24DDAFE900C02F8A /* ToolbarDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolbarDelegate.swift; sourceTree = "<group>"; };
 		17C3EA0224DDB0CC00C02F8A /* Entry+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Entry+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -229,7 +229,7 @@
 			children = (
 				17C3E99F24DDAFC400C02F8A /* CompatibleLabel.swift */,
 				17C3E9A024DDAFC400C02F8A /* NotificationName.swift */,
-				17C3E9A124DDAFC400C02F8A /* PublicVariables.swift */,
+				17C3E9A124DDAFC400C02F8A /* GlobalVariables.swift */,
 				17C3E9A224DDAFC400C02F8A /* MenuBuilder.swift */,
 			);
 			path = Helpers;
@@ -275,7 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				17CE23E824DDB59B00912D22 /* SkinFeatures */,
-				17CE23EF24DDB59B00912D22 /* AllEntriesView */,
+				17CE23EF24DDB59B00912D22 /* AllEntries */,
 				17CE23FB24DDB59B00912D22 /* Add Features and Entries */,
 				17CE23D724DDB59B00912D22 /* Settings */,
 				17CE23DB24DDB59B00912D22 /* Helper VCs */,
@@ -340,7 +340,7 @@
 			path = SkinFeatures;
 			sourceTree = "<group>";
 		};
-		17CE23EF24DDB59B00912D22 /* AllEntriesView */ = {
+		17CE23EF24DDB59B00912D22 /* AllEntries */ = {
 			isa = PBXGroup;
 			children = (
 				17CE23F024DDB59B00912D22 /* InfoCollectionReusableView.swift */,
@@ -348,7 +348,7 @@
 				17CE23F224DDB59B00912D22 /* EntriesCollectionViewCell.swift */,
 				17CE23F324DDB59B00912D22 /* EntriesFlowLayout.swift */,
 			);
-			path = AllEntriesView;
+			path = AllEntries;
 			sourceTree = "<group>";
 		};
 		17CE23F424DDB59B00912D22 /* Tutorials */ = {
@@ -521,7 +521,7 @@
 			files = (
 				17CE241324DDB59B00912D22 /* ActivityView.swift in Sources */,
 				17C3E9A624DDAFC400C02F8A /* MenuBuilder.swift in Sources */,
-				17C3E9A524DDAFC400C02F8A /* PublicVariables.swift in Sources */,
+				17C3E9A524DDAFC400C02F8A /* GlobalVariables.swift in Sources */,
 				17CE240724DDB59B00912D22 /* SettingsTableViewController.swift in Sources */,
 				17CE242C24DDB59B00912D22 /* RemindersTableViewController.swift in Sources */,
 				17C3EA0724DDB0CC00C02F8A /* SkinFeature.swift in Sources */,

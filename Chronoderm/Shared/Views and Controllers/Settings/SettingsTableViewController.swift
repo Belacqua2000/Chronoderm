@@ -35,6 +35,10 @@ class SettingsTableViewController: UITableViewController {
     
     @IBOutlet var leadingConstraints: [NSLayoutConstraint]!
     
+    @IBOutlet var versionNumberLabel: UILabel!
+    @IBOutlet var buildNumberLabel: UILabel!
+    
+    
     // MARK: - Life Cycle
     static func loadFromStoryboard() -> SettingsTableViewController? {
            let storyboard = UIStoryboard(name: "Main", bundle: .main)
@@ -44,6 +48,7 @@ class SettingsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
+        setVersionNumbers()
         startNSUserActivity()
     }
     
@@ -131,6 +136,12 @@ class SettingsTableViewController: UITableViewController {
         default:
             return
         }
+    }
+    
+    func setVersionNumbers() {
+        let global = GlobalVariables()
+        versionNumberLabel.text = global.currentVersion
+        buildNumberLabel.text = global.currentBuild
     }
     
     

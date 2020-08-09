@@ -242,10 +242,12 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
             controller.passedCondition = self.currentEntry?.condition
             controller.managedObjectContext = self.managedObjectContext
         }
+        #if !targetEnvironment(macCatalyst)
         if segue.identifier == "markup" {
             let controller = segue.destination as! DrawingViewController
             controller.image = self.entryImageView.image
         }
+        #endif
     }
     
     // Get the new entry details from Edit Entry View

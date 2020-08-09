@@ -241,7 +241,7 @@ class SkinFeaturesTableViewController: UITableViewController, NSFetchedResultsCo
             defaults.set(true, forKey: "hasLaunchedBefore")
             showOnboarding()
         } else {
-            if defaults.integer(forKey: "TermsAndConditions") < PublicVariables().termsAndConditionsCurrentVersion {
+            if defaults.integer(forKey: "TermsAndConditions") < GlobalVariables().termsAndConditionsCurrentVersion {
                 let reviewAction = UIAlertAction(title: "Review Terms and Conditions", style: .default, handler: {_ in self.showOnboarding()})
                 let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {_ in })
                 let alertController = UIAlertController(title: "Terms and Conditions", message: "To use this app, you must accept the terms and conditions", preferredStyle: .alert)
