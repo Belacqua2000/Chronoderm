@@ -17,7 +17,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.medical</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -31,7 +31,7 @@
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>com.Baughan.Chronoderm.openentry</string>
-		<string>com.Baughan.Chronoderm.openCondition</string>
+		<string>com.Baughan.Chronoderm.openskinfeature</string>
 		<string>com.Baughan.Chronoderm.NewCondition</string>
 		<string>com.Baughan.Chronoderm.AddEntry</string>
 		<string>com.Baughan.Chronoderm.settings</string>

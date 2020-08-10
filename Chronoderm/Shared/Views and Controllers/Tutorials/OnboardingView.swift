@@ -83,6 +83,9 @@ A customisable summary of your skin features can be generated to make it easy to
                         index: 4,
                         currentStage: $stage)
                     Toggle("Confirm T and Cs", isOn: $confirmed)
+                        .padding(5.0)
+                        .background(Color(UIColor(named: "Theme Colour")!))
+                        .cornerRadius(8.0)
                         .opacity(stage == 4 ? 1 : 0)
                 }
             }
@@ -205,7 +208,7 @@ struct TextAndImage: View {
                     .fontWeight(.heavy)
                     .animation(nil)
             }
-            .frame(height: 250.0)
+            .frame(height: 200.0)
             Spacer()
         }
         .opacity(currentStage == index ? 1 : 0)

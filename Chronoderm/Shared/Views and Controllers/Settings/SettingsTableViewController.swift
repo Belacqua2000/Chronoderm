@@ -62,7 +62,7 @@ class SettingsTableViewController: UITableViewController {
             .assign(to: \.isOn, on: showCameraOverlaySwitch)
         
         showQuickActionsSubscriber = UserDefaults.standard
-            .publisher(for: \.CameraOverlayIsShown, options: [.initial, .new])
+            .publisher(for: \.showHomeQuickActions, options: [.initial, .new])
             .assign(to: \.isOn, on: quickActionsSwitch)
         
         indexSpotlightSubscriber = UserDefaults.standard
@@ -85,6 +85,7 @@ class SettingsTableViewController: UITableViewController {
         super.viewWillDisappear(animated)
         self.userActivity = nil
         view.window?.windowScene?.userActivity = userActivity
+        view.window?.windowScene?.title = nil
     }
     
     

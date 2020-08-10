@@ -48,7 +48,7 @@ extension SkinFeature {
         // Create an NSUserActivity from our photo model.
         // Note: The activityType string below must be included in your Info.plist file under the `NSUserActivityTypes` array.
         // More info: https://developer.apple.com/documentation/foundation/nsuseractivity
-        let userActivity = NSUserActivity(activityType: "com.Baughan.Chronoderm.openCondition")
+        let userActivity = NSUserActivity(activityType: "com.Baughan.Chronoderm.openskinfeature")
         userActivity.title = "openCondition"
         userActivity.userInfo = ["conditionUUID": uuid!.uuidString]
         return userActivity

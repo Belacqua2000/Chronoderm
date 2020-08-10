@@ -11,6 +11,7 @@ import CoreGraphics
 import AVKit
 import AVFoundation
 import PhotosUI
+import os
 
 protocol ConfirmPhoto {
     func didConfirmPhoto(image: UIImage)
@@ -19,28 +20,37 @@ protocol ConfirmPhoto {
 class CropViewController: UIViewController, UIScrollViewDelegate {
     
     // MARK: - Outlets
+    
+    // Views
     @IBOutlet var originalImageView: UIImageView!
     @IBOutlet var previousImageView: UIImageView!
     @IBOutlet var scrollView: UIScrollView!
     
     @IBOutlet var cropView: UIView!
+    @IBOutlet var cameraPreview: CameraPreviewView!
+    
+    // Guides
     @IBOutlet var verticalGuideView: UIView!
     @IBOutlet var horizontalGuideView: UIView!
     
-    
+    // Camera Controls
     @IBOutlet var verticalStackView: UIStackView!
+    @IBOutlet var horizontalStackView: UIStackView!
     @IBOutlet var flashButton: UIButton!
     @IBOutlet var changeCameraButton: UIButton!
     @IBOutlet var cropButton: UIButton!
     @IBOutlet var overlaySlider: UISlider!
     @IBOutlet var cancelBarButton: UIBarButtonItem!
+    @IBOutlet var errorLabel: UILabel!
+    @IBOutlet var retakeButtonEffectView: UIVisualEffectView!
     @IBOutlet var retakeButton: UIButton!
     
+    // Constraints
     @IBOutlet var xConstraint: NSLayoutConstraint!
     @IBOutlet var yConstraint: NSLayoutConstraint!
     @IBOutlet var ratioConstraint: NSLayoutConstraint!
+    var aspectRatioConstraint: NSLayoutConstraint! = NSLayoutConstraint()
     
-    @IBOutlet var cameraPreview: CameraPreviewView!
     
     // MARK: - Variables
     
@@ -52,7 +62,8 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
     }
     
     // This variable keeps track whether the view is in capture or crop mode.
-    var currentViewState: viewState = .capture {
+    var currentViewState: viewState = .capture
+        /*
         didSet {
             print("didSet currentViewState")
             switch currentViewState {
@@ -60,14 +71,12 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
                 // if this is triggered before viewDidLoad, fatalError will occur.
                 guard cameraPreview != nil else { return }
                 setupCaptureView()
-                
                 viewWillAppear(true)
             case .crop:
                 guard previousImageView != nil else { return }
                 setupCropView()
             }
-        }
-    }
+        }*/
     
     var windowOrientation: UIInterfaceOrientation {
         return view.window?.windowScene?.interfaceOrientation ?? .unknown
@@ -88,14 +97,15 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
             print("didSet image")
             guard originalImageView != nil else { return }
             originalImageView.image = image
-            if image == nil {
+            /*if image == nil {
                 currentViewState = .capture
             } else {
                 currentViewState = .crop
-            }
+            }*/
         }
     }
     var previousImage: UIImage? = nil
+    var previousImageFlipped: UIImage? = nil
     var croppedImage: UIImage? {
         cropPhoto()
     }
@@ -106,11 +116,19 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         // set the current state to capture if there is not a photo passed through.
         currentViewState = image != nil ? .crop : .capture
+        cameraPreview.videoPreviewLayer.session = session
+        retakeButtonEffectView.layer.cornerRadius = 8.0
+        previousImageFlipped = previousImage?.withHorizontallyFlippedOrientation()
         
         switch currentViewState {
         case .capture:
             setupCaptureView()
-            setFlashInterface()
+            // Check to see if authorised
+            checkAuthorisation()
+            // Set up the video preview view.
+            sessionQueue.async {
+                self.setupCameraSession()
+            }
         case .crop:
             originalImageView.image = image
             setupCropView()
@@ -122,34 +140,53 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        sessionQueue.async {
-            self.session.startRunning()
-        }
+        tryToStartSession()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         sessionQueue.async {
-            self.session.stopRunning()
+            if self.setupResult == .success {
+                self.removeObservers()
+                self.session.stopRunning()
+                self.sessionIsRunning = self.session.isRunning
+            }
         }
     }
     
+    private var scrollViewSetUp: Bool = false
+    
     func setupScrollView() {
-        scrollView.delegate = self
-        scrollView.maximumZoomScale = 4.0
-        scrollView.minimumZoomScale = 1.0
+        if scrollViewSetUp == false {
+            scrollView.delegate = self
+            scrollView.maximumZoomScale = 4.0
+            scrollView.minimumZoomScale = 1.0
+            scrollViewSetUp = true
+        }
         scrollView.contentSize = self.originalImageView.frame.size
         
-        // In order to centre the imageview, if landscape, you must break the x constraint (it will not be in the middle).  If portrait, break the y constraint.
-        if image!.size.height > image!.size.width {
-            yConstraint.isActive = false
-        } else {
-            xConstraint.isActive = false
-        }
+        //Zoom out and centre view
+        var centreRect = CGRect()
         
         // Sets the aspect ratio of the imageview to the aspect ratio of the image.
         let newRatioConstraint = NSLayoutConstraint(item: originalImageView!, attribute: .width, relatedBy: .equal, toItem: originalImageView!, attribute: .height, multiplier: image!.size.width / image!.size.height, constant: 0)
         ratioConstraint.isActive = false
-        newRatioConstraint.isActive = true
+        aspectRatioConstraint.isActive = false
+        aspectRatioConstraint = newRatioConstraint
+        aspectRatioConstraint.isActive = true
+    
+        // In order to centre the UIImageView in the UIScrollView, if landscape, you must break the x constraint (it will not be in the middle).  If portrait, break the y constraint.  The centre rect also depends on image orientation.
+        if image!.size.height > image!.size.width {
+            yConstraint.isActive = false
+            xConstraint.isActive = true
+            centreRect = CGRect(x: 0, y: (originalImageView.frame.height / 2) - (cropView.frame.height), width: cropView.frame.width, height: cropView.frame.height)
+        } else {
+            xConstraint.isActive = false
+            yConstraint.isActive = true
+            centreRect = CGRect(x: (originalImageView.frame.width / 2) - (cropView.frame.width / 2), y: 0, width: cropView.frame.width, height: cropView.frame.height)
+            print("x: \((originalImageView.frame.width / 2)) - \((cropView.frame.width / 2)), y: \(0), width: \(cropView.frame.width), height \(cropView.frame.height)")
+        }
+        
+        //scrollView.scrollRectToVisible(centreRect, animated: false)
     }
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
@@ -175,102 +212,174 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
     }
     
     // MARK: - AVFoundation
-    enum authorisationStatus {
+    enum SetupStatus {
         case authorized
+        case success
         case denied
         case restricted
+        case configurationFailed
         case unknown
     }
     
     let sessionQueue = DispatchQueue(label: "session queue")
     
-    var status: authorisationStatus = .unknown
+    private var setupResult: SetupStatus = .unknown
     let session = AVCaptureSession()
-    var videoDeviceInput: AVCaptureDeviceInput!
+    var photoDeviceInput: AVCaptureDeviceInput!
     private let videoDeviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera, .builtInDualCamera, .builtInTrueDepthCamera],
                                                                                mediaType: .video, position: .unspecified)
     let photoOutput = AVCapturePhotoOutput()
     
-    var sessionIsRunning: Bool = false
+    private var sessionIsRunning: Bool = false
+    
+    func setupCaptureView() {
+        #if targetEnvironment(macCatalyst)
+        #else
+        self.cameraPreview.isHidden = false
+        cropButton.setTitle("Capture", for: .normal)
+        cropButton.setImage(UIImage(systemName: "camera"), for: .normal)
+        retakeButton.isHidden = true
+        setFlashInterface()
+        let flashControl = horizontalStackView.arrangedSubviews[0]
+        let flipControl = horizontalStackView.arrangedSubviews[2]
+        flashControl.isHidden = false
+        flipControl.isHidden = false
+        let overlayTextAndSlider = verticalStackView.arrangedSubviews[2]
+        overlayTextAndSlider.isHidden = previousImage == nil
+        #endif
+    }
     
     func checkAuthorisation() {
-        // Check permissions
+        // Check permissions if not done so already in this session
+        guard setupResult == .unknown else { return }
         switch AVCaptureDevice.authorizationStatus(for: .video) {
-            case .authorized: // The user has previously granted access to the camera.
-                status = .authorized
-                sessionQueue.async {
-                    self.setupCameraSession()
-                }
+        case .authorized: // The user has previously granted access to the camera.
+            setupResult = .authorized
+            break
             
-            case .notDetermined: // The user has not yet been asked for camera access.
-                AVCaptureDevice.requestAccess(for: .video) { granted in
-                    if granted {
-                        self.status = .authorized
-                        self.sessionQueue.async {
-                            self.setupCameraSession()
-                        }
-                    }
+        case .notDetermined: // The user has not yet been asked for camera access.
+            sessionQueue.suspend()
+            AVCaptureDevice.requestAccess(for: .video, completionHandler: { granted in
+                if !granted {
+                    self.setupResult = .denied
                 }
+                self.sessionQueue.resume()
+            })
             
-            case .denied: // The user has previously denied access.
-                status = .denied
-                return
-
-            case .restricted: // The user can't grant access due to restrictions.
-                status = .restricted
-                return
-        @unknown default:
+        case .denied: // The user has previously denied access.
+            setupResult = .denied
+            return
+            
+        case .restricted: // The user can't grant access due to restrictions.
+            setupResult = .restricted
+            return
+        default:
+            setupResult = .denied
             return
         }
     }
     
+    func setupCropView() {
+        self.cameraPreview.isHidden = true
+        originalImageView.image = image
+        updateOverlay(flipped: false)
+        setupScrollView()
+        cropButton.setTitle("Confirm Crop", for: .normal)
+        cropButton.setImage(UIImage(systemName: "crop"), for: .normal)
+        retakeButton.isHidden = false
+        let flashControl = horizontalStackView.arrangedSubviews[0]
+        let flipControl = horizontalStackView.arrangedSubviews[2]
+        flashControl.isHidden = true
+        flipControl.isHidden = true
+        let overlayTextAndSlider = verticalStackView.arrangedSubviews[2]
+        overlayTextAndSlider.isHidden = previousImage == nil
+    }
+    
     func setupCameraSession() {
-        guard status == .authorized else { return }
+        guard setupResult == .authorized else { return }
         session.beginConfiguration()
         print("beginConfig")
-        
-        let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .none, position: .unspecified)
-        guard let input = try? AVCaptureDeviceInput(device: device!),session.canAddInput(input) else {
-            print("Could not add input")
-            session.commitConfiguration()
-            return }
-        session.addInput(input)
-        self.videoDeviceInput = input
-        
-        guard session.canAddOutput(photoOutput) else {
-            print("Cannot add output")
-            session.commitConfiguration()
-            return }
         session.sessionPreset = .photo
-        session.addOutput(photoOutput)
-        session.commitConfiguration()
-        print("commitConfig")
         
-        DispatchQueue.main.async {
-            /*
-             Dispatch video streaming to the main queue because AVCaptureVideoPreviewLayer is the backing layer for PreviewView.
-             You can manipulate UIView only on the main thread.
-             Note: As an exception to the above rule, it's not necessary to serialize video orientation changes
-             on the AVCaptureVideoPreviewLayer’s connection with other session manipulation.
-             
-             Use the window scene's orientation as the initial video orientation. Subsequent orientation changes are
-             handled by CameraViewController.viewWillTransition(to:with:).
-             */
-            self.cameraPreview.videoPreviewLayer.videoGravity = .resizeAspectFill
-            
-            var initialVideoOrientation: AVCaptureVideoOrientation = .portrait
-            if self.windowOrientation != .unknown {
-                if let videoOrientation = AVCaptureVideoOrientation(rawValue: self.windowOrientation.rawValue) {
-                    initialVideoOrientation = videoOrientation
-                }
+        do {
+            var defaultDevice: AVCaptureDevice?
+            if let dualCameraDevice = AVCaptureDevice.default(.builtInDualCamera, for: .none, position: .back) {
+                defaultDevice = dualCameraDevice
+            } else if let backCameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .none, position: .back) {
+                // If a rear dual camera is not available, default to the rear wide angle camera.
+                defaultDevice = backCameraDevice
+            } else if let frontCameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .none, position: .front) {
+                // If the rear wide angle camera isn't available, default to the front wide angle camera.
+                defaultDevice = frontCameraDevice
             }
-            self.cameraPreview.videoPreviewLayer.connection?.videoOrientation = initialVideoOrientation
+            guard let device = defaultDevice else {
+                print("Could not add input")
+                session.commitConfiguration()
+                setupResult = .configurationFailed
+                return }
+            
+            let photoDeviceInput = try AVCaptureDeviceInput(device: device)
+            
+            if session.canAddInput(photoDeviceInput) {
+                session.addInput(photoDeviceInput)
+                self.photoDeviceInput = photoDeviceInput
+                
+                DispatchQueue.main.async {
+                    /*
+                     Dispatch video streaming to the main queue because AVCaptureVideoPreviewLayer is the backing layer for PreviewView.
+                     You can manipulate UIView only on the main thread.
+                     Note: As an exception to the above rule, it's not necessary to serialize video orientation changes
+                     on the AVCaptureVideoPreviewLayer’s connection with other session manipulation.
+                     
+                     Use the window scene's orientation as the initial video orientation. Subsequent orientation changes are
+                     handled by CameraViewController.viewWillTransition(to:with:).
+                     */
+                    self.cameraPreview.videoPreviewLayer.videoGravity = .resizeAspectFill
+                    
+                    var initialVideoOrientation: AVCaptureVideoOrientation = .portrait
+                    if self.windowOrientation != .unknown {
+                        if let videoOrientation = AVCaptureVideoOrientation(rawValue: self.windowOrientation.rawValue) {
+                            initialVideoOrientation = videoOrientation
+                        }
+                    }
+                    self.cameraPreview.videoPreviewLayer.connection?.videoOrientation = initialVideoOrientation
+                }
+                
+            } else {
+                print("Couldn't add video device input to the session.")
+                setupResult = .configurationFailed
+                    session.commitConfiguration()
+                return
+            }
+        } catch {
+            print("Couldn't create video device input: \(error)")
+            setupResult = .configurationFailed
+            session.commitConfiguration()
+            return
         }
+        
+        if session.canAddOutput(photoOutput) {
+            session.addOutput(photoOutput)
+        } else {
+            print("Cannot add output")
+            setupResult = .configurationFailed
+            session.commitConfiguration()
+            return
+        }
+        setupResult = .success
+        session.commitConfiguration()
     }
     
     @IBAction func didPressFlashButton(_ sender: Any) {
         changeFlash()
     }
+    
+    @IBAction func didPressGridButton(_ sender: Any) {
+        let animator = UIViewPropertyAnimator(duration: 0.5, curve: .easeInOut, animations: {self.verticalGuideView.isHidden.toggle()
+            self.horizontalGuideView.isHidden.toggle()})
+        animator.startAnimation()
+    }
+    
     
     func changeFlash() {
         switch currentFlashMode {
@@ -298,13 +407,22 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
+    func updateOverlay(flipped: Bool?) {
+        guard setupResult == .success else { return }
+        if let flipped = flipped {
+            previousImageView.image = flipped ? previousImageFlipped : previousImage
+        } else {
+            previousImageView.image = photoDeviceInput.device.position == .front ? previousImageFlipped : previousImage
+        }
+    }
+    
     @IBAction func didPressChangeCameraButton(_ sender: Any) {
         flashButton.isEnabled = false
         cropButton.isEnabled = false
         changeCameraButton.isEnabled = false
         
         sessionQueue.async {
-            let currentVideoDevice = self.videoDeviceInput.device
+            let currentVideoDevice = self.photoDeviceInput.device
             let currentPosition = currentVideoDevice.position
             
             let preferredPosition: AVCaptureDevice.Position
@@ -342,14 +460,16 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
                     
                     // Remove the existing device input first, because AVCaptureSession doesn't support
                     // simultaneous use of the rear and front cameras.
-                    self.session.removeInput(self.videoDeviceInput)
+                    self.session.removeInput(self.photoDeviceInput)
                     
                     if self.session.canAddInput(videoDeviceInput) {
                         self.session.addInput(videoDeviceInput)
-                        self.videoDeviceInput = videoDeviceInput
+                        self.photoDeviceInput = videoDeviceInput
                     } else {
-                        self.session.addInput(self.videoDeviceInput)
+                        self.session.addInput(self.photoDeviceInput)
                     }
+                    
+                    
                     
                     /*
                      Set Live Photo capture and depth data delivery if it's supported. When changing cameras, the
@@ -364,12 +484,72 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
             }
             
             DispatchQueue.main.async {
-                if self.videoDeviceInput.device.position == .front {
-                    print("front")
-                }
+                self.updateOverlay(flipped: nil)
                 self.flashButton.isEnabled = true
                 self.cropButton.isEnabled = true
                 self.changeCameraButton.isEnabled = true
+            }
+        }
+    }
+    
+    func tryToStartSession() {
+        sessionQueue.async {
+            switch self.setupResult {
+            case .success:
+                // Only setup observers and start the session if setup succeeded.
+                self.addObservers()
+                self.session.startRunning()
+                self.sessionIsRunning = self.session.isRunning
+                DispatchQueue.main.async {
+                    self.updateOverlay(flipped: nil)
+                }
+                
+            case .denied:
+                DispatchQueue.main.async {
+                    let changePrivacyMessage = "Chronoderm doesn't have permission to use the camera.  Please change in Settings app."
+                    let alertController = UIAlertController(title: "AVCam", message: changePrivacyMessage, preferredStyle: .alert)
+                    
+                    alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Alert OK button"),
+                                                            style: .cancel,
+                                                            handler: nil))
+                    
+                    alertController.addAction(UIAlertAction(title: NSLocalizedString("Settings", comment: "Alert button to open Settings"),
+                                                            style: .`default`,
+                                                            handler: { _ in
+                                                                UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!,
+                                                                                          options: [:],
+                                                                                          completionHandler: nil)
+                    }))
+                    
+                    self.present(alertController, animated: true, completion: nil)
+                }
+                
+            case .configurationFailed:
+                DispatchQueue.main.async {
+                    let alertMsg = "Chronoderm was unable to configure the camera."
+                    let alertController = UIAlertController(title: "Unable to Configure Cameras", message: alertMsg, preferredStyle: .alert)
+                    
+                    alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Alert OK button"),
+                                                            style: .cancel,
+                                                            handler: nil))
+                    
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            case .restricted:
+                DispatchQueue.main.async {
+                    let alertMsg = "Restrictions on this device block Chrondoderm from accessing the camera."
+                    let alertController = UIAlertController(title: "Camera Restricted", message: alertMsg, preferredStyle: .alert)
+                    
+                    alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Alert OK button"),
+                                                            style: .cancel,
+                                                            handler: nil))
+                    
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            case .unknown:
+                break
+            case .authorized:
+                break
             }
         }
     }
@@ -394,23 +574,80 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
             case .off: photoSettings.flashMode = .off
             }
             
-            /* let delegate = PhotoCaptureProcessor(with: photoSettings, willCapturePhotoAnimation: {}, completionHandler: { processor in
-                DispatchQueue.main.async {
-                    let data = processor.photoData!
-                    self.image = UIImage(data: data)
-                    self.currentViewState = .crop
-                    self.setupScrollView()
-                }
-            }, photoProcessingHandler: {_ in })
-            */
             self.photoOutput.capturePhoto(with: photoSettings, delegate: self)
             
         }
-        /*
-        let imageData = delegate.photoData!
-        let image = UIImage(data: imageData)
-        self.image = image
-        setupScrollView() */
+    }
+    
+    // MARK: - Notifications
+    func addObservers() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(sessionWasInterrupted),
+                                               name: .AVCaptureSessionWasInterrupted,
+                                               object: session)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(sessionInterruptionEnded),
+                                               name: .AVCaptureSessionInterruptionEnded,
+                                               object: session)
+    }
+    
+    private func removeObservers() {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func sessionWasInterrupted(notification: NSNotification) {
+        if let userInfoValue = notification.userInfo?[AVCaptureSessionInterruptionReasonKey] as AnyObject?,
+            let reasonIntegerValue = userInfoValue.integerValue,
+            let reason = AVCaptureSession.InterruptionReason(rawValue: reasonIntegerValue) {
+            print("Capture session was interrupted with reason \(reason)")
+            
+            switch reason {
+            case .videoDeviceNotAvailableWithMultipleForegroundApps:
+                // Fade-in a label to inform the user that the camera is unavailable.
+                print("Session stopped running due multitasking.")
+                errorLabel.text = "Camera Unavailable in Multitasking Mode"
+                errorLabel.alpha = 0
+                errorLabel.isHidden = false
+                UIView.animate(withDuration: 0.25, animations: {
+                    self.errorLabel.alpha = 1
+                    self.previousImageView.alpha = 0
+                    self.cropButton.isEnabled = false
+                }, completion: { _ in
+                    self.previousImageView.isHidden = true
+                })
+            case .videoDeviceNotAvailableDueToSystemPressure:
+                print("Session stopped running due to shutdown system pressure level.")
+                errorLabel.text = "Camera Unavailable"
+                errorLabel.alpha = 0
+                errorLabel.isHidden = false
+                UIView.animate(withDuration: 0.25, animations: {
+                    self.errorLabel.alpha = 1
+                    self.previousImageView.alpha = 0
+                    self.cameraPreview.alpha = 0
+                    self.cropButton.isEnabled = true
+                }, completion: { _ in
+                    self.previousImageView.isHidden = true
+                })
+            default:
+                print("Session stopped for unknown reason")
+            }
+        }
+    }
+    
+    @objc func sessionInterruptionEnded(notification: NSNotification) {
+        print("Capture session interruption ended")
+        previousImageView.alpha = 0
+        previousImageView.isHidden = false
+        if !errorLabel.isHidden {
+            UIView.animate(withDuration: 0.25,
+                           animations: {
+                            self.errorLabel.alpha = 0
+                            self.previousImageView.alpha = CGFloat(self.overlaySlider.value)
+            }, completion: { _ in
+                self.errorLabel.isHidden = true
+            }
+            )
+        }
     }
     
     // MARK: - Actions
@@ -439,7 +676,12 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func retakePhoto(_ sender: Any) {
+        currentViewState = .capture
         image = nil
+        setupCaptureView()
+        checkAuthorisation()
+        setupCameraSession()
+        tryToStartSession()
     }
     
     
@@ -459,35 +701,6 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
         case .crop:
             dismissAndSave(image: cropPhoto())
         }
-    }
-    
-    func setupCaptureView() {
-        #if targetEnvironment(macCatalyst)
-        #else
-        // Set up the video preview view.
-        self.cameraPreview.videoPreviewLayer.session = self.session
-        cropButton.setTitle("Capture", for: .normal)
-        cropButton.setImage(UIImage(systemName: "camera"), for: .normal)
-        retakeButton.isHidden = true
-        let cameraControls = verticalStackView.arrangedSubviews[1]
-        cameraControls.isHidden = false
-        let overlayText = verticalStackView.arrangedSubviews[2]
-        let overlaySlider = verticalStackView.arrangedSubviews[3]
-        overlayText.isHidden = previousImage == nil
-        overlaySlider.isHidden = previousImage == nil
-        checkAuthorisation()
-        #endif
-    }
-    
-    func setupCropView() {
-        self.cameraPreview.isHidden = true
-        originalImageView.image = image
-        setupScrollView()
-        cropButton.setTitle("Confirm Crop", for: .normal)
-        cropButton.setImage(UIImage(systemName: "crop"), for: .normal)
-        retakeButton.isHidden = false
-        let cameraControls = verticalStackView.arrangedSubviews[1]
-        cameraControls.isHidden = true
     }
     
     
@@ -644,12 +857,12 @@ extension CropViewController: AVCapturePhotoCaptureDelegate {
             guard let photoData = photo.fileDataRepresentation() else { return }
             print("Photo taken")
             sessionQueue.async {
-                self.session.commitConfiguration()
                 self.session.stopRunning()
             }
             let uncroppedImage = UIImage(data: photoData)
             //self.image = cropImageToSquare(uncroppedImage!)
             self.image = uncroppedImage!
+            self.currentViewState = .crop
             setupCropView()
             
         }
@@ -659,9 +872,14 @@ extension CropViewController: AVCapturePhotoCaptureDelegate {
 // MARK: - Photo Picker
 extension CropViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        sessionQueue.async {
+            self.session.stopRunning()
+        }
         picker.dismiss(animated: true)
         guard let image = info[.originalImage] as? UIImage else { return }
         self.image = image
+        self.currentViewState = .crop
+        self.setupCropView()
     }
 }
 
@@ -672,6 +890,9 @@ extension CropViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         // The client is responsible for presentation and dismissal
         picker.dismiss(animated: true)
+        sessionQueue.async {
+            self.session.stopRunning()
+        }
         
         // Get the first item provider from the results, the configuration only allowed one image to be selected
         let itemProvider = results.first?.itemProvider

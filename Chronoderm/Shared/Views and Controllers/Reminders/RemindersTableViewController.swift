@@ -53,11 +53,13 @@ class RemindersTableViewController: UITableViewController, UIPickerViewDelegate,
     
     // MARK: - Model
     var passedCondition: SkinFeature?
+    var notificationSettings: NotificationSettings?
     
     func getReminders() {
+        notificationSettings = passedCondition?.notificationSettings
         
-        guard let settings = passedCondition?.notificationSettings else { return }
-        
+        guard let settings = notificationSettings else { return }
+        print(settings)
         self.remindersOn = settings.remindersOn
         guard settings.remindersOn == true else { return }
         self.daysSelected[1] = settings.monday
@@ -77,6 +79,7 @@ class RemindersTableViewController: UITableViewController, UIPickerViewDelegate,
     
     
     func setNotification() {
+        guard passedCondition != nil else { return }
         //Request authorisation
         center.requestAuthorization(options: options) {
           (granted, error) in
@@ -149,18 +152,21 @@ class RemindersTableViewController: UITableViewController, UIPickerViewDelegate,
         }
         
         // Save Settings
-        let settings = NotificationSettings(context: managedObjectContext)
-        settings.setValue(true, forKey: "remindersOn")
-        settings.setValue(daysSelected[1], forKey: "monday")
-        settings.setValue(daysSelected[2], forKey: "tuesday")
-        settings.setValue(daysSelected[3], forKey: "wednesday")
-        settings.setValue(daysSelected[4], forKey: "thursday")
-        settings.setValue(daysSelected[5], forKey: "friday")
-        settings.setValue(daysSelected[6], forKey: "saturday")
-        settings.setValue(daysSelected[7], forKey: "sunday")
-        settings.setValue(timePicker.date, forKey: "time")
-        passedCondition?.notificationSettings = settings
-        
+        if notificationSettings == nil {
+            notificationSettings = NotificationSettings(context: managedObjectContext)
+        }
+        notificationSettings!.setValue(true, forKey: "remindersOn")
+        notificationSettings!.setValue(daysSelected[1], forKey: "monday")
+        notificationSettings!.setValue(daysSelected[2], forKey: "tuesday")
+        notificationSettings!.setValue(daysSelected[3], forKey: "wednesday")
+        notificationSettings!.setValue(daysSelected[4], forKey: "thursday")
+        notificationSettings!.setValue(daysSelected[5], forKey: "friday")
+        notificationSettings!.setValue(daysSelected[6], forKey: "saturday")
+        notificationSettings!.setValue(daysSelected[7], forKey: "sunday")
+        notificationSettings!.setValue(timePicker.date, forKey: "time")
+        print(passedCondition!)
+        passedCondition?.notificationSettings = notificationSettings
+        print(notificationSettings)
         updateCoreData()
     }
     

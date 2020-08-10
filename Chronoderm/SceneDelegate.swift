@@ -97,7 +97,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         print("Configure with activity")
         
         switch activity.activityType {
-        case "com.Baughan.Chronoderm.openCondition" :
+        case "com.Baughan.Chronoderm.openskinfeature" :
             guard let conditionID = activity.userInfo?["conditionUUID"] as? String else { return false }
             return openCondition(conditionID: conditionID)!
         case "com.Baughan.Chronoderm.openentry" :
@@ -171,7 +171,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
      func sceneWillEnterForeground(_ scene: UIScene) {
         print("Scene will enter foreground")
-        
          // Called as the scene transitions from the background to the foreground.
          // Use this method to undo the changes made on entering the background.
      }
@@ -193,12 +192,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let splitVC = window!.rootViewController as! SplitViewController
         let navVC = splitVC.viewControllers[0] as! UINavigationController
         let conditionsVC = navVC.viewControllers[0] as! SkinFeaturesTableViewController
-        
-        guard let condition = conditionsVC.fetchedResultsController.fetchedObjects!.first(where: { $0.uuid!.uuidString == conditionID } ) else { return false }  // Searches for the position of the condition to load in the list
+        conditionsVC.initialiseCoreData()
+        guard let condition = conditionsVC.fetchedResultsController.fetchedObjects!.first(where: { $0.uuid?.uuidString == conditionID } ) else { return false }  // Searches for the position of the condition to load in the list
         
         let indexPath = conditionsVC.fetchedResultsController.indexPath(forObject: condition) // Gets indexPath of the condition
         
-        navVC.popToRootViewController(animated: false)
+        //navVC.popToRootViewController(animated: false)
         
         // Row is selected and segue performed.
         conditionsVC.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
@@ -218,9 +217,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func openEntry(entryID: String, conditionID: String) -> Bool? {
         guard openCondition(conditionID: conditionID)! else { return false }
         
-        let splitVC = window!.rootViewController as! SplitViewController
-        let navVC = splitVC.viewControllers[0] as! UINavigationController
-        let entryVC = navVC.viewControllers[1] as! EntriesCollectionViewController
+        guard let splitVC = window!.rootViewController as? SplitViewController else { return false }
+        print(splitVC.viewControllers)
+        guard let navVC = splitVC.viewControllers[0] as? MasterNavController else { return false }
+        print(navVC.viewControllers)
+        guard let featuresVC = navVC.viewControllers[0] as? SkinFeaturesTableViewController else { return false }
+        guard let entryVC = navVC.topViewController as? EntriesCollectionViewController else { return false }
         entryVC.initialiseCoreData()
         guard let entry = entryVC.fetchedResultsController?.fetchedObjects?.first(where: { $0.uuid?.uuidString == entryID } ) else { return false }  // Searches for the position of the entry to load in the list
         let indexPath = entryVC.fetchedResultsController?.indexPath(forObject: entry) // Gets indexPath of the entry

@@ -1,5 +1,5 @@
 //
-//  ConditionsViewController.swift
+//  SkinFeaturesTableViewController.swift
 //  Chronoderm
 //
 //  Created by Nick Baughan on 15/07/2019.
@@ -492,7 +492,6 @@ extension SkinFeaturesTableViewController: UITableViewDragDelegate {
 }
 
 // MARK: - Context Menus
-@available(iOS 13.0, *)
 extension SkinFeaturesTableViewController: UIContextMenuInteractionDelegate {
     
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {

@@ -88,7 +88,7 @@ class AddEntryTableViewController: UITableViewController, UIImagePickerControlle
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case 0: return entryImageView.image == nil ? 1 : 3
+        case 0: return entryImageView.image == nil ? 1 : 2
         case 1: return entryDatePickerShown ? 2 : 1
         case 2: return 1
         default: return 0

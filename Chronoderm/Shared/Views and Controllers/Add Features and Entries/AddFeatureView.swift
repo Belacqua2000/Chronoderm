@@ -33,7 +33,7 @@ struct AddFeatureView: View {
                                             .disabled(featureName == ""))
             } else {*/
                 SkinFeatureDetailForm(date: $date, featureName: $featureName, featureArea: $featureArea, context: $context, firstEntry: $firstEntry)
-                    .navigationBarTitle(Text("Add Feature"))
+                    .navigationBarTitle(editingSkinFeature == nil ? Text("Add Skin Feature") : Text("Edit Skin Feature"))
                     .navigationBarItems(leading:
                                             Button("Cancel", action: cancel),
                                         trailing:
