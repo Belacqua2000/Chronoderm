@@ -7,11 +7,15 @@
 //
 
 import UIKit
+import SwiftUI
 
 // MARK: - Help Page Struct
 
-struct helpPage {
+struct helpPage: Identifiable {
+    var id: Int
+    
     let title: String
+    let content: [HelpPageContent]?
     let bodyItems: [Any]
     // This function generates the body string, it accepts a view width as input to adjust the size of image
     mutating func generateBody(width: CGFloat) -> NSMutableAttributedString {
@@ -56,9 +60,11 @@ struct helpPage {
         return attachment
     }
     
-    init(title: String, bodyItems: [Any]) {
+    init(title: String, bodyItems: [HelpPageContent], id: Int) {
         self.title = title
         self.bodyItems = bodyItems
+        self.id = id
+        self.content = bodyItems
     }
 }
 
@@ -67,54 +73,79 @@ struct HelpPages {
     static let pages = [welcome, addingConditions, addingEntries, settingReminders]
 }
 
+struct HelpPageContent: Identifiable {
+    enum contentType {
+        case image
+        case text
+    }
+    var id: Int
+    let type: contentType
+    let content: String
+    
+    init(id: Int, content: String, contentType: contentType) {
+        self.id = id
+        self.content = content
+        self.type = contentType
+    }
+}
+
 // MARK: - Welcome
-private var welcome = helpPage(title: welcomeTitle, bodyItems: [welcomeString1])
+private var welcome = helpPage(title: welcomeTitle, bodyItems: [welcome0], id: 0)
 
 private var welcomeTitle: String = "Welcome"
-private var welcomeString1 = """
+private var welcome0: HelpPageContent = HelpPageContent(id: 0, content: """
 Welcome to Chronoderm.  This app is designed to track areas of skin on your body over time.
 
 By taking photos regularly, you can easily see how your injuries, scars, moles, or other skin conditions are changing.
-"""
+""", contentType: .text)
 
 
 
 // MARK: - Adding Conditions
-private var addingConditions = helpPage(title: addingConditionsTitle, bodyItems: [addingConditionsString1, addingConditionsImage1 ?? "", addingConditionsImage2 ?? ""])
+private var addingConditions = helpPage(title: addingConditionsTitle, bodyItems: [addingConditions0, addingConditions1, addingConditions2 ], id: 1)
 
 private var addingConditionsTitle: String = "Adding Areas for Monitoring"
-private var addingConditionsString1: String = """
+private var addingConditions0 = HelpPageContent(
+    id: 0,
+    content: """
 The app can track a variety of \"Areas\".  Think of these as an area of skin on your body — e.g. 'Left big toenail', 'Inside right wrist', 'Back of neck'.
 
 Each Condition can be assigned a name, area of body, and start date.
 
 To add a new area, press the '+' button in the toolbar at the bottom of the screen in the 'Conditions' tab.
 
-"""
+""",
+    contentType: .text)
 
-private var addingConditionsImage1 = UIImage(named: "NewConditionButton")
+private var addingConditions1 = HelpPageContent(id: 1, content: "NewConditionButton", contentType: .image)
 
-private var addingConditionsImage2 = UIImage(named: "NewConditionUI")
+private var addingConditions2 = HelpPageContent(id: 1, content: "NewConditionUI", contentType: .image)
 
 // MARK: - Adding Entries
-private var addingEntries = helpPage(title: addingEntriesTitle, bodyItems: [addingEntriesString1])
+private var addingEntries = helpPage(title: addingEntriesTitle, bodyItems: [addingEntries1], id: 2)
 
 private var addingEntriesTitle: String = "Adding Entries"
-private var addingEntriesString1: String = """
+private var addingEntries1 = HelpPageContent(
+    id: 0,
+    content: """
 Each condition can multiple entries.  You can think of these as a snapshot of your skin at a particular time.
 
 To create a new entry, first select a Condition from the main screen.  Then press the 'Add Entry' button in the toolbar at the bottom of the screen.
 
 First, add a photo.  If using the camera, an 'onion skin' effect will be present, if you have already entered an entry for the condition, which will help guide you to align the photo to the one previously.  Then, select the time the photo was taken, and optionally add notes.  Notes are highly encouraged, as they can remind you in the future how you felt, what you were doing, etc. at the time of composing the entry.
-"""
+""",
+    contentType: .text)
 
 // MARK: - Setting Reminders
-private var settingReminders = helpPage(title: settingRemindersTitle, bodyItems: [settingRemindersString1])
+private var settingReminders = helpPage(title: settingRemindersTitle, bodyItems: [settingReminders1], id: 3)
 
 private var settingRemindersTitle: String = "Setting Reminders"
-private var settingRemindersString1: String = """
+private var settingReminders1 = HelpPageContent(
+    id: 0,
+    content: """
 It is possible to set reminders for different conditions in your body.
-"""
+""",
+    contentType: .image)
 
 
 private let welcomeHtml = """

@@ -203,6 +203,12 @@ class SettingsTableViewController: UITableViewController {
         return UIHostingController(coder: coder, rootView: rootView)
     }
     
+    @IBSegueAction func helpSegue(_ coder: NSCoder) -> UIViewController? {
+        let rootView = HelpView()
+        return UIHostingController(coder: coder, rootView: rootView)
+    }
+    
+    
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
