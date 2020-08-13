@@ -21,7 +21,7 @@ class EntriesFlowLayout: UICollectionViewFlowLayout {
         
         let maxNumberOfItems = Int(cvWidth / minimumItemWidth)
         
-        let itemWidth = (cvWidth / CGFloat(maxNumberOfItems)).rounded(.down)
+        let itemWidth: CGFloat = 150//(cvWidth / CGFloat(maxNumberOfItems)).rounded(.down)
         let itemHeight = itemWidth * 1.5
         
         self.itemSize = CGSize(width: itemWidth, height: itemHeight)

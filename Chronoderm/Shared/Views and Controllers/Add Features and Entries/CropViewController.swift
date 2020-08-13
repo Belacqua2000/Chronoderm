@@ -63,20 +63,20 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
     
     // This variable keeps track whether the view is in capture or crop mode.
     var currentViewState: viewState = .capture
-        /*
-        didSet {
-            print("didSet currentViewState")
-            switch currentViewState {
-            case .capture:
-                // if this is triggered before viewDidLoad, fatalError will occur.
-                guard cameraPreview != nil else { return }
-                setupCaptureView()
-                viewWillAppear(true)
-            case .crop:
-                guard previousImageView != nil else { return }
-                setupCropView()
-            }
-        }*/
+    /*
+     didSet {
+     print("didSet currentViewState")
+     switch currentViewState {
+     case .capture:
+     // if this is triggered before viewDidLoad, fatalError will occur.
+     guard cameraPreview != nil else { return }
+     setupCaptureView()
+     viewWillAppear(true)
+     case .crop:
+     guard previousImageView != nil else { return }
+     setupCropView()
+     }
+     }*/
     
     var windowOrientation: UIInterfaceOrientation {
         return view.window?.windowScene?.interfaceOrientation ?? .unknown
@@ -90,7 +90,8 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
         case off
     }
     
-    var currentFlashMode: flashMode = .auto
+    var preferredFlashMode: flashMode = .auto
+    var flashIsSupported: Bool = false
     
     var image: UIImage? {
         didSet {
@@ -98,10 +99,10 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
             guard originalImageView != nil else { return }
             originalImageView.image = image
             /*if image == nil {
-                currentViewState = .capture
-            } else {
-                currentViewState = .crop
-            }*/
+             currentViewState = .capture
+             } else {
+             currentViewState = .crop
+             }*/
         }
     }
     var previousImage: UIImage? = nil
@@ -109,7 +110,7 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
     var croppedImage: UIImage? {
         cropPhoto()
     }
-
+    
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -173,7 +174,7 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
         aspectRatioConstraint.isActive = false
         aspectRatioConstraint = newRatioConstraint
         aspectRatioConstraint.isActive = true
-    
+        
         // In order to centre the UIImageView in the UIScrollView, if landscape, you must break the x constraint (it will not be in the middle).  If portrait, break the y constraint.  The centre rect also depends on image orientation.
         if image!.size.height > image!.size.width {
             yConstraint.isActive = false
@@ -203,12 +204,12 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
         horizontalGuideView.layer.borderColor = UIColor(named: "Theme Colour 2")?.cgColor
         horizontalGuideView.layer.borderWidth = 1
         /*
-        // Setup crop guides
-        let bezierPath = UIBezierPath()
-        let startPoint = CGPoint(x: cropView.frame.minX + cropView.frame.width / 3, y: cropView.frame.minY)
-        let endPoint = CGPoint(x: cropView.frame.minX + cropView.frame.width / 3, y: cropView.frame.maxY)
-        bezierPath.move(to: startPoint)
-        bezierPath.addLine(to: endPoint)*/
+         // Setup crop guides
+         let bezierPath = UIBezierPath()
+         let startPoint = CGPoint(x: cropView.frame.minX + cropView.frame.width / 3, y: cropView.frame.minY)
+         let endPoint = CGPoint(x: cropView.frame.minX + cropView.frame.width / 3, y: cropView.frame.maxY)
+         bezierPath.move(to: startPoint)
+         bezierPath.addLine(to: endPoint)*/
     }
     
     // MARK: - AVFoundation
@@ -239,10 +240,10 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
         cropButton.setTitle("Capture", for: .normal)
         cropButton.setImage(UIImage(systemName: "camera"), for: .normal)
         retakeButton.isHidden = true
-        setFlashInterface()
         let flashControl = horizontalStackView.arrangedSubviews[0]
         let flipControl = horizontalStackView.arrangedSubviews[2]
         flashControl.isHidden = false
+        setFlashInterface()
         flipControl.isHidden = false
         let overlayTextAndSlider = verticalStackView.arrangedSubviews[2]
         overlayTextAndSlider.isHidden = previousImage == nil
@@ -319,11 +320,9 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
                 return }
             
             let photoDeviceInput = try AVCaptureDeviceInput(device: device)
-            
             if session.canAddInput(photoDeviceInput) {
                 session.addInput(photoDeviceInput)
                 self.photoDeviceInput = photoDeviceInput
-                
                 DispatchQueue.main.async {
                     /*
                      Dispatch video streaming to the main queue because AVCaptureVideoPreviewLayer is the backing layer for PreviewView.
@@ -348,7 +347,7 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
             } else {
                 print("Couldn't add video device input to the session.")
                 setupResult = .configurationFailed
-                    session.commitConfiguration()
+                session.commitConfiguration()
                 return
             }
         } catch {
@@ -367,7 +366,15 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
             return
         }
         setupResult = .success
+        if photoDeviceInput.device.hasFlash {
+            self.flashIsSupported = true
+        } else {
+            self.flashIsSupported = false
+        }
         session.commitConfiguration()
+        DispatchQueue.main.async {
+            self.setFlashInterface()
+        }
     }
     
     @IBAction func didPressFlashButton(_ sender: Any) {
@@ -382,28 +389,33 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
     
     
     func changeFlash() {
-        switch currentFlashMode {
+        switch preferredFlashMode {
         case .auto:
-            currentFlashMode = .on
+            preferredFlashMode = .on
         case .on:
-            currentFlashMode = .off
+            preferredFlashMode = .off
         case .off:
-            currentFlashMode = .auto
+            preferredFlashMode = .auto
         }
         setFlashInterface()
     }
     
     func setFlashInterface() {
-        switch currentFlashMode {
-        case .on:
-            flashButton.setTitle("On", for: .normal)
-            flashButton.setImage(UIImage(systemName: "bolt.fill"), for: .normal)
-        case .off:
-            flashButton.setTitle("Off", for: .normal)
-            flashButton.setImage(UIImage(systemName: "bolt.slash.fill"), for: .normal)
-        case .auto:
-            flashButton.setTitle("Auto", for: .normal)
-            flashButton.setImage(UIImage(systemName: "bolt.badge.a.fill"), for: .normal)
+        if flashIsSupported {
+            horizontalStackView.arrangedSubviews[0].isHidden = false
+            switch preferredFlashMode {
+            case .on:
+                flashButton.setTitle("On", for: .normal)
+                flashButton.setImage(UIImage(systemName: "bolt.fill"), for: .normal)
+            case .off:
+                flashButton.setTitle("Off", for: .normal)
+                flashButton.setImage(UIImage(systemName: "bolt.slash.fill"), for: .normal)
+            case .auto:
+                flashButton.setTitle("Auto", for: .normal)
+                flashButton.setImage(UIImage(systemName: "bolt.badge.a.fill"), for: .normal)
+            }
+        } else {
+            horizontalStackView.arrangedSubviews[0].isHidden = true
         }
     }
     
@@ -482,10 +494,16 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
                     print("Error occurred while creating video device input: \(error)")
                 }
             }
+            if self.photoDeviceInput.device.hasFlash {
+                self.flashIsSupported = true
+            } else {
+                self.flashIsSupported = false
+            }
             
             DispatchQueue.main.async {
                 self.updateOverlay(flipped: nil)
                 self.flashButton.isEnabled = true
+                self.setFlashInterface()
                 self.cropButton.isEnabled = true
                 self.changeCameraButton.isEnabled = true
             }
@@ -564,14 +582,18 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
             }
             if self.photoOutput.availablePhotoCodecTypes.contains(.hevc) {
                 photoSettings = AVCapturePhotoSettings(format:
-                                                        [AVVideoCodecKey: AVVideoCodecType.hevc])
+                    [AVVideoCodecKey: AVVideoCodecType.hevc])
             } else {
                 photoSettings = AVCapturePhotoSettings()
             }
-            switch self.currentFlashMode {
-            case .auto: photoSettings.flashMode = .auto
-            case .on: photoSettings.flashMode = .on
-            case .off: photoSettings.flashMode = .off
+            if self.photoDeviceInput.device.isFlashAvailable {
+                switch self.preferredFlashMode {
+                case .auto: photoSettings.flashMode = .auto
+                case .on: photoSettings.flashMode = .on
+                case .off: photoSettings.flashMode = .off
+                }
+            } else {
+                photoSettings.flashMode = .off
             }
             
             self.photoOutput.capturePhoto(with: photoSettings, delegate: self)
@@ -661,11 +683,11 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
     
     func addPhoto() {
         if #available(iOS 14, *) {/*
-            var configuration = PHPickerConfiguration()
-            configuration.filter = .images
-            let picker = PHPickerViewController(configuration: configuration)
-            picker.delegate = self
-            present(picker, animated: true)*/
+             var configuration = PHPickerConfiguration()
+             configuration.filter = .images
+             let picker = PHPickerViewController(configuration: configuration)
+             picker.delegate = self
+             present(picker, animated: true)*/
         } else {
             let picker = UIImagePickerController()
             picker.allowsEditing = false
@@ -822,7 +844,7 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
             print("cropWidth = \(cropView.frame.width) * \(photoScale) * \(zoomScale) = \(cropWidth)")
             print("cropHeight = \(cropView.frame.height) * \(photoScale) * \(zoomScale) = \(cropHeight)")
         }
-       
+        
         let CGImage = image!.cgImage
         let croppedCGImage = CGImage!.cropping(to: cropArea)
         return UIImage(cgImage: croppedCGImage!, scale: imageScale, orientation: imageOrientation)
@@ -836,17 +858,17 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
         return AVMakeRect(aspectRatio: image.size, insideRect: imageView.frame)
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 extension CropViewController: AVCapturePhotoCaptureDelegate {
@@ -884,29 +906,29 @@ extension CropViewController: UIImagePickerControllerDelegate, UINavigationContr
 }
 
 /*
-@available(iOS 14, *)
-extension CropViewController: PHPickerViewControllerDelegate {
-    
-    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        // The client is responsible for presentation and dismissal
-        picker.dismiss(animated: true)
-        sessionQueue.async {
-            self.session.stopRunning()
-        }
-        
-        // Get the first item provider from the results, the configuration only allowed one image to be selected
-        let itemProvider = results.first?.itemProvider
-        
-        if let itemProvider = itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
-            itemProvider.loadObject(ofClass: UIImage.self) { (image, error) in
-                DispatchQueue.main.async {
-                    guard let image = image as? UIImage else { return }
-                    self.image = image
-                }
-            }
-        } else {
-            // TODO: Handle empty results or item provider not being able load UIImage
-        }
-    }
-    
-}*/
+ @available(iOS 14, *)
+ extension CropViewController: PHPickerViewControllerDelegate {
+ 
+ func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+ // The client is responsible for presentation and dismissal
+ picker.dismiss(animated: true)
+ sessionQueue.async {
+ self.session.stopRunning()
+ }
+ 
+ // Get the first item provider from the results, the configuration only allowed one image to be selected
+ let itemProvider = results.first?.itemProvider
+ 
+ if let itemProvider = itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
+ itemProvider.loadObject(ofClass: UIImage.self) { (image, error) in
+ DispatchQueue.main.async {
+ guard let image = image as? UIImage else { return }
+ self.image = image
+ }
+ }
+ } else {
+ // TODO: Handle empty results or item provider not being able load UIImage
+ }
+ }
+ 
+ }*/

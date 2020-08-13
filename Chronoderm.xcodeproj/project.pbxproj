@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		173BA66724E33DF800F7257A /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173BA66624E33DF800F7257A /* HelpView.swift */; };
 		17C3E96C24DDAF5100C02F8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E96B24DDAF5100C02F8A /* AppDelegate.swift */; };
 		17C3E96E24DDAF5100C02F8A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E96D24DDAF5100C02F8A /* SceneDelegate.swift */; };
 		17C3E97324DDAF5100C02F8A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17C3E97124DDAF5100C02F8A /* Main.storyboard */; };
@@ -81,6 +82,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		173BA66624E33DF800F7257A /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		17C3E96824DDAF5100C02F8A /* Chronoderm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chronoderm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17C3E96B24DDAF5100C02F8A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17C3E96D24DDAF5100C02F8A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -356,6 +358,7 @@
 			children = (
 				17CE23F524DDB59B00912D22 /* HelpViewController.swift */,
 				17CE23F624DDB59B00912D22 /* Help.swift */,
+				173BA66624E33DF800F7257A /* HelpView.swift */,
 				17CE23F724DDB59B00912D22 /* HelpContentsTableViewController.swift */,
 				17CE23F824DDB59B00912D22 /* OnboardingPageController.swift */,
 				17CE23F924DDB59B00912D22 /* OnboardingViewController.swift */,
@@ -536,6 +539,7 @@
 				17CE241724DDB59B00912D22 /* ContextPreviewViewController.swift in Sources */,
 				17C3EA0624DDB0CC00C02F8A /* Entry+CoreDataClass.swift in Sources */,
 				17CE241524DDB59B00912D22 /* ConditionsTableViewCell.swift in Sources */,
+				173BA66724E33DF800F7257A /* HelpView.swift in Sources */,
 				17CE241624DDB59B00912D22 /* SkinFeaturesCellView.swift in Sources */,
 				17CE240824DDB59B00912D22 /* SettingsView.swift in Sources */,
 				17CE240E24DDB59B00912D22 /* DrawingViewController.swift in Sources */,
@@ -743,8 +747,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Chronoderm/Chronoderm.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_TEAM = 394ER38X9C;
 				INFOPLIST_FILE = Chronoderm/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -752,9 +758,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2;
+				MARKETING_VERSION = 0.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.baughan.Chronoderm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -767,8 +775,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Chronoderm/Chronoderm.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_TEAM = 394ER38X9C;
 				INFOPLIST_FILE = Chronoderm/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -776,9 +786,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2;
+				MARKETING_VERSION = 0.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.baughan.Chronoderm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
