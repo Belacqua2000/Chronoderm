@@ -70,7 +70,7 @@ struct helpPage: Identifiable {
 
 // MARK: - Help Pages
 struct HelpPages {
-    static let pages = [welcome, addingConditions, addingEntries, settingReminders]
+    static let pages = [welcome, addingConditions, addingEntries, settingReminders, exportingSkinFeatures]
 }
 
 struct HelpPageContent: Identifiable {
@@ -97,68 +97,126 @@ private var welcome0: HelpPageContent = HelpPageContent(id: 0, content: """
 Welcome to Chronoderm.  This app is designed to track areas of skin on your body over time.
 
 By taking photos regularly, you can easily see how your injuries, scars, moles, or other skin conditions are changing.
+
+Click on the book icon in the top right to choose a topic.
 """, contentType: .text)
 
-
+private var welcome1: HelpPageContent = HelpPageContent(id: 1, content: "App Icon Inside", contentType: .image)
 
 // MARK: - Adding Conditions
-private var addingConditions = helpPage(title: addingConditionsTitle, bodyItems: [addingConditions0, addingConditions1, addingConditions2 ], id: 1)
+private var addingConditions = helpPage(title: addingConditionsTitle, bodyItems: [addingConditions0, addingConditions1, addingConditions2, addingConditions3], id: 1)
 
-private var addingConditionsTitle: String = "Adding Areas for Monitoring"
+private var addingConditionsTitle: String = "Adding Skin Features to Monitor"
 private var addingConditions0 = HelpPageContent(
     id: 0,
     content: """
-The app can track a variety of \"Areas\".  Think of these as an area of skin on your body — e.g. 'Left big toenail', 'Inside right wrist', 'Back of neck'.
+The app can track a variety of \"Skin Features\".  Think of these as a notable area of skin on your body.
 
-Each Condition can be assigned a name, area of body, and start date.
-
-To add a new area, press the '+' button in the toolbar at the bottom of the screen in the 'Conditions' tab.
+To add a new skin feature, press the '+' button in the toolbar at the top of the screen.
 
 """,
     contentType: .text)
 
-private var addingConditions1 = HelpPageContent(id: 1, content: "NewConditionButton", contentType: .image)
+private var addingConditions1 = HelpPageContent(id: 1, content: "New Feature Button", contentType: .image)
 
-private var addingConditions2 = HelpPageContent(id: 1, content: "NewConditionUI", contentType: .image)
+private var addingConditions2 = HelpPageContent(
+    id: 2,
+    content: """
+Each skin feature can be assigned a name, area of body, and start date.
+""",
+    contentType: .text)
+
+private var addingConditions3 = HelpPageContent(id: 3, content: "New Feature Screen", contentType: .image)
 
 // MARK: - Adding Entries
-private var addingEntries = helpPage(title: addingEntriesTitle, bodyItems: [addingEntries1], id: 2)
+private var addingEntries = helpPage(title: addingEntriesTitle, bodyItems: [addingEntries1, addingEntries2, addingEntries3, addingEntries4, addingEntries5, addingEntries6], id: 2)
 
 private var addingEntriesTitle: String = "Adding Entries"
 private var addingEntries1 = HelpPageContent(
     id: 0,
     content: """
-Each condition can multiple entries.  You can think of these as a snapshot of your skin at a particular time.
+Each skin feature can multiple entries.  You can think of these as a snapshot of your skin at a particular time.
 
-To create a new entry, first select a Condition from the main screen.  Then press the 'Add Entry' button in the toolbar at the bottom of the screen.
-
-First, add a photo.  If using the camera, an 'onion skin' effect will be present, if you have already entered an entry for the condition, which will help guide you to align the photo to the one previously.  Then, select the time the photo was taken, and optionally add notes.  Notes are highly encouraged, as they can remind you in the future how you felt, what you were doing, etc. at the time of composing the entry.
+To create a new entry, first select a skin feature from the main screen.  Then press the 'Add Entry' button at the end of the entries.
 """,
     contentType: .text)
 
+private var addingEntries2 = HelpPageContent(id: 1, content: "New Entry Button", contentType: .image)
+
+private var addingEntries3 = HelpPageContent(
+    id: 2,
+    content: """
+Press "Add Photo."  This will launch the camera to allow you to take a photo.
+
+An 'onion skin' effect will be present if you have previously recorded an entry for the skin feature.  This will help guide you to align the photo to the previous one.  The opacity of this can be adjusted using the slider.
+
+You can adjust the flash, flip the camera, or turn on/off the grid to help align your photo.
+
+To add a photo from your phone, press "Add From Library"
+""",
+    contentType: .text)
+
+private var addingEntries4 = HelpPageContent(id: 3, content: "Add Photo Screen", contentType: .image)
+
+private var addingEntries5 = HelpPageContent(
+    id: 4,
+    content: """
+When chosen and cropped, select the time the photo was taken, and optionally add notes.  Notes are highly encouraged, as they can give context to how you felt, what you were doing at the time of composing the entry etc.
+""",
+    contentType: .text)
+
+private var addingEntries6 = HelpPageContent(id: 5, content: "Add Entry Screen", contentType: .image)
+
 // MARK: - Setting Reminders
-private var settingReminders = helpPage(title: settingRemindersTitle, bodyItems: [settingReminders1], id: 3)
+private var settingReminders = helpPage(title: settingRemindersTitle, bodyItems: [settingReminders1, settingReminders2, settingReminders3], id: 3)
 
 private var settingRemindersTitle: String = "Setting Reminders"
 private var settingReminders1 = HelpPageContent(
     id: 0,
     content: """
-It is possible to set reminders for different conditions in your body.
+It is possible to set reminders to take photos of your skin features.
+
+To set reminders, click on a skin feature, and press the bell icon in the lower left.
 """,
-    contentType: .image)
+    contentType: .text)
 
+private var settingReminders2 = HelpPageContent(
+    id: 1, content: "Reminders Button", contentType: .image)
 
-private let welcomeHtml = """
-<html>
-    <body>
-        <p>
-            Welcome to Chronoderm.  This app is designed to track areas of skin on your body over time. <br> </br> By taking photos regularly, you can easily see how your injuries, scars, moles, or other visible artifacts are changing.
-        </p>
-        <p>
-            <img src="file:///Settings tab icon 2x.png">
-        </p>
-    </body>
-</html>
-"""
+private var settingReminders3 = HelpPageContent(
+    id: 2,
+    content: """
+After turning on the switch, you can choose a time and which days of the week you would like to be reminded on.
 
+If setting reminders for the first time, it will ask you to for permission.
+""",
+    contentType: .text)
 
+// MARK: - Exporting to PDF
+private var exportingSkinFeatures = helpPage(title: exportingSkinFeaturesTitle, bodyItems: [exportingSkinFeatures1, exportingSkinFeatures2, exportingSkinFeatures3], id: 4)
+
+private var exportingSkinFeaturesTitle: String = "Exporting Skin Features as a PDF"
+private var exportingSkinFeatures1 = HelpPageContent(
+    id: 0,
+    content: """
+Chronoderm makes it incredibly easy to generate a PDF summary of your skin feature.  This is useful to share how your skin has changed over time with health and care professionals or family members.
+
+To generate a PDF, first select a skin feature.
+On iOS/iPadOS: click on the symbol of the document in the toolbar at the bottom of the screen.
+On macOS: click on the symbol of the document in the toolbar at the top of the window.
+""",
+    contentType: .text)
+
+private var exportingSkinFeatures2 = HelpPageContent(id: 1, content: "PDF Button", contentType: .image)
+
+private var exportingSkinFeatures3 = HelpPageContent(
+    id: 2,
+    content: """
+The following screen will let you customise the following:
+How many photos to show per A4 page.  The greater the number, the smaller the photos.
+Whether to show notes entered by the user on the right hand side of each photo.
+Whether to show the date which photo was taken.
+
+Click the blue button at the bottom of the screen to generate the PDF.  You can choose whether to save it to a file, share using an app, or print it.
+""",
+    contentType: .text)

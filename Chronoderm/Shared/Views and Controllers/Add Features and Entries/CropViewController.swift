@@ -119,7 +119,7 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
         currentViewState = image != nil ? .crop : .capture
         cameraPreview.videoPreviewLayer.session = session
         retakeButtonEffectView.layer.cornerRadius = 8.0
-        previousImageFlipped = previousImage?.withHorizontallyFlippedOrientation()
+        previousImageFlipped = previousImage?.flipped()
         
         switch currentViewState {
         case .capture:
@@ -782,6 +782,18 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
         // photoFrame = photo within image view aspect fit
         let photoFrame = getImageFrame(forImage: image!, inImageView: originalImageView)
         
+        let cropX = (scrollView.contentOffset.x - photoFrame.origin.x) * zoomScale * photoScale * imageScale
+        let cropY = (scrollView.contentOffset.y - photoFrame.origin.y) * zoomScale * photoScale * imageScale
+        let cropWidth = cropView.frame.width * photoScale * zoomScale * imageScale
+        let cropHeight = cropView.frame.height * photoScale * zoomScale * imageScale
+        cropArea = CGRect(x: cropX, y: cropY, width: cropWidth, height: cropHeight)
+        
+        print("imageSize = \(image!.size)")
+        print("cropX = (\(scrollView.contentOffset.x) - \(photoFrame.origin.x)) * \(zoomScale) * \(photoScale) * \(imageScale) = \(cropX)")
+        print("cropY = (\(scrollView.contentOffset.y) - \(photoFrame.origin.y)) * \(zoomScale) * \(photoScale) = \(cropY)")
+        print("cropWidth = \(cropView.frame.width) * \(photoScale) * \(zoomScale) = \(cropWidth)")
+        print("cropHeight = \(cropView.frame.height) * \(photoScale) * \(zoomScale) = \(cropHeight)")
+        /*
         switch imageOrientation {
         case .up:
             let cropX = (scrollView.contentOffset.x - photoFrame.origin.x) * zoomScale * photoScale * imageScale
@@ -843,11 +855,12 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
             print("cropY = (\(scrollView.contentOffset.y) - \(photoFrame.origin.y)) * \(zoomScale) * \(photoScale) = \(cropY)")
             print("cropWidth = \(cropView.frame.width) * \(photoScale) * \(zoomScale) = \(cropWidth)")
             print("cropHeight = \(cropView.frame.height) * \(photoScale) * \(zoomScale) = \(cropHeight)")
-        }
+        }*/
         
         let CGImage = image!.cgImage
         let croppedCGImage = CGImage!.cropping(to: cropArea)
-        return UIImage(cgImage: croppedCGImage!, scale: imageScale, orientation: imageOrientation)
+        //return UIImage(cgImage: croppedCGImage!, scale: imageScale, orientation: imageOrientation)
+        return image!.croppedImage(inRect: cropArea)
     }
     
     @IBAction func sliderValueChanged(_ sender: UISlider) {

@@ -526,6 +526,7 @@ class EntriesCollectionViewController: UICollectionViewController, NSFetchedResu
         condition?.addToEntry(entry)
         updateCoreData()
         collectionView.reloadData()
+        setPDFButton()
         var feedbackGenerator : UINotificationFeedbackGenerator? = nil
         feedbackGenerator = UINotificationFeedbackGenerator()
         feedbackGenerator?.prepare()

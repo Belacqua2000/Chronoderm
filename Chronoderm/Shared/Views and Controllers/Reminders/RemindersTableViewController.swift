@@ -82,16 +82,18 @@ class RemindersTableViewController: UITableViewController, UIPickerViewDelegate,
         guard passedCondition != nil else { return }
         //Request authorisation
         center.requestAuthorization(options: options) {
-          (granted, error) in
+            (granted, error) in
             if !granted {
-              print("Authorisation not granted")
+                print("Authorisation not granted")
             }
         }
 
     // Check authorisation
         center.getNotificationSettings { (settings) in
           if settings.authorizationStatus != .authorized {
-            // Notifications not allowed
+            print("Not Granted")
+            
+            return
           }
         }
         
@@ -146,6 +148,7 @@ class RemindersTableViewController: UITableViewController, UIPickerViewDelegate,
             let notificationCenter = UNUserNotificationCenter.current()
             notificationCenter.add(request) { (error) in
                if error != nil {
+                print("Error")
                   // Handle any errors.
                }
             }

@@ -15,15 +15,15 @@ class SettingsTableViewController: UITableViewController {
     // MARK: - Variables
     var conditionsController: SkinFeaturesTableViewController?
     var saveToPhotosSubscriber: AnyCancellable?
-    var showOverlaySubscriber: AnyCancellable?
+    //var showOverlaySubscriber: AnyCancellable?
     var showQuickActionsSubscriber: AnyCancellable?
     var indexSpotlightSubscriber: AnyCancellable?
     
     // MARK: - Outlets
-    @IBOutlet var showCameraOverlaySwitch: UISwitch!
+    //@IBOutlet var showCameraOverlaySwitch: UISwitch!
     @IBOutlet var saveToPhotosSwitch: UISwitch!
     
-    @IBOutlet var showCameraOverlayCell: UITableViewCell!
+    //@IBOutlet var showCameraOverlayCell: UITableViewCell!
     @IBOutlet var saveCapturedImageCell: UITableViewCell!
     
     
@@ -57,9 +57,9 @@ class SettingsTableViewController: UITableViewController {
             .publisher(for: \.saveImageToPhotos, options: [.initial, .new])
             .assign(to: \.isOn, on: saveToPhotosSwitch)
         
-        showOverlaySubscriber = UserDefaults.standard
+        /*showOverlaySubscriber = UserDefaults.standard
             .publisher(for: \.CameraOverlayIsShown, options: [.initial, .new])
-            .assign(to: \.isOn, on: showCameraOverlaySwitch)
+            .assign(to: \.isOn, on: showCameraOverlaySwitch)*/
         
         showQuickActionsSubscriber = UserDefaults.standard
             .publisher(for: \.showHomeQuickActions, options: [.initial, .new])
@@ -102,8 +102,8 @@ class SettingsTableViewController: UITableViewController {
     
     func configureView() {
         setSubscriber()
-        let cameraOverlayValue = defaults.bool(forKey: "CameraOverlayIsShown")
-        showCameraOverlaySwitch.isOn = cameraOverlayValue
+        /*let cameraOverlayValue = defaults.bool(forKey: "CameraOverlayIsShown")
+        showCameraOverlaySwitch.isOn = cameraOverlayValue*/
         
         let savePhotoValue = defaults.bool(forKey: "saveImageToPhotos")
         saveToPhotosSwitch.isOn = savePhotoValue
@@ -115,7 +115,7 @@ class SettingsTableViewController: UITableViewController {
         indexSpotlightSwitch.isOn = indexSpotlightValue
         
         if #available(iOS 13.0, *) {
-            showCameraOverlayCell.imageView!.image = UIImage(systemName: "camera.on.rectangle")
+            //showCameraOverlayCell.imageView!.image = UIImage(systemName: "camera.on.rectangle")
             saveCapturedImageCell.imageView?.image = UIImage(systemName: "photo.on.rectangle")
             showHomeActionsCell.imageView?.image = UIImage(systemName: "rectangle.grid.1x2")
             indexSpotlightCell.imageView?.image = UIImage(systemName: "magnifyingglass")
@@ -146,10 +146,10 @@ class SettingsTableViewController: UITableViewController {
     }
     
     
-    @IBAction func cameraOverlaySwitchToggled(_ sender: Any) {
+    /*@IBAction func cameraOverlaySwitchToggled(_ sender: Any) {
         let value = showCameraOverlaySwitch.isOn
         defaults.set(value, forKey: "CameraOverlayIsShown")
-    }
+    }*/
     
     @IBAction func saveToPhotosSwitchToggled(_ sender: Any) {
         let value = saveToPhotosSwitch.isOn
