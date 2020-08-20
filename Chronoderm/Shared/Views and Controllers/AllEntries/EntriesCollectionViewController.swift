@@ -198,7 +198,6 @@ class EntriesCollectionViewController: UICollectionViewController, NSFetchedResu
 
     
     // Add support for context menus
-    @available(iOS 13.0, *)
     override func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         let lastIndexPath = IndexPath(row: fetchedResultsController?.fetchedObjects?.count ?? 0, section: 0)
         guard indexPath != lastIndexPath else { return nil }
@@ -207,7 +206,6 @@ class EntriesCollectionViewController: UICollectionViewController, NSFetchedResu
             })
         }
         
-    @available(iOS 13.0, *)
     func makeContextMenu(indexPath: IndexPath?) -> UIMenu {
             // Create a UIAction for sharing
         let entry = fetchedResultsController?.object(at: indexPath!)
@@ -235,6 +233,25 @@ class EntriesCollectionViewController: UICollectionViewController, NSFetchedResu
                 return UIMenu(title: "", children: [edit, share, delete])
             } // Don't show new window option if not running on iPad
         }
+    
+    override func collectionView(_ collectionView: UICollectionView,
+                                 didSelectItemAt indexPath: IndexPath) {
+        let lastIndexPath = IndexPath(row: fetchedResultsController?.fetchedObjects?.count ?? 0, section: 0)
+        if indexPath == lastIndexPath {
+            if #available(iOS 14.0, *) {
+                let view = UIHostingController(rootView: AddEntryView(vc: self, entry: nil, date: Date(), notes: "", skinFeature: condition).environment(\.managedObjectContext, managedObjectContext))
+                present(view, animated: true, completion: nil)
+            } else {
+                performSegue(withIdentifier: "addEntry", sender: nil)
+            }
+        } else {
+            if #available(iOS 14.0, *) {
+                //performSegue(withIdentifier: "showPhoto", sender: nil)
+            } else {
+                //performSegue(withIdentifier: "showPhoto", sender: self)
+            }
+        }
+    }
     
     
     // MARK: - Interface
@@ -301,19 +318,6 @@ class EntriesCollectionViewController: UICollectionViewController, NSFetchedResu
     }
     
     // MARK: - Actions
-    
-    @IBAction func sortSegmentedControlChanged(_ sender: Any) {
-        /*
-        switch sortSegmentedControl.selectedSegmentIndex {
-        case 1:
-            sortOldest = true
-        case 2:
-            sortOldest = false
-        default:
-            break
-        } */
-    } 
-    
     
     func shareEntry(indexPath: IndexPath) {
         let entry = fetchedResultsController!.object(at: indexPath)

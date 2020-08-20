@@ -19,9 +19,9 @@ struct AddFeatureView: View {
     @State var firstEntry: Entry?
     var body: some View {
         NavigationView {
-          /*  if #available(iOS 13.4, *) {
-                SkinFeatureDetailForm(date: $date, featureName: $featureName, featureArea: $featureArea, context: $context, firstEntry: $firstEntry)
-                    .navigationBarTitle(Text("Add Feature"))
+            if #available(iOS 14.0, *) {
+                SkinFeatureDetailForm(date: $date, featureName: $featureName, featureArea: $featureArea, close: {close()}, save: {save()}, context: $context, firstEntry: $firstEntry)
+                    .navigationTitle(Text("Add Feature"))
                     .navigationBarItems(leading:
                                             Button("Cancel", action: close)
                                             .padding(.all, 10.0)
@@ -31,15 +31,15 @@ struct AddFeatureView: View {
                                             .padding(.all, 10.0)
                                             .hoverEffect(.automatic)
                                             .disabled(featureName == ""))
-            } else {*/
-                SkinFeatureDetailForm(date: $date, featureName: $featureName, featureArea: $featureArea, context: $context, firstEntry: $firstEntry)
+            } else {
+                SkinFeatureDetailForm(date: $date, featureName: $featureName, featureArea: $featureArea, close: {close()}, save: {save()}, context: $context, firstEntry: $firstEntry)
                     .navigationBarTitle(editingSkinFeature == nil ? Text("Add Skin Feature") : Text("Edit Skin Feature"))
                     .navigationBarItems(leading:
                                             Button("Cancel", action: cancel),
                                         trailing:
                                             Button("Done", action: save)
                                             .disabled(featureName == ""))
- //           }
+            }
             
         }
         .navigationViewStyle(StackNavigationViewStyle())
@@ -78,6 +78,8 @@ struct SkinFeatureDetailForm: View {
     @Binding var featureName: String
     @Binding var featureArea: String
     @State var addEntryShown: Bool = false
+    var close: () -> Void
+    var save: () -> Void
     @Binding var context: NSManagedObjectContext?
     @Binding var firstEntry: Entry?
     var body: some View {
@@ -109,9 +111,18 @@ struct SkinFeatureDetailForm: View {
                 }
             }
             .sheet(isPresented: $addEntryShown) {
-                AddEntryView(context: self.$context, viewIsPresented: self.$addEntryShown, entry: self.$firstEntry, date: Date(), notes: "")
-            }*/
+             AddEntryView(context: self.$context, viewIsPresented: self.$addEntryShown, entry: self.$firstEntry, date: Date(), notes: "")
+             }*/
+            
+            }
+        #if targetEnvironment(macCatalyst)
+        HStack {
+            Spacer()
+            Button("Cancel", action: {close()}).keyboardShortcut(.cancelAction)
+            Button("Save", action: {save()}).keyboardShortcut(.defaultAction)
         }
+        .padding()
+        #endif
     }
     
     func addFirstEntry() {

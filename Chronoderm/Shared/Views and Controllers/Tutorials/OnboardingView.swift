@@ -10,7 +10,9 @@ import SwiftUI
 import Foundation
 
 struct OnboardingView: View {
+    @Environment(\.presentationMode) var presentationMode
     var vc: UIViewController?
+    @State var swiftUI: Bool
     @State var stage: Int = 0
     @State private var maxStage: Int = 4
     @State var confirmed: Bool = false
@@ -138,17 +140,22 @@ A customisable summary of your skin features can be generated to make it easy to
         guard confirmed else { print("T and C not confirmed"); return }
         let defaults = UserDefaults.standard
         defaults.setValue(GlobalVariables().termsAndConditionsCurrentVersion, forKey: "TermsAndConditions")
-        vc?.presentedViewController?.dismiss(animated: true, completion: nil)
+        if swiftUI == true {
+            presentationMode.wrappedValue.dismiss()
+        } else {
+            vc?.presentedViewController?.dismiss(animated: true, completion: nil)
+        }
     }
 }
 
 struct OnboardingView_Previews: PreviewProvider {
+    @State static var isShown: Bool? = true
     static var previews: some View {
         Group {
-            OnboardingView()
+            OnboardingView(swiftUI: true)
                 .previewDevice(PreviewDevice(rawValue: "iPhone SE (2nd generation)"))
                 .previewDisplayName("iPhone SE")
-            OnboardingView()
+            OnboardingView(swiftUI: true)
                 .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
                 .previewDisplayName("iPhone 11")
         }

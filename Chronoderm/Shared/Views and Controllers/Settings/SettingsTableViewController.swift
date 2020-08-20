@@ -199,7 +199,7 @@ class SettingsTableViewController: UITableViewController {
     // MARK: - Navigation
     
     @IBSegueAction func tutorialSegue(_ coder: NSCoder) -> UIViewController? {
-        let rootView = OnboardingView(vc: self)
+        let rootView = OnboardingView(vc: self, swiftUI: false)
         return UIHostingController(coder: coder, rootView: rootView)
     }
     

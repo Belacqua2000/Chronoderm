@@ -15,7 +15,7 @@
       "scale" : "1x"
     },
     {
-      "filename" : "IMG_1C74F9140714-3.jpeg",
+      "filename" : "Add Feature Light.heic",
       "idiom" : "universal",
       "scale" : "2x"
     },
@@ -26,7 +26,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "IMG_4FC6BDE4E699-2.jpeg",
+      "filename" : "Add Feature Dark.heic",
       "idiom" : "universal",
       "scale" : "2x"
     },
@@ -59,7 +59,7 @@
       "scale" : "1x"
     },
     {
-      "filename" : "IMG_1C74F9140714-2.jpeg",
+      "filename" : "Add Feature Light-1.heic",
       "idiom" : "ipad",
       "scale" : "2x"
     },
@@ -70,7 +70,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "IMG_4FC6BDE4E699-1.jpeg",
+      "filename" : "Add Feature Dark-1.heic",
       "idiom" : "ipad",
       "scale" : "2x"
     }

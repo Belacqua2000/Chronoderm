@@ -157,11 +157,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 if let conditionsVC = navController.viewControllers[0] as? SkinFeaturesTableViewController {
                     if let settingsnavVC = conditionsVC.presentedViewController as? SettingsNavController {
                         if let settingsVC = settingsnavVC.topViewController as? SettingsTableViewController {
-                            if let tutorialVC = settingsVC.presentedViewController as? OnboardingViewController {
-                                scene.userActivity = tutorialVC.userActivity
-                            } else {
                                 scene.userActivity = settingsVC.settingsUserActivity
-                            }
                         }
                     }
                 }

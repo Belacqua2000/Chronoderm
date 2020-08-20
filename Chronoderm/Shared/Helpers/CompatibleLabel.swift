@@ -12,9 +12,13 @@ struct CompatibleLabel: View {
     var symbolName: String
     var text: String
     var body: some View {
-        HStack {
-            Image(systemName: symbolName)
-            Text(text)
+        if #available(iOS 14.0, *) {
+            Label(text, systemImage: symbolName)
+        } else {
+            HStack {
+                Image(systemName: symbolName)
+                Text(text)
+            }
         }
     }
 }

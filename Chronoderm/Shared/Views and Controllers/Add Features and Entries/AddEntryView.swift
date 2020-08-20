@@ -9,10 +9,12 @@
 import SwiftUI
 import CoreData
 
+@available(iOS 14.0, *)
 struct AddEntryView: View {
-    @Binding var context: NSManagedObjectContext?
-    @Binding var viewIsPresented: Bool
-    @Binding var entry: Entry?
+    @Environment(\.managedObjectContext) var context
+    //@Binding var viewIsPresented: Bool
+    var vc: UIViewController?
+    @State var entry: Entry?
     @State var image: UIImage?
     @State var date: Date
     @State var notes: String
@@ -24,13 +26,14 @@ struct AddEntryView: View {
             Form {
                 Section {
                     Button(action: {self.addPhotoIsPresented.toggle()}) {
-                        (image == nil) ? CompatibleLabel(symbolName: "photo", text: "Add Photo") : CompatibleLabel(symbolName: "photo", text: "Edit Photo")
+                        (image == nil) ? Label("Add Photo", systemImage: "photo") : Label("Edit Photo", systemImage: "photo")
                     }
-                    .sheet(isPresented: $addPhotoIsPresented, content: {
+                    .fullScreenCover(isPresented: $addPhotoIsPresented, content: {
                         NavigationView() {
                             AddPhotoView(image: self.$image)
-                                .navigationBarItems(leading: Button("Cancel", action: {}))
-                                .navigationBarTitle("Capture", displayMode: .inline)
+                                .navigationBarTitleDisplayMode(.inline)
+                                .navigationBarItems(leading: Button("Cancel", action: {addPhotoIsPresented = false}))
+                                .navigationTitle("Capture")
                         }
                         .navigationViewStyle(StackNavigationViewStyle())
                     })
@@ -42,23 +45,30 @@ struct AddEntryView: View {
                 }
                 Section {
                     // Ensure the entry date isn't before the start date
-                    DatePicker("Date and Time", selection: $date, in: skinFeature?.startDate!... ?? Date(timeIntervalSince1970: 0)...)
+                    DatePicker(selection: $date, in: skinFeature?.startDate!... ?? Date(timeIntervalSince1970: 0)...) {
+                        Label("Date and Time", systemImage: "calendar")
+                    }
+                   
                 }
                 Section(header: Text("Add Notes")) {
-                   /* if #available(iOS 14.0, *) {
-                      //  TextEditor(text: $notes)
-                    } else {*/
-                        TextField("E.g. Pain? Bleeding? Itch? Discharge?", text: $notes)
-                  //  }
+                    TextEditor(text: $notes)
+                        .frame(height: 400.0)
                 }
             }
-            .navigationBarTitle("Add New Entry")
-            .navigationBarItems(leading: Button("Cancel", action: {self.viewIsPresented = false}), trailing: Button("Done", action: { self.saveEntry() }))
+            .navigationTitle("Add New Entry")
+            .navigationBarItems(leading:
+                                    Button("Cancel", action: {self.vc!.dismiss(animated: true)})
+                                    .keyboardShortcut(.cancelAction),
+                                trailing:
+                                    Button("Save", action: { self.saveEntry() }).keyboardShortcut(.defaultAction)
+                                    .disabled(image == nil)
+            )
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
     
     func saveEntry() {
+        guard let feature = skinFeature else { return }
         let entry: Entry
         var uuid: UUID?
         if self.entry != nil {
@@ -66,7 +76,7 @@ struct AddEntryView: View {
             uuid = entry.uuid
             deleteEntryPhotos(entry: entry)
         } else {
-            entry = Entry(context: context!)
+            entry = Entry(context: context)
         }
         
         let entryDate = date
@@ -79,9 +89,10 @@ struct AddEntryView: View {
         
         entry.setValue(entryDate, forKey: "date")
         entry.setValue(entryNotes, forKey: "notes")
+        entry.condition = feature
         
         if let entryImage = image {
-            let attachment = Attachment(context: context!)
+            let attachment = Attachment(context: context)
     
             let thumbnail = entryImage.jpegData(compressionQuality: 0.5)
             let id = NSTimeIntervalSince1970
@@ -90,7 +101,7 @@ struct AddEntryView: View {
             attachment.setValue(id, forKey: "imageID")
             attachment.setValue(entry, forKey: "entry")
             
-            let imageData = ImageData(context: context!)
+            let imageData = ImageData(context: context)
             
             let fullImage = entryImage.jpegData(compressionQuality: 1.0)
             
@@ -102,25 +113,25 @@ struct AddEntryView: View {
         }
         
         self.entry = entry
-        
-        viewIsPresented = false
+        vc?.dismiss(animated: true, completion: nil)
     }
     
     func deleteEntryPhotos(entry: Entry) {
         if let oldImages = entry.image?.allObjects as? [Attachment] {
             for image in oldImages {
-                context!.delete(image)
+                context.delete(image)
             }
         }
     }
     
 }
 
+@available(iOS 14.0, *)
 struct AddEntryView_Previews: PreviewProvider {
     @State static var viewIsPresented = true
     @State static var entry: Entry? = nil
     @State static var context: NSManagedObjectContext? = nil
     static var previews: some View {
-        AddEntryView(context: $context, viewIsPresented: $viewIsPresented, entry: $entry, image: UIImage(named: "NewConditionUI"), date: Date(), notes: "")
+        AddEntryView(entry: entry, image: UIImage(named: "NewConditionUI"), date: Date(), notes: "")
     }
 }

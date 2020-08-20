@@ -253,7 +253,7 @@ class SkinFeaturesTableViewController: UITableViewController, NSFetchedResultsCo
     }
     
     func showOnboarding() {
-        let view = UIHostingController(rootView: OnboardingView(vc: self, stage: 0, confirmed: false))
+        let view = UIHostingController(rootView: OnboardingView(vc: self, swiftUI: false, stage: 0, confirmed: false))
         view.modalPresentationStyle = .fullScreen
         present(view, animated: true, completion: nil)
         
@@ -309,6 +309,14 @@ class SkinFeaturesTableViewController: UITableViewController, NSFetchedResultsCo
         }
     }
     
+    @IBAction func settingsIconPressed(_ sender: Any) {
+        if #available(iOS 14.0, *) {
+            let hostingController = UIHostingController(rootView: SettingsView(vc: self))
+            present(hostingController, animated: true, completion: nil)
+        } else {
+            showSettings(self)
+        }
+    }
     
     @objc func showSettings(_ sender: Any?) {
         performSegue(withIdentifier: "showSettings", sender: nil)

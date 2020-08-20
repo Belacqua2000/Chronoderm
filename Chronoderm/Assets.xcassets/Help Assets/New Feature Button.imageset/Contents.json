@@ -1,6 +1,50 @@
 {
   "images" : [
     {
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "Add Feature Button Light-1.heic",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "Add Feature Button Dark-1.heic",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "idiom" : "universal",
+      "scale" : "3x"
+    },
+    {
       "idiom" : "iphone",
       "scale" : "1x"
     },
@@ -15,7 +59,6 @@
       "scale" : "1x"
     },
     {
-      "filename" : "New Condition Button.png",
       "idiom" : "iphone",
       "scale" : "2x"
     },
@@ -58,7 +101,7 @@
       "scale" : "1x"
     },
     {
-      "filename" : "New Condition Button-1.png",
+      "filename" : "Add Feature Button Light.heic",
       "idiom" : "ipad",
       "scale" : "2x"
     },
@@ -69,6 +112,7 @@
           "value" : "dark"
         }
       ],
+      "filename" : "Add Feature Button Dark.heic",
       "idiom" : "ipad",
       "scale" : "2x"
     }

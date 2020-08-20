@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import MobileCoreServices
-import NotificationCenter
 
 class AddEntryTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIDropInteractionDelegate, ConfirmPhoto {
     

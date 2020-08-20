@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1707CADE24EDBBEB00355F16 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1707CADD24EDBBEB00355F16 /* UserDefaults.swift */; };
+		1707CAE024EDE59300355F16 /* EntriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1707CADF24EDE59300355F16 /* EntriesView.swift */; };
+		1707CAE224EE566D00355F16 /* SidebarNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1707CAE124EE566D00355F16 /* SidebarNavigation.swift */; };
 		1716D9AC24E98ABA00750902 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1716D9AB24E98ABA00750902 /* ImageExtension.swift */; };
 		173BA66724E33DF800F7257A /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173BA66624E33DF800F7257A /* HelpView.swift */; };
 		17C3E96C24DDAF5100C02F8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E96B24DDAF5100C02F8A /* AppDelegate.swift */; };
@@ -27,7 +30,6 @@
 		17C3EA0724DDB0CC00C02F8A /* SkinFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3EA0424DDB0CC00C02F8A /* SkinFeature.swift */; };
 		17CE240724DDB59B00912D22 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23D824DDB59B00912D22 /* SettingsTableViewController.swift */; };
 		17CE240824DDB59B00912D22 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23D924DDB59B00912D22 /* SettingsView.swift */; };
-		17CE240924DDB59B00912D22 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23DA24DDB59B00912D22 /* UserDefault.swift */; };
 		17CE240A24DDB59B00912D22 /* DetailNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23DC24DDB59B00912D22 /* DetailNavController.swift */; };
 		17CE240B24DDB59B00912D22 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23DD24DDB59B00912D22 /* SplitViewController.swift */; };
 		17CE240C24DDB59B00912D22 /* SettingsNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23DE24DDB59B00912D22 /* SettingsNavController.swift */; };
@@ -50,8 +52,6 @@
 		17CE241D24DDB59B00912D22 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23F524DDB59B00912D22 /* HelpViewController.swift */; };
 		17CE241E24DDB59B00912D22 /* Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23F624DDB59B00912D22 /* Help.swift */; };
 		17CE241F24DDB59B00912D22 /* HelpContentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23F724DDB59B00912D22 /* HelpContentsTableViewController.swift */; };
-		17CE242024DDB59B00912D22 /* OnboardingPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23F824DDB59B00912D22 /* OnboardingPageController.swift */; };
-		17CE242124DDB59B00912D22 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23F924DDB59B00912D22 /* OnboardingViewController.swift */; };
 		17CE242224DDB59B00912D22 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23FA24DDB59B00912D22 /* OnboardingView.swift */; };
 		17CE242324DDB59B00912D22 /* AddFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23FC24DDB59B00912D22 /* AddFeatureView.swift */; };
 		17CE242424DDB59B00912D22 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23FD24DDB59B00912D22 /* CameraPreviewView.swift */; };
@@ -83,6 +83,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1707CADD24EDBBEB00355F16 /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		1707CADF24EDE59300355F16 /* EntriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesView.swift; sourceTree = "<group>"; };
+		1707CAE124EE566D00355F16 /* SidebarNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarNavigation.swift; sourceTree = "<group>"; };
 		1716D9AB24E98ABA00750902 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		173BA66624E33DF800F7257A /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		17C3E96824DDAF5100C02F8A /* Chronoderm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chronoderm.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,7 +112,6 @@
 		17C3EA0424DDB0CC00C02F8A /* SkinFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkinFeature.swift; sourceTree = "<group>"; };
 		17CE23D824DDB59B00912D22 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		17CE23D924DDB59B00912D22 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		17CE23DA24DDB59B00912D22 /* UserDefault.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		17CE23DC24DDB59B00912D22 /* DetailNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailNavController.swift; sourceTree = "<group>"; };
 		17CE23DD24DDB59B00912D22 /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		17CE23DE24DDB59B00912D22 /* SettingsNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsNavController.swift; sourceTree = "<group>"; };
@@ -132,8 +134,6 @@
 		17CE23F524DDB59B00912D22 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		17CE23F624DDB59B00912D22 /* Help.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Help.swift; sourceTree = "<group>"; };
 		17CE23F724DDB59B00912D22 /* HelpContentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpContentsTableViewController.swift; sourceTree = "<group>"; };
-		17CE23F824DDB59B00912D22 /* OnboardingPageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPageController.swift; sourceTree = "<group>"; };
-		17CE23F924DDB59B00912D22 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		17CE23FA24DDB59B00912D22 /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		17CE23FC24DDB59B00912D22 /* AddFeatureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFeatureView.swift; sourceTree = "<group>"; };
 		17CE23FD24DDB59B00912D22 /* CameraPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
@@ -235,6 +235,7 @@
 				17C3E9A024DDAFC400C02F8A /* NotificationName.swift */,
 				17C3E9A124DDAFC400C02F8A /* GlobalVariables.swift */,
 				17C3E9A224DDAFC400C02F8A /* MenuBuilder.swift */,
+				1707CADD24EDBBEB00355F16 /* UserDefaults.swift */,
 				1716D9AB24E98ABA00750902 /* ImageExtension.swift */,
 			);
 			path = Helpers;
@@ -297,7 +298,6 @@
 			children = (
 				17CE23D824DDB59B00912D22 /* SettingsTableViewController.swift */,
 				17CE23D924DDB59B00912D22 /* SettingsView.swift */,
-				17CE23DA24DDB59B00912D22 /* UserDefault.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -339,6 +339,7 @@
 				17CE23E924DDB59B00912D22 /* ConditionsTableViewCell.xib */,
 				17CE23EA24DDB59B00912D22 /* ConditionsTableViewCell.swift */,
 				17CE23EB24DDB59B00912D22 /* SkinFeaturesCellView.swift */,
+				1707CAE124EE566D00355F16 /* SidebarNavigation.swift */,
 				17CE23EC24DDB59B00912D22 /* ContextPreviewViewController.swift */,
 				17CE23ED24DDB59B00912D22 /* SkinFeaturesTableViewController.swift */,
 			);
@@ -352,6 +353,7 @@
 				17CE23F124DDB59B00912D22 /* EntriesCollectionViewController.swift */,
 				17CE23F224DDB59B00912D22 /* EntriesCollectionViewCell.swift */,
 				17CE23F324DDB59B00912D22 /* EntriesFlowLayout.swift */,
+				1707CADF24EDE59300355F16 /* EntriesView.swift */,
 			);
 			path = AllEntries;
 			sourceTree = "<group>";
@@ -363,8 +365,6 @@
 				17CE23F624DDB59B00912D22 /* Help.swift */,
 				173BA66624E33DF800F7257A /* HelpView.swift */,
 				17CE23F724DDB59B00912D22 /* HelpContentsTableViewController.swift */,
-				17CE23F824DDB59B00912D22 /* OnboardingPageController.swift */,
-				17CE23F924DDB59B00912D22 /* OnboardingViewController.swift */,
 				17CE23FA24DDB59B00912D22 /* OnboardingView.swift */,
 			);
 			path = Tutorials;
@@ -541,14 +541,15 @@
 				1716D9AC24E98ABA00750902 /* ImageExtension.swift in Sources */,
 				17CE242224DDB59B00912D22 /* OnboardingView.swift in Sources */,
 				17CE241724DDB59B00912D22 /* ContextPreviewViewController.swift in Sources */,
+				1707CAE224EE566D00355F16 /* SidebarNavigation.swift in Sources */,
 				17C3EA0624DDB0CC00C02F8A /* Entry+CoreDataClass.swift in Sources */,
 				17CE241524DDB59B00912D22 /* ConditionsTableViewCell.swift in Sources */,
 				173BA66724E33DF800F7257A /* HelpView.swift in Sources */,
 				17CE241624DDB59B00912D22 /* SkinFeaturesCellView.swift in Sources */,
 				17CE240824DDB59B00912D22 /* SettingsView.swift in Sources */,
+				1707CAE024EDE59300355F16 /* EntriesView.swift in Sources */,
 				17CE240E24DDB59B00912D22 /* DrawingViewController.swift in Sources */,
 				17C3E9A424DDAFC400C02F8A /* NotificationName.swift in Sources */,
-				17CE242124DDB59B00912D22 /* OnboardingViewController.swift in Sources */,
 				17CE241A24DDB59B00912D22 /* EntriesCollectionViewController.swift in Sources */,
 				17CE242724DDB59B00912D22 /* PhotoCaptureProcessor.swift in Sources */,
 				17C3E97624DDAF5100C02F8A /* Chronoderm.xcdatamodeld in Sources */,
@@ -556,9 +557,9 @@
 				17CE240A24DDB59B00912D22 /* DetailNavController.swift in Sources */,
 				17CE241124DDB59B00912D22 /* PDFPreview.swift in Sources */,
 				17CE241224DDB59B00912D22 /* PDFView.swift in Sources */,
-				17CE240924DDB59B00912D22 /* UserDefault.swift in Sources */,
 				17CE242B24DDB59B00912D22 /* RemindersView.swift in Sources */,
 				17CE242524DDB59B00912D22 /* AddPhotoView.swift in Sources */,
+				1707CADE24EDBBEB00355F16 /* UserDefaults.swift in Sources */,
 				17C3EA0524DDB0CC00C02F8A /* Entry+CoreDataProperties.swift in Sources */,
 				17CE241B24DDB59B00912D22 /* EntriesCollectionViewCell.swift in Sources */,
 				17CE241D24DDB59B00912D22 /* HelpViewController.swift in Sources */,
@@ -572,7 +573,6 @@
 				17C3E96C24DDAF5100C02F8A /* AppDelegate.swift in Sources */,
 				17CE240C24DDB59B00912D22 /* SettingsNavController.swift in Sources */,
 				17C3E96E24DDAF5100C02F8A /* SceneDelegate.swift in Sources */,
-				17CE242024DDB59B00912D22 /* OnboardingPageController.swift in Sources */,
 				17CE241924DDB59B00912D22 /* InfoCollectionReusableView.swift in Sources */,
 				17CE240D24DDB59B00912D22 /* MasterNavController.swift in Sources */,
 			);
@@ -754,22 +754,24 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 35;
 				DEVELOPMENT_TEAM = 394ER38X9C;
 				INFOPLIST_FILE = Chronoderm/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.2;
+				MARKETING_VERSION = 0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.baughan.Chronoderm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Debug;
 		};
@@ -782,22 +784,24 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 35;
 				DEVELOPMENT_TEAM = 394ER38X9C;
 				INFOPLIST_FILE = Chronoderm/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.2;
+				MARKETING_VERSION = 0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.baughan.Chronoderm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Release;
 		};

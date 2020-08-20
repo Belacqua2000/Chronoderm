@@ -80,7 +80,7 @@ struct ContentsView: View {
                 }
             }
         }
-        .frame(width: 400.0, height: 600.0)
+        //.frame(width: 400.0, height: 600.0)
     }
     
     func changePage(page: Int) {

@@ -234,8 +234,6 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
     private var sessionIsRunning: Bool = false
     
     func setupCaptureView() {
-        #if targetEnvironment(macCatalyst)
-        #else
         self.cameraPreview.isHidden = false
         cropButton.setTitle("Capture", for: .normal)
         cropButton.setImage(UIImage(systemName: "camera"), for: .normal)
@@ -247,7 +245,6 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
         flipControl.isHidden = false
         let overlayTextAndSlider = verticalStackView.arrangedSubviews[2]
         overlayTextAndSlider.isHidden = previousImage == nil
-        #endif
     }
     
     func checkAuthorisation() {
@@ -682,12 +679,12 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func addPhoto() {
-        if #available(iOS 14, *) {/*
+        if #available(iOS 14.0, *) {
              var configuration = PHPickerConfiguration()
              configuration.filter = .images
              let picker = PHPickerViewController(configuration: configuration)
              picker.delegate = self
-             present(picker, animated: true)*/
+             present(picker, animated: true)
         } else {
             let picker = UIImagePickerController()
             picker.allowsEditing = false
@@ -918,30 +915,32 @@ extension CropViewController: UIImagePickerControllerDelegate, UINavigationContr
     }
 }
 
-/*
+
  @available(iOS 14, *)
  extension CropViewController: PHPickerViewControllerDelegate {
  
- func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
- // The client is responsible for presentation and dismissal
- picker.dismiss(animated: true)
- sessionQueue.async {
- self.session.stopRunning()
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        // The client is responsible for presentation and dismissal
+        picker.dismiss(animated: true)
+        sessionQueue.async {
+            self.session.stopRunning()
+        }
+        
+        // Get the first item provider from the results, the configuration only allowed one image to be selected
+        let itemProvider = results.first?.itemProvider
+        
+        if let itemProvider = itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
+            itemProvider.loadObject(ofClass: UIImage.self) { (image, error) in
+                DispatchQueue.main.async {
+                    guard let image = image as? UIImage else { return }
+                    self.image = image
+                    self.currentViewState = .crop
+                    self.setupCropView()
+                }
+            }
+        } else {
+            // TODO: Handle empty results or item provider not being able load UIImage
+        }
+    }
+    
  }
- 
- // Get the first item provider from the results, the configuration only allowed one image to be selected
- let itemProvider = results.first?.itemProvider
- 
- if let itemProvider = itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
- itemProvider.loadObject(ofClass: UIImage.self) { (image, error) in
- DispatchQueue.main.async {
- guard let image = image as? UIImage else { return }
- self.image = image
- }
- }
- } else {
- // TODO: Handle empty results or item provider not being able load UIImage
- }
- }
- 
- }*/

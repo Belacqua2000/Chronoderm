@@ -20,18 +20,13 @@ struct PDFView: View {
             GeometryReader { geometry in
                 VStack {
                     
-                    Spacer()
-                    
                     ConfigurationVStack(entriesPerPage: self.$entriesPerPage, showNotes: self.$showNotes, showDate: self.$showDate, numberOfEntries: (self.passedCondition?.entry!.count)!)
-                    
-                    Spacer()
                     
                     PDFPreview(entriesPerPage: self.entriesPerPage, showNotes: self.showNotes, showDate: self.showDate)
                         .frame(width: geometry.size.height * 0.5 * 1/sqrt(2), height: geometry.size.height * 0.5)
                         .aspectRatio(contentMode: .fit)
                         .border(Color.primary)
                     
-                    Spacer()
                     
                /*     if #available(iOS 13.4, *) {
                         generatePDFButton(generatePDF: self.drawPDF(), activitySheetShown: $activitySheetShown)
@@ -199,11 +194,9 @@ struct ConfigurationVStack: View {
     @Binding var showDate: Bool
     var numberOfEntries: Int
     var body: some View {
-        VStack {
+        Form {
             Stepper(value: $entriesPerPage, in: 1 ... min(6,numberOfEntries )) {
-                VStack {
                     CompatibleLabel(symbolName: "square.fill.text.grid.1x2", text: "Number of entries per page: \(entriesPerPage.description)")
-                }
             }
             Toggle(isOn: $showNotes) {
                 CompatibleLabel(symbolName: "text.alignleft", text: "Show Notes")
@@ -213,7 +206,6 @@ struct ConfigurationVStack: View {
             }
             
         }
-        .padding()
     }
 }
 
@@ -221,6 +213,15 @@ struct generatePDFButton: View {
     var generatePDF: [Any]
     @Binding var activitySheetShown: Bool
     var body: some View {
+        #if targetEnvironment(macCatalyst)
+        Button(action: {activitySheetShown = true}) {
+            Label("Generate PDF", systemImage: "doc.richtext")
+        }
+        .popover(isPresented: $activitySheetShown, arrowEdge: .bottom) {
+            ActivityViewController(isPresented: self.$activitySheetShown, activityItems: self.generatePDF)
+                .frame(minWidth: 320, minHeight: 500)
+        }
+        #else
         Button(action: {self.activitySheetShown = true}) {
             CompatibleLabel(symbolName: "doc.richtext", text: "Generate PDF")
                 .font(.title)
@@ -234,5 +235,6 @@ struct generatePDFButton: View {
             ActivityViewController(isPresented: self.$activitySheetShown, activityItems: self.generatePDF)
                 .frame(minWidth: 320, minHeight: 500)
         }
+        #endif
     }
 }
