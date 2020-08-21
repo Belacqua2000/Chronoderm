@@ -12,6 +12,7 @@
 		1707CAE224EE566D00355F16 /* SidebarNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1707CAE124EE566D00355F16 /* SidebarNavigation.swift */; };
 		1716D9AC24E98ABA00750902 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1716D9AB24E98ABA00750902 /* ImageExtension.swift */; };
 		173BA66724E33DF800F7257A /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173BA66624E33DF800F7257A /* HelpView.swift */; };
+		174E594124F081D2008E1405 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174E594024F081D2008E1405 /* SidebarViewController.swift */; };
 		17C3E96C24DDAF5100C02F8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E96B24DDAF5100C02F8A /* AppDelegate.swift */; };
 		17C3E96E24DDAF5100C02F8A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E96D24DDAF5100C02F8A /* SceneDelegate.swift */; };
 		17C3E97324DDAF5100C02F8A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17C3E97124DDAF5100C02F8A /* Main.storyboard */; };
@@ -88,6 +89,7 @@
 		1707CAE124EE566D00355F16 /* SidebarNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarNavigation.swift; sourceTree = "<group>"; };
 		1716D9AB24E98ABA00750902 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		173BA66624E33DF800F7257A /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
+		174E594024F081D2008E1405 /* SidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		17C3E96824DDAF5100C02F8A /* Chronoderm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chronoderm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17C3E96B24DDAF5100C02F8A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17C3E96D24DDAF5100C02F8A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				17C3E9FF24DDAFE900C02F8A /* ToolbarDelegate.swift */,
+				174E594024F081D2008E1405 /* SidebarViewController.swift */,
 			);
 			path = Mac;
 			sourceTree = "<group>";
@@ -568,6 +571,7 @@
 				17CE242324DDB59B00912D22 /* AddFeatureView.swift in Sources */,
 				17CE242A24DDB59B00912D22 /* AddEntryView.swift in Sources */,
 				17CE242424DDB59B00912D22 /* CameraPreviewView.swift in Sources */,
+				174E594124F081D2008E1405 /* SidebarViewController.swift in Sources */,
 				17C3EA0124DDAFE900C02F8A /* ToolbarDelegate.swift in Sources */,
 				17CE242824DDB59B00912D22 /* AddEntryTableViewController.swift in Sources */,
 				17C3E96C24DDAF5100C02F8A /* AppDelegate.swift in Sources */,

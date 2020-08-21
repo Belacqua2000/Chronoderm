@@ -10,11 +10,11 @@ import SwiftUI
 @available(iOS 14.0, *)
 struct EntriesView: View {
     @Environment(\.managedObjectContext) var context
-    @FetchRequest(entity: Entry.entity(),
-                  sortDescriptors: [NSSortDescriptor(keyPath: \Entry.date, ascending: true)],
-                  predicate:
-                    NSPredicate(format: "condition == %@", "skinFeature")) var entries: FetchedResults<Entry>
-    var skinFeature: SkinFeature
+    @ObservedObject var feature: SkinFeature
+    
+    var entries: [Entry] {
+        return feature.entry?.array as! [Entry]
+    }
     
     var columns: GridItem = GridItem(.adaptive(minimum: 120, maximum: 150), spacing: 20, alignment: .none)
     var body: some View {
@@ -32,12 +32,13 @@ struct EntriesView: View {
     }
 }
 
-@available(iOS 14.0, *)
+@available(iOS 14.0, *)/*
 struct EntriesView_Previews: PreviewProvider {
+    @State static var feature: SkinFeature? = nil
     static var previews: some View {
         EntriesView()
     }
-}
+}*/
 
 struct EntryCell: View {
     var df = DateFormatter()

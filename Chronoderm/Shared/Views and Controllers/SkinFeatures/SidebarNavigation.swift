@@ -13,12 +13,16 @@ struct SidebarNavigation: View {
     @FetchRequest(entity: SkinFeature.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \SkinFeature.startDate, ascending: true)]) var skinFeatures: FetchedResults<SkinFeature>
     var body: some View {
         NavigationView {
-            List(skinFeatures, id: \.self) { feature in
-                SkinFeaturesCellView(feature: feature)
+            List {
+                ForEach(skinFeatures, id: \.self) { feature in
+                    //SkinFeaturesCellView(feature: feature)
+                    NavigationLink(destination: EntriesView(feature: feature)) {
+                        Label(feature.name!, systemImage: "photo")
+                    }
+                }
             }
             .listStyle(SidebarListStyle())
             .navigationTitle("Skin Features")
-            EntriesView()
         }
     }
 }
