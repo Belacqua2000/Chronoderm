@@ -10,8 +10,31 @@ import SwiftUI
 struct HelpView: View {
     @State var pageNumber: Int = 0
     @State var popoverIsShown: Bool = false
+    @State var showCancel: Bool = false
+    @State var vc: UIViewController?
     var body: some View {
-            HelpViewContent(pageNumber: pageNumber)
+            getView()
+    }
+    func dismiss() {
+        vc?.dismiss(animated: true, completion: nil)
+    }
+    
+    func getView() -> AnyView {
+        if self.showCancel {
+        let view = HelpViewContent(pageNumber: pageNumber)
+            .navigationBarTitle("Help", displayMode: .inline)
+            .navigationBarItems(leading: Button("Close", action: {self.vc?.presentedViewController?.dismiss(animated: true, completion: nil)})
+            ,trailing: Button(action: {
+                self.popoverIsShown = true
+            }) {
+                Image(systemName: "book")
+                .padding()
+            }
+            .popover(isPresented: $popoverIsShown, content: { ContentsView(isShown: self.$popoverIsShown, number: self.$pageNumber) })
+        )
+            return AnyView(view)
+        } else {
+            let view = HelpViewContent(pageNumber: pageNumber)
                 .navigationBarTitle("Help", displayMode: .inline)
                 .navigationBarItems(trailing: Button(action: {
                     self.popoverIsShown = true
@@ -21,6 +44,8 @@ struct HelpView: View {
                 }
                 .popover(isPresented: $popoverIsShown, content: { ContentsView(isShown: self.$popoverIsShown, number: self.$pageNumber) })
             )
+            return AnyView(view)
+        }
     }
 }
 

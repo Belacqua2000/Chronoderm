@@ -43,6 +43,7 @@ class SkinFeaturesTableViewController: UITableViewController, NSFetchedResultsCo
     override func viewWillAppear(_ animated: Bool) {
         clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
         super.viewWillAppear(animated)
+        checkTC()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -50,7 +51,6 @@ class SkinFeaturesTableViewController: UITableViewController, NSFetchedResultsCo
         addToSpotlight()
         addHomeScreenShortcutItems()
         view.window?.windowScene?.title! = "Skin Features"
-        checkTC()
     }
     
     override func restoreUserActivityState(_ activity: NSUserActivity) {
@@ -237,6 +237,7 @@ class SkinFeaturesTableViewController: UITableViewController, NSFetchedResultsCo
     func checkTC() {
         let launchedBefore = defaults.bool(forKey: "hasLaunchedBefore")
         if !launchedBefore {
+            firstTime = true
             print("First launch, setting UserDefault.")
             defaults.set(true, forKey: "hasLaunchedBefore")
             showOnboarding()
@@ -252,11 +253,30 @@ class SkinFeaturesTableViewController: UITableViewController, NSFetchedResultsCo
         }
     }
     
+    var firstTime = false
+    
     func showOnboarding() {
         let view = UIHostingController(rootView: OnboardingView(vc: self, stage: 0, confirmed: false))
         view.modalPresentationStyle = .fullScreen
-        present(view, animated: true, completion: nil)
+        present(view, animated: false, completion: nil)
+    }
+    
+    func showHelp() {
+        //guard firstTime == true else { return }
+        let alert = UIAlertController(title: "Tutorial", message: "Would you like to read how to use this app?", preferredStyle: .alert)
         
+        let action1 = UIAlertAction(title: "Show Help", style: .default, handler: { _ in
+            let view = UIHostingController(rootView: HelpView(showCancel: true, vc: self))
+            view.modalPresentationStyle = .automatic
+            self.present(UINavigationController(rootViewController: view), animated: true, completion: nil)
+        })
+        
+        let action2 = UIAlertAction(title: "I'll work it out", style: .cancel, handler: nil)
+        
+        alert.addAction(action1)
+        alert.addAction(action2)
+        
+        present(alert, animated: true, completion: {})
     }
     
     override var canBecomeFirstResponder: Bool {

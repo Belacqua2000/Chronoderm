@@ -179,15 +179,19 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
         if image!.size.height > image!.size.width {
             yConstraint.isActive = false
             xConstraint.isActive = true
-            centreRect = CGRect(x: 0, y: (originalImageView.frame.height / 2) - (cropView.frame.height), width: cropView.frame.width, height: cropView.frame.height)
+            self.scrollView.setNeedsLayout()
+            self.scrollView.layoutIfNeeded()
+            centreRect = CGRect(x: 0, y: (scrollView.contentSize.height / 2) - (cropView.frame.height / 2), width: cropView.frame.width, height: cropView.frame.height)
         } else {
             xConstraint.isActive = false
             yConstraint.isActive = true
-            centreRect = CGRect(x: (originalImageView.frame.width / 2) - (cropView.frame.width / 2), y: 0, width: cropView.frame.width, height: cropView.frame.height)
+            self.scrollView.setNeedsLayout()
+            self.scrollView.layoutIfNeeded()
+            centreRect = CGRect(x: (scrollView.contentSize.width / 2) - (cropView.frame.width / 2), y: 0, width: cropView.frame.width, height: cropView.frame.height)
             print("x: \((originalImageView.frame.width / 2)) - \((cropView.frame.width / 2)), y: \(0), width: \(cropView.frame.width), height \(cropView.frame.height)")
         }
         
-        //scrollView.scrollRectToVisible(centreRect, animated: false)
+        scrollView.scrollRectToVisible(centreRect, animated: false)
     }
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
@@ -263,8 +267,15 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
             AVCaptureDevice.requestAccess(for: .video, completionHandler: { granted in
                 if !granted {
                     self.setupResult = .denied
+                } else {
+                    self.setupResult = .authorized
+                    
+                    self.sessionQueue.resume()
+                    self.sessionQueue.async {
+                        self.setupCameraSession()
+                    }
+                    self.tryToStartSession()
                 }
-                self.sessionQueue.resume()
             })
             
         case .denied: // The user has previously denied access.
@@ -524,8 +535,8 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
                 
             case .denied:
                 DispatchQueue.main.async {
-                    let changePrivacyMessage = "Chronoderm doesn't have permission to use the camera.  Please change in Settings app."
-                    let alertController = UIAlertController(title: "AVCam", message: changePrivacyMessage, preferredStyle: .alert)
+                    let changePrivacyMessage = "Chronoderm doesn't have permission to use the camera.  To change, go to the Settings app."
+                    let alertController = UIAlertController(title: "Camera not Authorised", message: changePrivacyMessage, preferredStyle: .alert)
                     
                     alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Alert OK button"),
                                                             style: .cancel,
@@ -702,7 +713,9 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
         image = nil
         setupCaptureView()
         checkAuthorisation()
-        setupCameraSession()
+        sessionQueue.async {
+            self.setupCameraSession()
+        }
         tryToStartSession()
     }
     

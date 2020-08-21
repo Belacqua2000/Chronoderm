@@ -138,7 +138,13 @@ A customisable summary of your skin features can be generated to make it easy to
         guard confirmed else { print("T and C not confirmed"); return }
         let defaults = UserDefaults.standard
         defaults.setValue(GlobalVariables().termsAndConditionsCurrentVersion, forKey: "TermsAndConditions")
-        vc?.presentedViewController?.dismiss(animated: true, completion: nil)
+        if let vc = vc as? SkinFeaturesTableViewController {
+            vc.presentedViewController?.dismiss(animated: true, completion: nil)
+            vc.showHelp()
+        } else if let vc = vc as? SettingsTableViewController {
+            vc.presentedViewController?.dismiss(animated: true, completion: nil)
+        }
+        
     }
 }
 

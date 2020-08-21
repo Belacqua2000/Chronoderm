@@ -123,7 +123,7 @@
             <objects>
                 <viewController title="Detail" id="Ghl-l3-uVh" customClass="DetailViewController" customModule="Chronoderm" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eNS-rg-eNe">
-                        <rect key="frame" x="0.0" y="0.0" width="818.5" height="834"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W49-GG-BBf">
@@ -297,11 +297,11 @@
         <scene sceneID="Sph-A0-CBx">
             <objects>
                 <viewController id="ref-Nn-aCl" customClass="DrawingViewController" customModule="Chronoderm" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="zrP-0s-7PN">
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="zrP-0s-7PN">
                         <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pbK-WL-Cbg">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pbK-WL-Cbg">
                                 <rect key="frame" x="0.0" y="0.0" width="1194" height="814"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="414" id="uAL-VE-6bp"/>
@@ -338,7 +338,7 @@
             <objects>
                 <tableViewController id="d1t-oH-zWk" customClass="RemindersTableViewController" customModule="Chronoderm" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="amh-Ew-FSr">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="680"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
@@ -612,7 +612,7 @@
             <objects>
                 <tableViewController title="Conditions" clearsSelectionOnViewWillAppear="NO" id="SJu-Pf-lWV" customClass="SkinFeaturesTableViewController" customModule="Chronoderm" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" springLoaded="YES" id="yov-x2-cz0">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="834"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CatalystConditionCell" textLabel="ZHY-Ns-GUG" imageView="cSe-s7-yta" style="IBUITableViewCellStyleDefault" id="jBK-Ir-Hcz">
@@ -843,7 +843,7 @@
             <objects>
                 <tableViewController title="Add New Entry" id="Iqp-3Y-GgL" customClass="AddEntryTableViewController" customModule="Chronoderm" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Tak-o2-MZr">
-                        <rect key="frame" x="0.0" y="0.0" width="712" height="794"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
                             <tableViewSection headerTitle="Add Photos" id="hmD-wA-hkN">
@@ -1222,9 +1222,6 @@
                                             <constraint firstItem="qLk-ee-Dam" firstAttribute="leading" secondItem="PqL-Oa-meK" secondAttribute="leading" id="z7A-uG-2nL"/>
                                             <constraint firstItem="8DO-so-c0r" firstAttribute="height" secondItem="PqL-Oa-meK" secondAttribute="height" id="zpb-xh-LBd"/>
                                         </constraints>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="75S-3H-KfD" appends="YES" id="hRl-Me-fbw"/>
-                                        </connections>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -1413,31 +1410,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="soe-vb-0l6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="75S-3H-KfD">
-                    <connections>
-                        <action selector="moveScreen:" destination="MCU-aD-Z2S" id="kEU-Z1-UCe"/>
-                    </connections>
-                </panGestureRecognizer>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="ICa-ZT-Ats">
-                    <connections>
-                        <action selector="resizeScreen:" destination="MCU-aD-Z2S" id="Y99-6i-zgP"/>
-                    </connections>
-                </panGestureRecognizer>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="Hyl-rV-YeP">
-                    <connections>
-                        <action selector="resizeScreen:" destination="MCU-aD-Z2S" id="5h6-A7-g08"/>
-                    </connections>
-                </panGestureRecognizer>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="aTQ-L3-fc0">
-                    <connections>
-                        <action selector="resizeScreen:" destination="MCU-aD-Z2S" id="7iu-Fx-Sez"/>
-                    </connections>
-                </panGestureRecognizer>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="vnO-hY-X65">
-                    <connections>
-                        <action selector="resizeScreen:" destination="MCU-aD-Z2S" id="IbI-A9-Qct"/>
-                    </connections>
-                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="5873.913043478261" y="-633.48214285714278"/>
         </scene>
@@ -1490,7 +1462,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="SettingsTableViewController" title="Settings" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rXn-WU-15T" customClass="SettingsTableViewController" customModule="Chronoderm" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="pWV-rS-kxs">
-                        <rect key="frame" x="0.0" y="0.0" width="712" height="794"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
                             <tableViewSection id="hpA-1G-nUZ">
@@ -1913,7 +1885,7 @@
             <objects>
                 <collectionViewController id="prM-4H-IZb" customClass="EntriesCollectionViewController" customModule="Chronoderm" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" id="ewa-AY-BLS">
-                        <rect key="frame" x="0.0" y="0.0" width="818.5" height="834"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="safeArea" id="YTo-C0-CDE">
