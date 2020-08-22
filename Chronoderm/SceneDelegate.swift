@@ -20,6 +20,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         print("Will connect to scenesession")
         
+        if #available(iOS 14, *) {
+                    if window?.traitCollection.userInterfaceIdiom == .pad || window?.traitCollection.userInterfaceIdiom == .mac {
+                        if let splitViewController = createThreeColumnSplitViewController() {
+                            window?.rootViewController = splitViewController
+                        }
+                    }
+                }
+        
         // Looks for Home Screen Quick Action, and acts on it
         #if !targetEnvironment(macCatalyst)
         if let shortcutItem = connectionOptions.shortcutItem {
@@ -262,4 +270,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         helpVC?.restoreUserActivityState(activity)
         return true
     }
+}
+
+@available(iOS 14, *)
+extension SceneDelegate {
+
+    private func createThreeColumnSplitViewController() -> UISplitViewController? {
+        guard
+            let recipeListViewController = RecipeListViewController.instantiateFromStoryboard(),
+            let recipeDetailViewController = RecipeDetailViewController.instantiateFromStoryboard()
+        else { return nil }
+        
+        let sidebarViewController = SidebarViewController()
+
+        let splitViewController = UISplitViewController(style: .tripleColumn)
+        splitViewController.primaryBackgroundStyle = .sidebar
+        splitViewController.preferredDisplayMode = .twoBesideSecondary
+
+        splitViewController.setViewController(sidebarViewController, for: .primary)
+        splitViewController.setViewController(recipeListViewController, for: .supplementary)
+        splitViewController.setViewController(recipeDetailViewController, for: .secondary)
+        
+        return splitViewController
+    }
+    
 }
