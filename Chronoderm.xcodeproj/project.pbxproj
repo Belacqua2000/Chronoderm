@@ -63,6 +63,7 @@
 		17CE242A24DDB59B00912D22 /* AddEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE240324DDB59B00912D22 /* AddEntryView.swift */; };
 		17CE242B24DDB59B00912D22 /* RemindersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE240524DDB59B00912D22 /* RemindersView.swift */; };
 		17CE242C24DDB59B00912D22 /* RemindersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE240624DDB59B00912D22 /* RemindersTableViewController.swift */; };
+		17F8033E24F086E700AAEF6A /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17F8033D24F086E700AAEF6A /* CloudKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,6 +147,7 @@
 		17CE240524DDB59B00912D22 /* RemindersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemindersView.swift; sourceTree = "<group>"; };
 		17CE240624DDB59B00912D22 /* RemindersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemindersTableViewController.swift; sourceTree = "<group>"; };
 		17CE242D24DDB74100912D22 /* Chronoderm.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Chronoderm.entitlements; sourceTree = "<group>"; };
+		17F8033D24F086E700AAEF6A /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17F8033E24F086E700AAEF6A /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,6 +183,7 @@
 				17C3E98424DDAF5300C02F8A /* ChronodermTests */,
 				17C3E98F24DDAF5300C02F8A /* ChronodermUITests */,
 				17C3E96924DDAF5100C02F8A /* Products */,
+				17F8033C24F086E700AAEF6A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -392,6 +396,14 @@
 				17CE240624DDB59B00912D22 /* RemindersTableViewController.swift */,
 			);
 			path = Reminders;
+			sourceTree = "<group>";
+		};
+		17F8033C24F086E700AAEF6A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				17F8033D24F086E700AAEF6A /* CloudKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
