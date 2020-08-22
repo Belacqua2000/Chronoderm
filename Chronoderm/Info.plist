@@ -23,11 +23,11 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>"To add photos to an entry"</string>
+	<string>&quot;To add photos to an entry&quot;</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>"To add photos taken with the app to your camera roll"</string>
+	<string>&quot;To add photos taken with the app to your camera roll&quot;</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>"To add photos to an entry"</string>
+	<string>&quot;To add photos to an entry, and add photos taken with the app to your camera roll&quot;</string>
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>com.Baughan.Chronoderm.openentry</string>

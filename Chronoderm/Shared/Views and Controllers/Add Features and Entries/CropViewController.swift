@@ -11,7 +11,6 @@ import CoreGraphics
 import AVKit
 import AVFoundation
 import PhotosUI
-import os
 
 protocol ConfirmPhoto {
     func didConfirmPhoto(image: UIImage)
@@ -39,11 +38,13 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var flashButton: UIButton!
     @IBOutlet var changeCameraButton: UIButton!
     @IBOutlet var cropButton: UIButton!
+    @IBOutlet weak var overlayLabel: UILabel!
     @IBOutlet var overlaySlider: UISlider!
     @IBOutlet var cancelBarButton: UIBarButtonItem!
     @IBOutlet var errorLabel: UILabel!
     @IBOutlet var retakeButtonEffectView: UIVisualEffectView!
     @IBOutlet var retakeButton: UIButton!
+    
     
     // Constraints
     @IBOutlet var xConstraint: NSLayoutConstraint!
@@ -243,14 +244,9 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
         self.cameraPreview.isHidden = false
         cropButton.setTitle("Capture", for: .normal)
         cropButton.setImage(UIImage(systemName: "camera"), for: .normal)
-        retakeButton.isHidden = true
-        let flashControl = horizontalStackView.arrangedSubviews[0]
-        let flipControl = horizontalStackView.arrangedSubviews[2]
-        flashControl.isHidden = false
+        retakeButtonEffectView.isHidden = true
+        setInterface(cameraIsOn: true, overlayAvailable: previousImage != nil)
         setFlashInterface()
-        flipControl.isHidden = false
-        let overlayTextAndSlider = verticalStackView.arrangedSubviews[2]
-        overlayTextAndSlider.isHidden = previousImage == nil
         #endif
     }
     
@@ -298,13 +294,18 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
         setupScrollView()
         cropButton.setTitle("Confirm Crop", for: .normal)
         cropButton.setImage(UIImage(systemName: "crop"), for: .normal)
-        retakeButton.isHidden = false
-        let flashControl = horizontalStackView.arrangedSubviews[0]
-        let flipControl = horizontalStackView.arrangedSubviews[2]
-        flashControl.isHidden = true
-        flipControl.isHidden = true
-        let overlayTextAndSlider = verticalStackView.arrangedSubviews[2]
-        overlayTextAndSlider.isHidden = previousImage == nil
+        retakeButtonEffectView.isHidden = false
+        setInterface(cameraIsOn: false, overlayAvailable: previousImage != nil)
+        
+    }
+    
+    func setInterface(cameraIsOn: Bool, overlayAvailable: Bool) {
+        //UIView.animate(withDuration: 0.5, animations: {
+            self.overlaySlider.isHidden = !overlayAvailable
+            self.overlayLabel.isHidden = !overlayAvailable
+            self.flashButton.isHidden = !cameraIsOn
+            self.changeCameraButton.isHidden = !cameraIsOn
+        
     }
     
     func setupCameraSession() {
@@ -413,20 +414,30 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
     
     func setFlashInterface() {
         if flashIsSupported {
-            horizontalStackView.arrangedSubviews[0].isHidden = false
+            //UIView.animate(withDuration: 0.5, animations: {
+                self.flashButton.isHidden = false
+            //})
             switch preferredFlashMode {
             case .on:
-                flashButton.setTitle("On", for: .normal)
-                flashButton.setImage(UIImage(systemName: "bolt.fill"), for: .normal)
+            //    UIView.animate(withDuration: 0.5, animations: {
+                    self.flashButton.setTitle("On", for: .normal)
+                    self.flashButton.setImage(UIImage(systemName: "bolt.fill"), for: .normal)
+            //    })
             case .off:
-                flashButton.setTitle("Off", for: .normal)
-                flashButton.setImage(UIImage(systemName: "bolt.slash.fill"), for: .normal)
+            //    UIView.animate(withDuration: 0.5, animations: {
+                    self.flashButton.setTitle("Off", for: .normal)
+                    self.flashButton.setImage(UIImage(systemName: "bolt.slash.fill"), for: .normal)
+             //   })
             case .auto:
-                flashButton.setTitle("Auto", for: .normal)
-                flashButton.setImage(UIImage(systemName: "bolt.badge.a.fill"), for: .normal)
+             //   UIView.animate(withDuration: 0.5, animations: {
+                    self.flashButton.setTitle("Auto", for: .normal)
+                    self.flashButton.setImage(UIImage(systemName: "bolt.badge.a.fill"), for: .normal)
+             //   })
             }
         } else {
-            horizontalStackView.arrangedSubviews[0].isHidden = true
+           // UIView.animate(withDuration: 0.5, animations: {
+                self.flashButton.isHidden = true
+           // })
         }
     }
     
@@ -908,7 +919,28 @@ extension CropViewController: AVCapturePhotoCaptureDelegate {
                 self.session.stopRunning()
             }
             let uncroppedImage = UIImage(data: photoData)
-            //self.image = cropImageToSquare(uncroppedImage!)
+            
+            if UserDefaults.standard.bool(forKey: "saveImageToPhotos") == true { // Save photo to camera roll if set in Settings
+                PHPhotoLibrary.requestAuthorization { status in
+                    if status == .authorized {
+                        
+                        PHPhotoLibrary.shared().performChanges({
+                            // Add the captured photo's file data as the main resource for the Photos asset.
+                            let creationRequest = PHAssetCreationRequest.forAsset()
+                            creationRequest.addResource(with: .photo, data: photoData, options: nil)
+                        }, completionHandler: nil)
+                    } else {
+                        let alrt = UIAlertController(title: "Unable to save to Photos app", message: "Please change permissions in the Settings app.  If you do not wish to save the photo, turn off this option in the settings screen.", preferredStyle: .alert)
+                        let settingsAction = UIAlertAction(title: "Change Permissions", style: .default, handler: { _ in
+                            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!
+                            )})
+                        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                        alrt.addAction(settingsAction)
+                        alrt.addAction(cancelAction)
+                        self.present(alrt, animated: true, completion: nil)
+                    }
+                }
+            }
             self.image = uncroppedImage!
             self.currentViewState = .crop
             setupCropView()
