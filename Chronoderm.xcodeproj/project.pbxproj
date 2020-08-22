@@ -12,23 +12,102 @@
 		1707CAE224EE566D00355F16 /* SidebarNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1707CAE124EE566D00355F16 /* SidebarNavigation.swift */; };
 		1716D9AC24E98ABA00750902 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1716D9AB24E98ABA00750902 /* ImageExtension.swift */; };
 		173BA66724E33DF800F7257A /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173BA66624E33DF800F7257A /* HelpView.swift */; };
-		174E594124F081D2008E1405 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174E594024F081D2008E1405 /* SidebarViewController.swift */; };
-		17C3E96C24DDAF5100C02F8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E96B24DDAF5100C02F8A /* AppDelegate.swift */; };
-		17C3E96E24DDAF5100C02F8A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E96D24DDAF5100C02F8A /* SceneDelegate.swift */; };
+		17421C5D24F158DB0074530E /* ChronodermApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17421C3224F158D80074530E /* ChronodermApp.swift */; };
+		17421C5E24F158DB0074530E /* ChronodermApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17421C3224F158D80074530E /* ChronodermApp.swift */; };
+		17421C5F24F158DB0074530E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17421C3324F158D80074530E /* ContentView.swift */; };
+		17421C6024F158DB0074530E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17421C3324F158D80074530E /* ContentView.swift */; };
+		17421C6124F158DB0074530E /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17421C3424F158D90074530E /* Persistence.swift */; };
+		17421C6224F158DB0074530E /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17421C3424F158D90074530E /* Persistence.swift */; };
+		17421C7124F1590A0074530E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E96B24DDAF5100C02F8A /* AppDelegate.swift */; };
+		17421C7324F1590A0074530E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E96D24DDAF5100C02F8A /* SceneDelegate.swift */; };
+		17421C7724F1598A0074530E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 17421C7524F159890074530E /* Info.plist */; };
+		17421C7A24F15A1E0074530E /* Entry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3EA0224DDB0CC00C02F8A /* Entry+CoreDataProperties.swift */; };
+		17421C7B24F15A1E0074530E /* SkinFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3EA0424DDB0CC00C02F8A /* SkinFeature.swift */; };
+		17421C7C24F15A1E0074530E /* Entry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3EA0324DDB0CC00C02F8A /* Entry+CoreDataClass.swift */; };
+		17421C7D24F15A1E0074530E /* Entry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3EA0224DDB0CC00C02F8A /* Entry+CoreDataProperties.swift */; };
+		17421C7E24F15A1E0074530E /* SkinFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3EA0424DDB0CC00C02F8A /* SkinFeature.swift */; };
+		17421C7F24F15A1E0074530E /* Entry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3EA0324DDB0CC00C02F8A /* Entry+CoreDataClass.swift */; };
+		17421C8024F15A220074530E /* Chronoderm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E97424DDAF5100C02F8A /* Chronoderm.xcdatamodeld */; };
+		17421C8124F15A220074530E /* Chronoderm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E97424DDAF5100C02F8A /* Chronoderm.xcdatamodeld */; };
+		17421C8224F15A280074530E /* Entry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3EA0324DDB0CC00C02F8A /* Entry+CoreDataClass.swift */; };
+		17421C8324F15A280074530E /* Entry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3EA0224DDB0CC00C02F8A /* Entry+CoreDataProperties.swift */; };
+		17421C8424F15A280074530E /* SkinFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3EA0424DDB0CC00C02F8A /* SkinFeature.swift */; };
+		17421C8524F15A2C0074530E /* MenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9A224DDAFC400C02F8A /* MenuBuilder.swift */; };
+		17421C8624F15A2C0074530E /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1707CADD24EDBBEB00355F16 /* UserDefaults.swift */; };
+		17421C8724F15A2C0074530E /* CompatibleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E99F24DDAFC400C02F8A /* CompatibleLabel.swift */; };
+		17421C8824F15A2C0074530E /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9A024DDAFC400C02F8A /* NotificationName.swift */; };
+		17421C8924F15A2C0074530E /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1716D9AB24E98ABA00750902 /* ImageExtension.swift */; };
+		17421C8A24F15A2C0074530E /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9A124DDAFC400C02F8A /* GlobalVariables.swift */; };
+		17421C8C24F15A2C0074530E /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1707CADD24EDBBEB00355F16 /* UserDefaults.swift */; };
+		17421C8D24F15A2C0074530E /* CompatibleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E99F24DDAFC400C02F8A /* CompatibleLabel.swift */; };
+		17421C8E24F15A2C0074530E /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9A024DDAFC400C02F8A /* NotificationName.swift */; };
+		17421C9024F15A2C0074530E /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9A124DDAFC400C02F8A /* GlobalVariables.swift */; };
+		17421C9124F15A330074530E /* ConditionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23EA24DDB59B00912D22 /* ConditionsTableViewCell.swift */; };
+		17421C9224F15A330074530E /* SkinFeaturesCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23EB24DDB59B00912D22 /* SkinFeaturesCellView.swift */; };
+		17421C9324F15A330074530E /* SkinFeaturesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23ED24DDB59B00912D22 /* SkinFeaturesTableViewController.swift */; };
+		17421C9424F15A330074530E /* SidebarNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1707CAE124EE566D00355F16 /* SidebarNavigation.swift */; };
+		17421C9524F15A330074530E /* ContextPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23EC24DDB59B00912D22 /* ContextPreviewViewController.swift */; };
+		17421C9724F15A340074530E /* SkinFeaturesCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23EB24DDB59B00912D22 /* SkinFeaturesCellView.swift */; };
+		17421C9924F15A340074530E /* SidebarNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1707CAE124EE566D00355F16 /* SidebarNavigation.swift */; };
+		17421C9B24F15A370074530E /* ConditionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17CE23E924DDB59B00912D22 /* ConditionsTableViewCell.xib */; };
+		17421C9C24F15A370074530E /* ConditionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17CE23E924DDB59B00912D22 /* ConditionsTableViewCell.xib */; };
+		17421C9D24F15A3B0074530E /* EntriesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23F124DDB59B00912D22 /* EntriesCollectionViewController.swift */; };
+		17421C9E24F15A3B0074530E /* EntriesFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23F324DDB59B00912D22 /* EntriesFlowLayout.swift */; };
+		17421C9F24F15A3B0074530E /* InfoCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23F024DDB59B00912D22 /* InfoCollectionReusableView.swift */; };
+		17421CA024F15A3B0074530E /* EntriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1707CADF24EDE59300355F16 /* EntriesView.swift */; };
+		17421CA124F15A3B0074530E /* EntriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23F224DDB59B00912D22 /* EntriesCollectionViewCell.swift */; };
+		17421CA724F15A400074530E /* AddConditionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23FF24DDB59B00912D22 /* AddConditionTableViewController.swift */; };
+		17421CA824F15A400074530E /* PhotoCaptureProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE240024DDB59B00912D22 /* PhotoCaptureProcessor.swift */; };
+		17421CA924F15A400074530E /* AddPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23FE24DDB59B00912D22 /* AddPhotoView.swift */; };
+		17421CAA24F15A400074530E /* AddEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE240324DDB59B00912D22 /* AddEntryView.swift */; };
+		17421CAB24F15A400074530E /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23FD24DDB59B00912D22 /* CameraPreviewView.swift */; };
+		17421CAC24F15A400074530E /* CropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE240224DDB59B00912D22 /* CropViewController.swift */; };
+		17421CAD24F15A400074530E /* AddFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23FC24DDB59B00912D22 /* AddFeatureView.swift */; };
+		17421CAE24F15A400074530E /* AddEntryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE240124DDB59B00912D22 /* AddEntryTableViewController.swift */; };
+		17421CB524F15A400074530E /* AddFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23FC24DDB59B00912D22 /* AddFeatureView.swift */; };
+		17421CB724F15A430074530E /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23D824DDB59B00912D22 /* SettingsTableViewController.swift */; };
+		17421CB824F15A430074530E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23D924DDB59B00912D22 /* SettingsView.swift */; };
+		17421CBA24F15A440074530E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23D924DDB59B00912D22 /* SettingsView.swift */; };
+		17421CBB24F15A470074530E /* MasterNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23DF24DDB59B00912D22 /* MasterNavController.swift */; };
+		17421CBC24F15A470074530E /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23DD24DDB59B00912D22 /* SplitViewController.swift */; };
+		17421CBD24F15A470074530E /* SettingsNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23DE24DDB59B00912D22 /* SettingsNavController.swift */; };
+		17421CBE24F15A470074530E /* DetailNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23DC24DDB59B00912D22 /* DetailNavController.swift */; };
+		17421CC324F15A4B0074530E /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23E124DDB59B00912D22 /* DrawingViewController.swift */; };
+		17421CC424F15A4B0074530E /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23E224DDB59B00912D22 /* DrawingView.swift */; };
+		17421CC524F15A4B0074530E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23E324DDB59B00912D22 /* DetailViewController.swift */; };
+		17421CC724F15A4B0074530E /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23E224DDB59B00912D22 /* DrawingView.swift */; };
+		17421CC924F15A4E0074530E /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23E724DDB59B00912D22 /* ActivityView.swift */; };
+		17421CCA24F15A4E0074530E /* PDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23E624DDB59B00912D22 /* PDFView.swift */; };
+		17421CCB24F15A4E0074530E /* PDFPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23E524DDB59B00912D22 /* PDFPreview.swift */; };
+		17421CCD24F15A4E0074530E /* PDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23E624DDB59B00912D22 /* PDFView.swift */; };
+		17421CCE24F15A4E0074530E /* PDFPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23E524DDB59B00912D22 /* PDFPreview.swift */; };
+		17421CCF24F15A540074530E /* RemindersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE240524DDB59B00912D22 /* RemindersView.swift */; };
+		17421CD024F15A540074530E /* RemindersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE240624DDB59B00912D22 /* RemindersTableViewController.swift */; };
+		17421CD124F15A540074530E /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23FA24DDB59B00912D22 /* OnboardingView.swift */; };
+		17421CD224F15A540074530E /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23F524DDB59B00912D22 /* HelpViewController.swift */; };
+		17421CD324F15A540074530E /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173BA66624E33DF800F7257A /* HelpView.swift */; };
+		17421CD424F15A540074530E /* HelpContentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23F724DDB59B00912D22 /* HelpContentsTableViewController.swift */; };
+		17421CD524F15A540074530E /* Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23F624DDB59B00912D22 /* Help.swift */; };
+		17421CD624F15A540074530E /* RemindersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE240524DDB59B00912D22 /* RemindersView.swift */; };
+		17421CD824F15A540074530E /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23FA24DDB59B00912D22 /* OnboardingView.swift */; };
+		17421CDA24F15A540074530E /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173BA66624E33DF800F7257A /* HelpView.swift */; };
+		17421CDC24F15A540074530E /* Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23F624DDB59B00912D22 /* Help.swift */; };
+		17421CDD24F15A600074530E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17C3E97724DDAF5200C02F8A /* Assets.xcassets */; };
+		17421CDE24F15A620074530E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17C3E97724DDAF5200C02F8A /* Assets.xcassets */; };
+		17421CDF24F15A6D0074530E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17C3E97124DDAF5100C02F8A /* Main.storyboard */; };
+		17421CE024F15A6E0074530E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17C3E97124DDAF5100C02F8A /* Main.storyboard */; };
+		17421CE124F15AA00074530E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17C3E97924DDAF5200C02F8A /* LaunchScreen.storyboard */; };
+		17421CE224F15AA00074530E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17C3E97924DDAF5200C02F8A /* LaunchScreen.storyboard */; };
+		17421CE324F15B700074530E /* EntriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1707CADF24EDE59300355F16 /* EntriesView.swift */; };
+		17421CE424F15B990074530E /* AddEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE240324DDB59B00912D22 /* AddEntryView.swift */; };
 		17C3E97324DDAF5100C02F8A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17C3E97124DDAF5100C02F8A /* Main.storyboard */; };
 		17C3E97624DDAF5100C02F8A /* Chronoderm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E97424DDAF5100C02F8A /* Chronoderm.xcdatamodeld */; };
 		17C3E97824DDAF5200C02F8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17C3E97724DDAF5200C02F8A /* Assets.xcassets */; };
 		17C3E97B24DDAF5200C02F8A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17C3E97924DDAF5200C02F8A /* LaunchScreen.storyboard */; };
-		17C3E98624DDAF5300C02F8A /* ChronodermTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E98524DDAF5300C02F8A /* ChronodermTests.swift */; };
-		17C3E99124DDAF5300C02F8A /* ChronodermUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E99024DDAF5300C02F8A /* ChronodermUITests.swift */; };
 		17C3E9A324DDAFC400C02F8A /* CompatibleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E99F24DDAFC400C02F8A /* CompatibleLabel.swift */; };
 		17C3E9A424DDAFC400C02F8A /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9A024DDAFC400C02F8A /* NotificationName.swift */; };
 		17C3E9A524DDAFC400C02F8A /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9A124DDAFC400C02F8A /* GlobalVariables.swift */; };
 		17C3E9A624DDAFC400C02F8A /* MenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9A224DDAFC400C02F8A /* MenuBuilder.swift */; };
-		17C3EA0124DDAFE900C02F8A /* ToolbarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E9FF24DDAFE900C02F8A /* ToolbarDelegate.swift */; };
-		17C3EA0524DDB0CC00C02F8A /* Entry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3EA0224DDB0CC00C02F8A /* Entry+CoreDataProperties.swift */; };
-		17C3EA0624DDB0CC00C02F8A /* Entry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3EA0324DDB0CC00C02F8A /* Entry+CoreDataClass.swift */; };
-		17C3EA0724DDB0CC00C02F8A /* SkinFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3EA0424DDB0CC00C02F8A /* SkinFeature.swift */; };
 		17CE240724DDB59B00912D22 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23D824DDB59B00912D22 /* SettingsTableViewController.swift */; };
 		17CE240824DDB59B00912D22 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23D924DDB59B00912D22 /* SettingsView.swift */; };
 		17CE240A24DDB59B00912D22 /* DetailNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE23DC24DDB59B00912D22 /* DetailNavController.swift */; };
@@ -89,21 +168,28 @@
 		1707CAE124EE566D00355F16 /* SidebarNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarNavigation.swift; sourceTree = "<group>"; };
 		1716D9AB24E98ABA00750902 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		173BA66624E33DF800F7257A /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
+		17421C3224F158D80074530E /* ChronodermApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChronodermApp.swift; sourceTree = "<group>"; };
+		17421C3324F158D80074530E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		17421C3424F158D90074530E /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		17421C3A24F158DA0074530E /* Chronoderm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chronoderm.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		17421C4124F158DA0074530E /* Chronoderm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chronoderm.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		17421C4D24F158DB0074530E /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
+		17421C4F24F158DB0074530E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		17421C5824F158DB0074530E /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
+		17421C5A24F158DB0074530E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		17421C7524F159890074530E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../../../../Desktop/swiftuiCD/macOS/Info.plist; sourceTree = "<group>"; };
+		17421C7624F1598A0074530E /* macOS.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = macOS.entitlements; path = ../../../../Desktop/swiftuiCD/macOS/macOS.entitlements; sourceTree = "<group>"; };
 		174E594024F081D2008E1405 /* SidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
-		17C3E96824DDAF5100C02F8A /* Chronoderm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chronoderm.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		17C3E96824DDAF5100C02F8A /* ChronodermOld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChronodermOld.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17C3E96B24DDAF5100C02F8A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17C3E96D24DDAF5100C02F8A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		17C3E97224DDAF5100C02F8A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		17C3E97524DDAF5100C02F8A /* Chronoderm.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Chronoderm.xcdatamodel; sourceTree = "<group>"; };
-		17C3E97724DDAF5200C02F8A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		17C3E97724DDAF5200C02F8A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Chronoderm/Assets.xcassets; sourceTree = "<group>"; };
 		17C3E97A24DDAF5200C02F8A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		17C3E97C24DDAF5200C02F8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		17C3E97C24DDAF5200C02F8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Shared/Info.plist; sourceTree = "<group>"; };
 		17C3E98124DDAF5300C02F8A /* ChronodermTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChronodermTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		17C3E98524DDAF5300C02F8A /* ChronodermTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChronodermTests.swift; sourceTree = "<group>"; };
-		17C3E98724DDAF5300C02F8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		17C3E98C24DDAF5300C02F8A /* ChronodermUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChronodermUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		17C3E99024DDAF5300C02F8A /* ChronodermUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChronodermUITests.swift; sourceTree = "<group>"; };
-		17C3E99224DDAF5300C02F8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		17C3E99F24DDAFC400C02F8A /* CompatibleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompatibleLabel.swift; sourceTree = "<group>"; };
 		17C3E9A024DDAFC400C02F8A /* NotificationName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
 		17C3E9A124DDAFC400C02F8A /* GlobalVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
@@ -147,10 +233,24 @@
 		17CE240324DDB59B00912D22 /* AddEntryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEntryView.swift; sourceTree = "<group>"; };
 		17CE240524DDB59B00912D22 /* RemindersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemindersView.swift; sourceTree = "<group>"; };
 		17CE240624DDB59B00912D22 /* RemindersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemindersTableViewController.swift; sourceTree = "<group>"; };
-		17CE242D24DDB74100912D22 /* Chronoderm.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Chronoderm.entitlements; sourceTree = "<group>"; };
+		17CE242D24DDB74100912D22 /* iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOS.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		17421C3724F158DA0074530E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		17421C3E24F158DA0074530E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		17C3E96524DDAF5100C02F8A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -175,12 +275,70 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		17421C2F24F158D80074530E /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				17C3E96B24DDAF5100C02F8A /* AppDelegate.swift */,
+				17C3E96D24DDAF5100C02F8A /* SceneDelegate.swift */,
+				17C3E97124DDAF5100C02F8A /* Main.storyboard */,
+				17C3E97924DDAF5200C02F8A /* LaunchScreen.storyboard */,
+				17C3E97724DDAF5200C02F8A /* Assets.xcassets */,
+				17421C3224F158D80074530E /* ChronodermApp.swift */,
+				17421C3324F158D80074530E /* ContentView.swift */,
+				17421C3424F158D90074530E /* Persistence.swift */,
+				17CE23D524DDB55800912D22 /* Model */,
+				17C3E99E24DDAFC400C02F8A /* Helpers */,
+				17CE23D624DDB59B00912D22 /* Views and Controllers */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		17421C3B24F158DA0074530E /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				17CE242D24DDB74100912D22 /* iOS.entitlements */,
+				17C3E97C24DDAF5200C02F8A /* Info.plist */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		17421C4224F158DB0074530E /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				17C3E9FF24DDAFE900C02F8A /* ToolbarDelegate.swift */,
+				174E594024F081D2008E1405 /* SidebarViewController.swift */,
+				17421C7524F159890074530E /* Info.plist */,
+				17421C7624F1598A0074530E /* macOS.entitlements */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		17421C4C24F158DB0074530E /* Tests iOS */ = {
+			isa = PBXGroup;
+			children = (
+				17421C4D24F158DB0074530E /* Tests_iOS.swift */,
+				17421C4F24F158DB0074530E /* Info.plist */,
+			);
+			path = "Tests iOS";
+			sourceTree = "<group>";
+		};
+		17421C5724F158DB0074530E /* Tests macOS */ = {
+			isa = PBXGroup;
+			children = (
+				17421C5824F158DB0074530E /* Tests_macOS.swift */,
+				17421C5A24F158DB0074530E /* Info.plist */,
+			);
+			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
 		17C3E95F24DDAF5100C02F8A = {
 			isa = PBXGroup;
 			children = (
-				17C3E96A24DDAF5100C02F8A /* Chronoderm */,
-				17C3E98424DDAF5300C02F8A /* ChronodermTests */,
-				17C3E98F24DDAF5300C02F8A /* ChronodermUITests */,
+				17421C2F24F158D80074530E /* Shared */,
+				17421C3B24F158DA0074530E /* iOS */,
+				17421C4224F158DB0074530E /* macOS */,
+				17421C4C24F158DB0074530E /* Tests iOS */,
+				17421C5724F158DB0074530E /* Tests macOS */,
 				17C3E96924DDAF5100C02F8A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -188,46 +346,13 @@
 		17C3E96924DDAF5100C02F8A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				17C3E96824DDAF5100C02F8A /* Chronoderm.app */,
+				17C3E96824DDAF5100C02F8A /* ChronodermOld.app */,
 				17C3E98124DDAF5300C02F8A /* ChronodermTests.xctest */,
 				17C3E98C24DDAF5300C02F8A /* ChronodermUITests.xctest */,
+				17421C3A24F158DA0074530E /* Chronoderm.app */,
+				17421C4124F158DA0074530E /* Chronoderm.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		17C3E96A24DDAF5100C02F8A /* Chronoderm */ = {
-			isa = PBXGroup;
-			children = (
-				17CE242D24DDB74100912D22 /* Chronoderm.entitlements */,
-				17C3E96B24DDAF5100C02F8A /* AppDelegate.swift */,
-				17C3E96D24DDAF5100C02F8A /* SceneDelegate.swift */,
-				17C3E97C24DDAF5200C02F8A /* Info.plist */,
-				17C3E97124DDAF5100C02F8A /* Main.storyboard */,
-				17C3E97924DDAF5200C02F8A /* LaunchScreen.storyboard */,
-				17C3E97724DDAF5200C02F8A /* Assets.xcassets */,
-				17C3EA0824DDB53500C02F8A /* Shared */,
-				17C3EA0024DDAFE900C02F8A /* iOS */,
-				17C3E9FE24DDAFE900C02F8A /* Mac */,
-			);
-			path = Chronoderm;
-			sourceTree = "<group>";
-		};
-		17C3E98424DDAF5300C02F8A /* ChronodermTests */ = {
-			isa = PBXGroup;
-			children = (
-				17C3E98524DDAF5300C02F8A /* ChronodermTests.swift */,
-				17C3E98724DDAF5300C02F8A /* Info.plist */,
-			);
-			path = ChronodermTests;
-			sourceTree = "<group>";
-		};
-		17C3E98F24DDAF5300C02F8A /* ChronodermUITests */ = {
-			isa = PBXGroup;
-			children = (
-				17C3E99024DDAF5300C02F8A /* ChronodermUITests.swift */,
-				17C3E99224DDAF5300C02F8A /* Info.plist */,
-			);
-			path = ChronodermUITests;
 			sourceTree = "<group>";
 		};
 		17C3E99E24DDAFC400C02F8A /* Helpers */ = {
@@ -241,32 +366,6 @@
 				1716D9AB24E98ABA00750902 /* ImageExtension.swift */,
 			);
 			path = Helpers;
-			sourceTree = "<group>";
-		};
-		17C3E9FE24DDAFE900C02F8A /* Mac */ = {
-			isa = PBXGroup;
-			children = (
-				17C3E9FF24DDAFE900C02F8A /* ToolbarDelegate.swift */,
-				174E594024F081D2008E1405 /* SidebarViewController.swift */,
-			);
-			path = Mac;
-			sourceTree = "<group>";
-		};
-		17C3EA0024DDAFE900C02F8A /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = iOS;
-			sourceTree = "<group>";
-		};
-		17C3EA0824DDB53500C02F8A /* Shared */ = {
-			isa = PBXGroup;
-			children = (
-				17CE23D524DDB55800912D22 /* Model */,
-				17C3E99E24DDAFC400C02F8A /* Helpers */,
-				17CE23D624DDB59B00912D22 /* Views and Controllers */,
-			);
-			path = Shared;
 			sourceTree = "<group>";
 		};
 		17CE23D524DDB55800912D22 /* Model */ = {
@@ -293,7 +392,8 @@
 				17CE23F424DDB59B00912D22 /* Tutorials */,
 				17CE240424DDB59B00912D22 /* Reminders */,
 			);
-			path = "Views and Controllers";
+			name = "Views and Controllers";
+			path = "../Views and Controllers";
 			sourceTree = "<group>";
 		};
 		17CE23D724DDB59B00912D22 /* Settings */ = {
@@ -400,9 +500,43 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		17C3E96724DDAF5100C02F8A /* Chronoderm */ = {
+		17421C3924F158DA0074530E /* Chronoderm (iOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 17C3E99524DDAF5300C02F8A /* Build configuration list for PBXNativeTarget "Chronoderm" */;
+			buildConfigurationList = 17421C6524F158DB0074530E /* Build configuration list for PBXNativeTarget "Chronoderm (iOS)" */;
+			buildPhases = (
+				17421C3624F158DA0074530E /* Sources */,
+				17421C3724F158DA0074530E /* Frameworks */,
+				17421C3824F158DA0074530E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Chronoderm (iOS)";
+			productName = "Chronoderm (iOS)";
+			productReference = 17421C3A24F158DA0074530E /* Chronoderm.app */;
+			productType = "com.apple.product-type.application";
+		};
+		17421C4024F158DA0074530E /* Chronoderm (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 17421C6824F158DB0074530E /* Build configuration list for PBXNativeTarget "Chronoderm (macOS)" */;
+			buildPhases = (
+				17421C3D24F158DA0074530E /* Sources */,
+				17421C3E24F158DA0074530E /* Frameworks */,
+				17421C3F24F158DA0074530E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Chronoderm (macOS)";
+			productName = "Chronoderm (macOS)";
+			productReference = 17421C4124F158DA0074530E /* Chronoderm.app */;
+			productType = "com.apple.product-type.application";
+		};
+		17C3E96724DDAF5100C02F8A /* ChronodermOld */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 17C3E99524DDAF5300C02F8A /* Build configuration list for PBXNativeTarget "ChronodermOld" */;
 			buildPhases = (
 				17C3E96424DDAF5100C02F8A /* Sources */,
 				17C3E96524DDAF5100C02F8A /* Frameworks */,
@@ -412,9 +546,9 @@
 			);
 			dependencies = (
 			);
-			name = Chronoderm;
+			name = ChronodermOld;
 			productName = Chronoderm;
-			productReference = 17C3E96824DDAF5100C02F8A /* Chronoderm.app */;
+			productReference = 17C3E96824DDAF5100C02F8A /* ChronodermOld.app */;
 			productType = "com.apple.product-type.application";
 		};
 		17C3E98024DDAF5300C02F8A /* ChronodermTests */ = {
@@ -462,6 +596,12 @@
 				LastSwiftUpdateCheck = 1200;
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
+					17421C3924F158DA0074530E = {
+						CreatedOnToolsVersion = 12.0;
+					};
+					17421C4024F158DA0074530E = {
+						CreatedOnToolsVersion = 12.0;
+					};
 					17C3E96724DDAF5100C02F8A = {
 						CreatedOnToolsVersion = 12.0;
 					};
@@ -488,14 +628,39 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				17C3E96724DDAF5100C02F8A /* Chronoderm */,
+				17C3E96724DDAF5100C02F8A /* ChronodermOld */,
 				17C3E98024DDAF5300C02F8A /* ChronodermTests */,
 				17C3E98B24DDAF5300C02F8A /* ChronodermUITests */,
+				17421C3924F158DA0074530E /* Chronoderm (iOS) */,
+				17421C4024F158DA0074530E /* Chronoderm (macOS) */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		17421C3824F158DA0074530E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17421CDF24F15A6D0074530E /* Main.storyboard in Resources */,
+				17421CE124F15AA00074530E /* LaunchScreen.storyboard in Resources */,
+				17421CDD24F15A600074530E /* Assets.xcassets in Resources */,
+				17421C9B24F15A370074530E /* ConditionsTableViewCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		17421C3F24F158DA0074530E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17421C7724F1598A0074530E /* Info.plist in Resources */,
+				17421CDE24F15A620074530E /* Assets.xcassets in Resources */,
+				17421C9C24F15A370074530E /* ConditionsTableViewCell.xib in Resources */,
+				17421CE224F15AA00074530E /* LaunchScreen.storyboard in Resources */,
+				17421CE024F15A6E0074530E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		17C3E96624DDAF5100C02F8A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -524,16 +689,107 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		17421C3624F158DA0074530E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17421CD224F15A540074530E /* HelpViewController.swift in Sources */,
+				17421CB824F15A430074530E /* SettingsView.swift in Sources */,
+				17421CD424F15A540074530E /* HelpContentsTableViewController.swift in Sources */,
+				17421CA124F15A3B0074530E /* EntriesCollectionViewCell.swift in Sources */,
+				17421CBD24F15A470074530E /* SettingsNavController.swift in Sources */,
+				17421C7B24F15A1E0074530E /* SkinFeature.swift in Sources */,
+				17421CAB24F15A400074530E /* CameraPreviewView.swift in Sources */,
+				17421C9D24F15A3B0074530E /* EntriesCollectionViewController.swift in Sources */,
+				17421CBB24F15A470074530E /* MasterNavController.swift in Sources */,
+				17421C8024F15A220074530E /* Chronoderm.xcdatamodeld in Sources */,
+				17421C7A24F15A1E0074530E /* Entry+CoreDataProperties.swift in Sources */,
+				17421CCA24F15A4E0074530E /* PDFView.swift in Sources */,
+				17421CC324F15A4B0074530E /* DrawingViewController.swift in Sources */,
+				17421CB724F15A430074530E /* SettingsTableViewController.swift in Sources */,
+				17421CA824F15A400074530E /* PhotoCaptureProcessor.swift in Sources */,
+				17421C8924F15A2C0074530E /* ImageExtension.swift in Sources */,
+				17421C8624F15A2C0074530E /* UserDefaults.swift in Sources */,
+				17421C9124F15A330074530E /* ConditionsTableViewCell.swift in Sources */,
+				17421C7C24F15A1E0074530E /* Entry+CoreDataClass.swift in Sources */,
+				17421CC424F15A4B0074530E /* DrawingView.swift in Sources */,
+				17421CA724F15A400074530E /* AddConditionTableViewController.swift in Sources */,
+				17421C9E24F15A3B0074530E /* EntriesFlowLayout.swift in Sources */,
+				17421CD524F15A540074530E /* Help.swift in Sources */,
+				17421CBC24F15A470074530E /* SplitViewController.swift in Sources */,
+				17421C9524F15A330074530E /* ContextPreviewViewController.swift in Sources */,
+				17421C5D24F158DB0074530E /* ChronodermApp.swift in Sources */,
+				17421C6124F158DB0074530E /* Persistence.swift in Sources */,
+				17421C9324F15A330074530E /* SkinFeaturesTableViewController.swift in Sources */,
+				17421C8524F15A2C0074530E /* MenuBuilder.swift in Sources */,
+				17421CAE24F15A400074530E /* AddEntryTableViewController.swift in Sources */,
+				17421CC924F15A4E0074530E /* ActivityView.swift in Sources */,
+				17421C9F24F15A3B0074530E /* InfoCollectionReusableView.swift in Sources */,
+				17421CC524F15A4B0074530E /* DetailViewController.swift in Sources */,
+				17421CCF24F15A540074530E /* RemindersView.swift in Sources */,
+				17421C9224F15A330074530E /* SkinFeaturesCellView.swift in Sources */,
+				17421C8A24F15A2C0074530E /* GlobalVariables.swift in Sources */,
+				17421CCB24F15A4E0074530E /* PDFPreview.swift in Sources */,
+				17421CA024F15A3B0074530E /* EntriesView.swift in Sources */,
+				17421CBE24F15A470074530E /* DetailNavController.swift in Sources */,
+				17421C8724F15A2C0074530E /* CompatibleLabel.swift in Sources */,
+				17421C8824F15A2C0074530E /* NotificationName.swift in Sources */,
+				17421CA924F15A400074530E /* AddPhotoView.swift in Sources */,
+				17421C9424F15A330074530E /* SidebarNavigation.swift in Sources */,
+				17421CAC24F15A400074530E /* CropViewController.swift in Sources */,
+				17421CAA24F15A400074530E /* AddEntryView.swift in Sources */,
+				17421CD324F15A540074530E /* HelpView.swift in Sources */,
+				17421C7124F1590A0074530E /* AppDelegate.swift in Sources */,
+				17421C5F24F158DB0074530E /* ContentView.swift in Sources */,
+				17421C7324F1590A0074530E /* SceneDelegate.swift in Sources */,
+				17421CD124F15A540074530E /* OnboardingView.swift in Sources */,
+				17421CD024F15A540074530E /* RemindersTableViewController.swift in Sources */,
+				17421CAD24F15A400074530E /* AddFeatureView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		17421C3D24F158DA0074530E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17421C5E24F158DB0074530E /* ChronodermApp.swift in Sources */,
+				17421CDA24F15A540074530E /* HelpView.swift in Sources */,
+				17421C6224F158DB0074530E /* Persistence.swift in Sources */,
+				17421CD624F15A540074530E /* RemindersView.swift in Sources */,
+				17421C9924F15A340074530E /* SidebarNavigation.swift in Sources */,
+				17421CE424F15B990074530E /* AddEntryView.swift in Sources */,
+				17421C8D24F15A2C0074530E /* CompatibleLabel.swift in Sources */,
+				17421CBA24F15A440074530E /* SettingsView.swift in Sources */,
+				17421C7E24F15A1E0074530E /* SkinFeature.swift in Sources */,
+				17421C8C24F15A2C0074530E /* UserDefaults.swift in Sources */,
+				17421CC724F15A4B0074530E /* DrawingView.swift in Sources */,
+				17421C8124F15A220074530E /* Chronoderm.xcdatamodeld in Sources */,
+				17421CDC24F15A540074530E /* Help.swift in Sources */,
+				17421C6024F158DB0074530E /* ContentView.swift in Sources */,
+				17421CE324F15B700074530E /* EntriesView.swift in Sources */,
+				17421C7D24F15A1E0074530E /* Entry+CoreDataProperties.swift in Sources */,
+				17421CCE24F15A4E0074530E /* PDFPreview.swift in Sources */,
+				17421C9724F15A340074530E /* SkinFeaturesCellView.swift in Sources */,
+				17421CCD24F15A4E0074530E /* PDFView.swift in Sources */,
+				17421C7F24F15A1E0074530E /* Entry+CoreDataClass.swift in Sources */,
+				17421C8E24F15A2C0074530E /* NotificationName.swift in Sources */,
+				17421CD824F15A540074530E /* OnboardingView.swift in Sources */,
+				17421C9024F15A2C0074530E /* GlobalVariables.swift in Sources */,
+				17421CB524F15A400074530E /* AddFeatureView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		17C3E96424DDAF5100C02F8A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				17CE241324DDB59B00912D22 /* ActivityView.swift in Sources */,
 				17C3E9A624DDAFC400C02F8A /* MenuBuilder.swift in Sources */,
+				17421C8324F15A280074530E /* Entry+CoreDataProperties.swift in Sources */,
 				17C3E9A524DDAFC400C02F8A /* GlobalVariables.swift in Sources */,
+				17421C8424F15A280074530E /* SkinFeature.swift in Sources */,
 				17CE240724DDB59B00912D22 /* SettingsTableViewController.swift in Sources */,
 				17CE242C24DDB59B00912D22 /* RemindersTableViewController.swift in Sources */,
-				17C3EA0724DDB0CC00C02F8A /* SkinFeature.swift in Sources */,
 				17CE242624DDB59B00912D22 /* AddConditionTableViewController.swift in Sources */,
 				17CE241824DDB59B00912D22 /* SkinFeaturesTableViewController.swift in Sources */,
 				17CE241C24DDB59B00912D22 /* EntriesFlowLayout.swift in Sources */,
@@ -542,10 +798,10 @@
 				17CE241E24DDB59B00912D22 /* Help.swift in Sources */,
 				17C3E9A324DDAFC400C02F8A /* CompatibleLabel.swift in Sources */,
 				1716D9AC24E98ABA00750902 /* ImageExtension.swift in Sources */,
+				17421C8224F15A280074530E /* Entry+CoreDataClass.swift in Sources */,
 				17CE242224DDB59B00912D22 /* OnboardingView.swift in Sources */,
 				17CE241724DDB59B00912D22 /* ContextPreviewViewController.swift in Sources */,
 				1707CAE224EE566D00355F16 /* SidebarNavigation.swift in Sources */,
-				17C3EA0624DDB0CC00C02F8A /* Entry+CoreDataClass.swift in Sources */,
 				17CE241524DDB59B00912D22 /* ConditionsTableViewCell.swift in Sources */,
 				173BA66724E33DF800F7257A /* HelpView.swift in Sources */,
 				17CE241624DDB59B00912D22 /* SkinFeaturesCellView.swift in Sources */,
@@ -563,7 +819,6 @@
 				17CE242B24DDB59B00912D22 /* RemindersView.swift in Sources */,
 				17CE242524DDB59B00912D22 /* AddPhotoView.swift in Sources */,
 				1707CADE24EDBBEB00355F16 /* UserDefaults.swift in Sources */,
-				17C3EA0524DDB0CC00C02F8A /* Entry+CoreDataProperties.swift in Sources */,
 				17CE241B24DDB59B00912D22 /* EntriesCollectionViewCell.swift in Sources */,
 				17CE241D24DDB59B00912D22 /* HelpViewController.swift in Sources */,
 				17CE240B24DDB59B00912D22 /* SplitViewController.swift in Sources */,
@@ -571,12 +826,8 @@
 				17CE242324DDB59B00912D22 /* AddFeatureView.swift in Sources */,
 				17CE242A24DDB59B00912D22 /* AddEntryView.swift in Sources */,
 				17CE242424DDB59B00912D22 /* CameraPreviewView.swift in Sources */,
-				174E594124F081D2008E1405 /* SidebarViewController.swift in Sources */,
-				17C3EA0124DDAFE900C02F8A /* ToolbarDelegate.swift in Sources */,
 				17CE242824DDB59B00912D22 /* AddEntryTableViewController.swift in Sources */,
-				17C3E96C24DDAF5100C02F8A /* AppDelegate.swift in Sources */,
 				17CE240C24DDB59B00912D22 /* SettingsNavController.swift in Sources */,
-				17C3E96E24DDAF5100C02F8A /* SceneDelegate.swift in Sources */,
 				17CE241924DDB59B00912D22 /* InfoCollectionReusableView.swift in Sources */,
 				17CE240D24DDB59B00912D22 /* MasterNavController.swift in Sources */,
 			);
@@ -586,7 +837,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17C3E98624DDAF5300C02F8A /* ChronodermTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,7 +844,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17C3E99124DDAF5300C02F8A /* ChronodermUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,12 +852,12 @@
 /* Begin PBXTargetDependency section */
 		17C3E98324DDAF5300C02F8A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 17C3E96724DDAF5100C02F8A /* Chronoderm */;
+			target = 17C3E96724DDAF5100C02F8A /* ChronodermOld */;
 			targetProxy = 17C3E98224DDAF5300C02F8A /* PBXContainerItemProxy */;
 		};
 		17C3E98E24DDAF5300C02F8A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 17C3E96724DDAF5100C02F8A /* Chronoderm */;
+			target = 17C3E96724DDAF5100C02F8A /* ChronodermOld */;
 			targetProxy = 17C3E98D24DDAF5300C02F8A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -633,6 +882,99 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		17421C6624F158DB0074530E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 394ER38X9C;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.baughan.Chronoderm;
+				PRODUCT_NAME = Chronoderm;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		17421C6724F158DB0074530E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 394ER38X9C;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.baughan.Chronoderm;
+				PRODUCT_NAME = Chronoderm;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		17421C6924F158DB0074530E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 394ER38X9C;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.baughan.Chronoderm;
+				PRODUCT_NAME = Chronoderm;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		17421C6A24F158DB0074530E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 394ER38X9C;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.baughan.Chronoderm;
+				PRODUCT_NAME = Chronoderm;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		17C3E99324DDAF5300C02F8A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -898,6 +1240,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		17421C6524F158DB0074530E /* Build configuration list for PBXNativeTarget "Chronoderm (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				17421C6624F158DB0074530E /* Debug */,
+				17421C6724F158DB0074530E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		17421C6824F158DB0074530E /* Build configuration list for PBXNativeTarget "Chronoderm (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				17421C6924F158DB0074530E /* Debug */,
+				17421C6A24F158DB0074530E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		17C3E96324DDAF5100C02F8A /* Build configuration list for PBXProject "Chronoderm" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -907,7 +1267,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		17C3E99524DDAF5300C02F8A /* Build configuration list for PBXNativeTarget "Chronoderm" */ = {
+		17C3E99524DDAF5300C02F8A /* Build configuration list for PBXNativeTarget "ChronodermOld" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				17C3E99624DDAF5300C02F8A /* Debug */,

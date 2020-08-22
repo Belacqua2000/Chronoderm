@@ -6,7 +6,7 @@
 //  Copyright © 2019 Nick Baughan. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import SwiftUI
 
 // MARK: - Help Page Struct

@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-import Foundation
+import UIKit
 
 struct OnboardingView: View {
     @Environment(\.presentationMode) var presentationMode

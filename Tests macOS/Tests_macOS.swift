@@ -1,13 +1,13 @@
 //
-//  ChronodermUITests.swift
-//  ChronodermUITests
+//  Tests_macOS.swift
+//  Tests macOS
 //
-//  Created by Nick Baughan on 07/08/2020.
+//  Created by Nick Baughan on 22/08/2020.
 //
 
 import XCTest
 
-class ChronodermUITests: XCTestCase {
+class Tests_macOS: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
