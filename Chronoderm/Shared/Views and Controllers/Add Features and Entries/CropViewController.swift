@@ -888,7 +888,7 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
         //return UIImage(cgImage: croppedCGImage!, scale: imageScale, orientation: imageOrientation)
         if UserDefaults.standard.bool(forKey: "saveImageToPhotos") == true { // Save photo to camera roll if set in Settings
             if let photoData = self.photoData {
-                PHPhotoLibrary.requestAuthorization { status in
+                /*PHPhotoLibrary.requestAuthorization { status in
                     if status == .authorized {
                         
                         PHPhotoLibrary.shared().performChanges({
@@ -906,7 +906,7 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
                         alrt.addAction(cancelAction)
                         self.present(alrt, animated: true, completion: nil)
                     }
-                }
+                }*/
             }
         }
         return image!.croppedImage(inRect: cropArea)
