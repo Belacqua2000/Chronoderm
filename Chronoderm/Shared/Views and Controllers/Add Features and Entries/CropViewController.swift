@@ -106,6 +106,7 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
              }*/
         }
     }
+    var photoData: Data? = nil
     var previousImage: UIImage? = nil
     var previousImageFlipped: UIImage? = nil
     var croppedImage: UIImage? {
@@ -817,6 +818,7 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
         print("cropY = (\(scrollView.contentOffset.y) - \(photoFrame.origin.y)) * \(zoomScale) * \(photoScale) = \(cropY)")
         print("cropWidth = \(cropView.frame.width) * \(photoScale) * \(zoomScale) = \(cropWidth)")
         print("cropHeight = \(cropView.frame.height) * \(photoScale) * \(zoomScale) = \(cropHeight)")
+        
         /*
         switch imageOrientation {
         case .up:
@@ -881,9 +883,32 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
             print("cropHeight = \(cropView.frame.height) * \(photoScale) * \(zoomScale) = \(cropHeight)")
         }*/
         
-        let CGImage = image!.cgImage
-        let croppedCGImage = CGImage!.cropping(to: cropArea)
+        //let CGImage = image!.cgImage
+        //let croppedCGImage = CGImage!.cropping(to: cropArea)
         //return UIImage(cgImage: croppedCGImage!, scale: imageScale, orientation: imageOrientation)
+        if UserDefaults.standard.bool(forKey: "saveImageToPhotos") == true { // Save photo to camera roll if set in Settings
+            if let photoData = self.photoData {
+                PHPhotoLibrary.requestAuthorization { status in
+                    if status == .authorized {
+                        
+                        PHPhotoLibrary.shared().performChanges({
+                            // Add the captured photo's file data as the main resource for the Photos asset.
+                            let creationRequest = PHAssetCreationRequest.forAsset()
+                            creationRequest.addResource(with: .photo, data: photoData, options: nil)
+                        }, completionHandler: nil)
+                    } else {
+                        let alrt = UIAlertController(title: "Unable to save to Photos app", message: "Please change permissions in the Settings app.  If you do not wish to save the photo, turn off this option in the settings screen.", preferredStyle: .alert)
+                        let settingsAction = UIAlertAction(title: "Change Permissions", style: .default, handler: { _ in
+                            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!
+                            )})
+                        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                        alrt.addAction(settingsAction)
+                        alrt.addAction(cancelAction)
+                        self.present(alrt, animated: true, completion: nil)
+                    }
+                }
+            }
+        }
         return image!.croppedImage(inRect: cropArea)
     }
     
@@ -919,28 +944,7 @@ extension CropViewController: AVCapturePhotoCaptureDelegate {
                 self.session.stopRunning()
             }
             let uncroppedImage = UIImage(data: photoData)
-            
-            if UserDefaults.standard.bool(forKey: "saveImageToPhotos") == true { // Save photo to camera roll if set in Settings
-                PHPhotoLibrary.requestAuthorization { status in
-                    if status == .authorized {
-                        
-                        PHPhotoLibrary.shared().performChanges({
-                            // Add the captured photo's file data as the main resource for the Photos asset.
-                            let creationRequest = PHAssetCreationRequest.forAsset()
-                            creationRequest.addResource(with: .photo, data: photoData, options: nil)
-                        }, completionHandler: nil)
-                    } else {
-                        let alrt = UIAlertController(title: "Unable to save to Photos app", message: "Please change permissions in the Settings app.  If you do not wish to save the photo, turn off this option in the settings screen.", preferredStyle: .alert)
-                        let settingsAction = UIAlertAction(title: "Change Permissions", style: .default, handler: { _ in
-                            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!
-                            )})
-                        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-                        alrt.addAction(settingsAction)
-                        alrt.addAction(cancelAction)
-                        self.present(alrt, animated: true, completion: nil)
-                    }
-                }
-            }
+            self.photoData = photoData
             self.image = uncroppedImage!
             self.currentViewState = .crop
             setupCropView()
