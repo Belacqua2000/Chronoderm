@@ -30,8 +30,8 @@
             filePath = "Chronoderm/Shared/Views and Controllers/Add Features and Entries/CropViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "313"
-            endingLineNumber = "313"
+            startingLineNumber = "314"
+            endingLineNumber = "314"
             landmarkName = "setupCameraSession()"
             landmarkType = "7">
          </BreakpointContent>

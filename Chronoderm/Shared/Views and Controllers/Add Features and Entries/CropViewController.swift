@@ -140,6 +140,7 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
         setupOverlayView()
         cancelBarButton.isEnabled = !hideCancelButton
         self.isModalInPresentation = false
+        showOverlayTutorial()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -731,6 +732,17 @@ class CropViewController: UIViewController, UIScrollViewDelegate {
         tryToStartSession()
     }
     
+    func showOverlayTutorial() {
+        guard previousImage != nil else { return }
+        let defaults = UserDefaults.standard
+        if !defaults.bool(forKey: "previouslySeenOverlayTutorial") {
+            let alrt = UIAlertController(title: "Overlay", message: "When adding a photo of an existing skin feature, an overlay is shown to help you align it with the previous photo.  Its opacity can be adjusted using the slider.", preferredStyle: .alert)
+            alrt.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alrt, animated: true, completion: {
+                defaults.set(true, forKey: "previouslySeenOverlayTutorial")
+            })
+        }
+    }
     
     
     func dismissAndSave(image: UIImage?) {
