@@ -41,8 +41,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let masterNavVC = splitViewController.viewControllers[0] as! MasterNavController
         let tableVC = masterNavVC.viewControllers[0] as! SkinFeaturesTableViewController
         // Set-up Core Data container
-        tableVC.container = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
-        print("Container set")
+        let viewContext = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+        viewContext!.automaticallyMergesChangesFromParent = true
+        tableVC.viewContext = viewContext
+        print("Context set")
         
         // Mac Setup
         #if targetEnvironment(macCatalyst)

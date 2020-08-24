@@ -51,7 +51,7 @@ struct PDFView: View {
         print((passedCondition?.entry!.count)!)
         guard passedCondition != nil else { return [] }
         
-        let entries = passedCondition?.entry?.array as! [Entry]
+        guard let entries = passedCondition?.entry?.sortedArray(using: [NSSortDescriptor(key: "date", ascending: true)]) as? [Entry] else { return []}
         let numberOfPages = Int((Double(entries.count) / Double(entriesPerPage)).rounded(.up))
         print(numberOfPages)
         // A4 size

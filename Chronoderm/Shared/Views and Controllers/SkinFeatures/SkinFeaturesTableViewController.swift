@@ -25,7 +25,7 @@ class SkinFeaturesTableViewController: UITableViewController, NSFetchedResultsCo
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard container != nil else { fatalError("This view needs a persistent container.") }
+        guard viewContext != nil else { fatalError("This view needs a persistent container.") }
         initialiseCoreData()
         configureTableView()
         
@@ -139,15 +139,17 @@ class SkinFeaturesTableViewController: UITableViewController, NSFetchedResultsCo
         cell.cellLeftLabel.text = condition.areaOfBody
         cell.cellRightLabel.text = "\(entries?.count ?? 0) \(entryPluralString)"
         if condition.entry?.count ?? 0 > 0 {
-            if let entry = condition.entry?.lastObject as? Entry {
-                if let image = entry.image?.anyObject() as? Attachment {
-                    cell.cellImageView.image = UIImage(data: image.thumbnail!)
-                    cell.cellImageView.layer.masksToBounds = true
-                    cell.cellImageView.layer.cornerRadius = 5
-                    cell.cellImageView.clipsToBounds = true
-                    cell.cellImageView.contentMode = .scaleAspectFill
-                } else {
-                    cell.cellImageView.image = nil
+            if let entries = condition.entry?.sortedArray(using: [NSSortDescriptor(key: "date", ascending: true)]) as? [Entry] {
+                if let entry = entries.last {
+                    if let image = entry.image?.anyObject() as? Attachment {
+                        cell.cellImageView.image = UIImage(data: image.thumbnail!)
+                        cell.cellImageView.layer.masksToBounds = true
+                        cell.cellImageView.layer.cornerRadius = 5
+                        cell.cellImageView.clipsToBounds = true
+                        cell.cellImageView.contentMode = .scaleAspectFill
+                    } else {
+                        cell.cellImageView.image = nil
+                    }
                 }
             }
         } else {
@@ -304,7 +306,7 @@ class SkinFeaturesTableViewController: UITableViewController, NSFetchedResultsCo
             center.removePendingNotificationRequests(withIdentifiers: notificationArrayString)
             
             // Delete condition
-            self.container.viewContext.delete(condition)
+            self.viewContext.delete(condition)
             self.updateCoreData()
             
             // Clear DetailView
@@ -337,7 +339,7 @@ class SkinFeaturesTableViewController: UITableViewController, NSFetchedResultsCo
 
     // MARK: - Core Data
     
-    var container: NSPersistentContainer! // Set by AppDelegate.swift
+    var viewContext: NSManagedObjectContext! // Set by AppDelegate.swift
     var fetchedResultsController: NSFetchedResultsController<SkinFeature>!
     
     func initialiseCoreData() {
@@ -345,10 +347,10 @@ class SkinFeaturesTableViewController: UITableViewController, NSFetchedResultsCo
         let completeSort = NSSortDescriptor(key: "complete", ascending: true)
         request.sortDescriptors = [completeSort]
         
-        let moc = container.viewContext
+        let moc = viewContext
         let undoMan = UndoManager.init()
-        moc.undoManager = undoMan
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: "complete", cacheName: nil)
+        moc!.undoManager = undoMan
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc!, sectionNameKeyPath: "complete", cacheName: nil)
         fetchedResultsController.delegate = self
         
         do {
@@ -400,7 +402,7 @@ class SkinFeaturesTableViewController: UITableViewController, NSFetchedResultsCo
     
     func updateCoreData() {
         do {
-        try container.viewContext.save()
+        try viewContext.save()
         } catch {
         fatalError("Failure to save context: \(error)")
         }
@@ -427,7 +429,7 @@ class SkinFeaturesTableViewController: UITableViewController, NSFetchedResultsCo
                 newController.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
                 newController.navigationItem.leftItemsSupplementBackButton = true
                 newController.condition = object
-                newController.managedObjectContext = container.viewContext
+                newController.managedObjectContext = viewContext
                 newController.previousController = self
                 
             }
@@ -456,7 +458,7 @@ class SkinFeaturesTableViewController: UITableViewController, NSFetchedResultsCo
         guard let conditionDate = addConditionTableViewController.newConditionDate else {return}
         let uuid = UUID()
         
-        let condition = SkinFeature(context: container.viewContext)
+        let condition = SkinFeature(context: viewContext)
         
         // Set value of condition
         condition.setValue(conditionName, forKey: "name")
@@ -476,13 +478,13 @@ class SkinFeaturesTableViewController: UITableViewController, NSFetchedResultsCo
     
     @IBSegueAction func addFeatureSegue(_ coder: NSCoder) -> UIViewController? {
         let coder = coder
-        let rootView = AddFeatureView(vc: self, date: Date(), featureName: "", featureArea: "", context: container.viewContext)
+        let rootView = AddFeatureView(vc: self, date: Date(), featureName: "", featureArea: "", context: viewContext)
         return UIHostingController(coder: coder, rootView: rootView)
     }
     
     func editFeature(feature: SkinFeature) {
        // let coder = coder
-        let rootView = AddFeatureView(vc: self, editingSkinFeature: feature, date: feature.startDate!, featureName: feature.name!, featureArea: feature.areaOfBody!, context: container.viewContext)
+        let rootView = AddFeatureView(vc: self, editingSkinFeature: feature, date: feature.startDate!, featureName: feature.name!, featureArea: feature.areaOfBody!, context: viewContext)
         present(UIHostingController(rootView: rootView), animated: true, completion: nil)
     }
     
@@ -574,7 +576,7 @@ extension SkinFeaturesTableViewController {
             
             for condition in fetchedResultsController.fetchedObjects ?? [] {
                 attributeSet.title = condition.name
-                attributeSet.contentModificationDate = (condition.entry?.lastObject as? Entry)?.date
+                //attributeSet.contentModificationDate = (condition.entry?.lastObject as? Entry)?.date
                 let item = CSSearchableItem(uniqueIdentifier: condition.uuid?.uuidString, domainIdentifier: "myConditions", attributeSet: attributeSet)
                 index.indexSearchableItems([item], completionHandler: nil)
             }

@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let splitVC = window?.rootViewController as? SplitViewController {
                 if let navVC = splitVC.viewControllers[0] as? UINavigationController {
                     if let tableVC = navVC.viewControllers[0] as? SkinFeaturesTableViewController {
-                        tableVC.container = persistentContainer
+                        tableVC.viewContext = persistentContainer.viewContext
                         print("Container set")
                     }
                 }
@@ -136,31 +136,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Core Data stack
     
     lazy var persistentContainer: NSPersistentContainer = {
-        
+        /*
+         The persistent container for the application. This implementation
+         creates and returns a container, having loaded the store for the
+         application to it. This property is optional since there are legitimate
+         error conditions that could cause the creation of the store to fail.
+         */
             let container = NSPersistentCloudKitContainer(name: "Chronoderm")
-        
-        // Create a store description for a local store
-           let localStoreLocation = URL(fileURLWithPath: "/path/to/local.store")
-           let localStoreDescription =
-               NSPersistentStoreDescription(url: localStoreLocation)
-           localStoreDescription.configuration = "Local"
-           
-           // Create a store description for a CloudKit-backed local store
-           let cloudStoreLocation = URL(fileURLWithPath: "/path/to/cloud.store")
-           let cloudStoreDescription =
-               NSPersistentStoreDescription(url: cloudStoreLocation)
-           cloudStoreDescription.configuration = "Cloud"
-
-           // Set the container options on the cloud store
-           cloudStoreDescription.cloudKitContainerOptions =
-               NSPersistentCloudKitContainerOptions(
-                   containerIdentifier: "com.iCloud.baughan.chronoderm.chronoderm")
-           
-           // Update the container's list of store descriptions
-           container.persistentStoreDescriptions = [
-               cloudStoreDescription,
-               localStoreDescription
-           ]
         container.loadPersistentStores { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.

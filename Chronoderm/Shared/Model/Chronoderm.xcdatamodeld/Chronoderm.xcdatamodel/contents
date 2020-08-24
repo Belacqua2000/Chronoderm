@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="20A5354i" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17189" systemVersion="20A5354i" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="Attachment" representedClassName="Attachment" syncable="YES" codeGenerationType="class">
-        <attribute name="imageID" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="thumbnail" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="imageID" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="thumbnail" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
         <relationship name="entry" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Entry" inverseName="image" inverseEntity="Entry"/>
         <relationship name="fullImage" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ImageData" inverseName="thumbnail" inverseEntity="ImageData"/>
     </entity>
     <entity name="ConditionNotification" representedClassName=".ConditionNotification" syncable="YES" codeGenerationType="class">
         <attribute name="identifier" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <relationship name="condition" maxCount="1" deletionRule="Nullify" destinationEntity="SkinFeature" inverseName="notification" inverseEntity="SkinFeature"/>
+        <relationship name="condition" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SkinFeature" inverseName="notification" inverseEntity="SkinFeature"/>
     </entity>
     <entity name="Entry" representedClassName="Entry" syncable="YES">
-        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="date" attributeType="Date" defaultDateTimeInterval="-31622400" usesScalarValueType="NO"/>
         <attribute name="dateSection" optional="YES" transient="YES" attributeType="String"/>
-        <attribute name="notes" optional="YES" attributeType="String"/>
+        <attribute name="notes" optional="YES" attributeType="String" defaultValueString=""/>
         <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <relationship name="condition" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SkinFeature" inverseName="entry" inverseEntity="SkinFeature"/>
         <relationship name="image" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Attachment" inverseName="entry" inverseEntity="Attachment"/>
     </entity>
     <entity name="ImageData" representedClassName="ImageData" syncable="YES" codeGenerationType="class">
-        <attribute name="fullImage" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="fullImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
         <relationship name="thumbnail" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Attachment" inverseName="fullImage" inverseEntity="Attachment"/>
     </entity>
     <entity name="NotificationSettings" representedClassName="NotificationSettings" syncable="YES" codeGenerationType="class">
@@ -33,34 +33,25 @@
         <attribute name="time" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="tuesday" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="wednesday" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <relationship name="condition" maxCount="1" deletionRule="Nullify" destinationEntity="SkinFeature" inverseName="notificationSettings" inverseEntity="SkinFeature"/>
+        <relationship name="condition" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SkinFeature" inverseName="notificationSettings" inverseEntity="SkinFeature"/>
     </entity>
     <entity name="SkinFeature" representedClassName="SkinFeature" elementID="Condition" syncable="YES" codeGenerationType="class">
         <attribute name="areaOfBody" optional="YES" attributeType="String"/>
         <attribute name="complete" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="favourite" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-        <attribute name="name" attributeType="String"/>
-        <attribute name="startDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String" defaultValueString=""/>
+        <attribute name="startDate" attributeType="Date" defaultDateTimeInterval="-31622400" usesScalarValueType="NO"/>
         <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <relationship name="entry" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Entry" inverseName="condition" inverseEntity="Entry"/>
+        <relationship name="entry" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Entry" inverseName="condition" inverseEntity="Entry"/>
         <relationship name="notification" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ConditionNotification" inverseName="condition" inverseEntity="ConditionNotification"/>
         <relationship name="notificationSettings" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="NotificationSettings" inverseName="condition" inverseEntity="NotificationSettings"/>
     </entity>
-    <configuration name="Cloud" usedWithCloudKit="YES">
-        <memberEntity name="ImageData"/>
-        <memberEntity name="NotificationSettings"/>
-        <memberEntity name="SkinFeature"/>
-    </configuration>
-    <configuration name="Local">
-        <memberEntity name="ConditionNotification"/>
-        <memberEntity name="NotificationSettings"/>
-    </configuration>
     <elements>
         <element name="Attachment" positionX="-63" positionY="-18" width="128" height="89"/>
         <element name="ConditionNotification" positionX="18" positionY="63" width="128" height="59"/>
         <element name="Entry" positionX="-54" positionY="-9" width="128" height="119"/>
-        <element name="ImageData" positionX="-36" positionY="9" width="128" height="73"/>
+        <element name="ImageData" positionX="-36" positionY="9" width="128" height="59"/>
         <element name="NotificationSettings" positionX="-18" positionY="27" width="128" height="194"/>
-        <element name="SkinFeature" positionX="0" positionY="45" width="128" height="178"/>
+        <element name="SkinFeature" positionX="0" positionY="45" width="128" height="164"/>
     </elements>
 </model>
