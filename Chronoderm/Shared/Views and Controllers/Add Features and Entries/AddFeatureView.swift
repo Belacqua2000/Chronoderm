@@ -11,16 +11,17 @@ import CoreData
 
 struct AddFeatureView: View {
     var vc: UIViewController?
+    @Environment(\.managedObjectContext) var context
     @State var editingSkinFeature: SkinFeature?
     @State var date: Date
     @State var featureName: String
     @State var featureArea: String
-    @State var context: NSManagedObjectContext?
     @State var firstEntry: Entry?
+    @Binding var isViewShown: Bool
     var body: some View {
         NavigationView {
             if #available(iOS 14.0, *) {
-                SkinFeatureDetailForm(date: $date, featureName: $featureName, featureArea: $featureArea, close: {close()}, save: {save()}, context: $context, firstEntry: $firstEntry)
+                SkinFeatureDetailForm(date: $date, featureName: $featureName, featureArea: $featureArea, close: {close()}, save: {save()}, firstEntry: $firstEntry)
                     .navigationTitle(Text("Add Feature"))
                     .navigationBarItems(leading:
                                             Button("Cancel", action: close)
@@ -32,7 +33,7 @@ struct AddFeatureView: View {
                                             .hoverEffect(.automatic)
                                             .disabled(featureName == ""))
             } else {
-                SkinFeatureDetailForm(date: $date, featureName: $featureName, featureArea: $featureArea, close: {close()}, save: {save()}, context: $context, firstEntry: $firstEntry)
+                SkinFeatureDetailForm(date: $date, featureName: $featureName, featureArea: $featureArea, close: {close()}, save: {save()}, firstEntry: $firstEntry)
                     .navigationBarTitle(editingSkinFeature == nil ? Text("Add Skin Feature") : Text("Edit Skin Feature"))
                     .navigationBarItems(leading:
                                             Button("Cancel", action: cancel),
@@ -47,40 +48,45 @@ struct AddFeatureView: View {
     
     func save() {
         if editingSkinFeature == nil {
-            SkinFeature.create(in: context!, name: featureName, area: featureArea, date: date)
+            SkinFeature.create(in: context, name: featureName, area: featureArea, date: date)
         } else {
-            SkinFeature.update(feature: editingSkinFeature!, in: context!, name: featureName, area: featureArea, date: date)
+            SkinFeature.update(feature: editingSkinFeature!, in: context, name: featureName, area: featureArea, date: date)
         }
         close()
     }
     
     func cancel() {
         if firstEntry != nil {
-            context?.rollback()
+            context.rollback()
         }
         close()
     }
     
     func close() {
-        vc!.presentedViewController?.dismiss(animated: true, completion: nil)
+        if let vc = vc {
+            vc.presentedViewController?.dismiss(animated: true, completion: nil)
+        } else {
+            isViewShown = false
+        }
     }
     
 }
 
 struct AddFeatureView_Previews: PreviewProvider {
+    @State static var isShown: Bool = true
     static var previews: some View {
-        AddFeatureView(date: Date(), featureName: "", featureArea: "", context: nil)
+        AddFeatureView(date: Date(), featureName: "", featureArea: "", isViewShown: $isShown)
     }
 }
 
 struct SkinFeatureDetailForm: View {
+    @Environment(\.managedObjectContext) var context
     @Binding var date: Date
     @Binding var featureName: String
     @Binding var featureArea: String
     @State var addEntryShown: Bool = false
     var close: () -> Void
     var save: () -> Void
-    @Binding var context: NSManagedObjectContext?
     @Binding var firstEntry: Entry?
     var body: some View {
         Form {

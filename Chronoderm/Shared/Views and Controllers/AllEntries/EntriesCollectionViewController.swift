@@ -239,7 +239,7 @@ class EntriesCollectionViewController: UICollectionViewController, NSFetchedResu
         let lastIndexPath = IndexPath(row: fetchedResultsController?.fetchedObjects?.count ?? 0, section: 0)
         if indexPath == lastIndexPath {
             if #available(iOS 14.0, *) {
-                let view = UIHostingController(rootView: AddEntryView(vc: self, entry: nil, date: Date(), notes: "", skinFeature: condition).environment(\.managedObjectContext, managedObjectContext))
+                let view = UIHostingController(rootView: AddEntryView(viewIsPresented: .constant(true), vc: self, entry: nil, date: Date(), notes: "", skinFeature: condition!).environment(\.managedObjectContext, managedObjectContext))
                 present(view, animated: true, completion: nil)
             } else {
                 performSegue(withIdentifier: "addEntry", sender: nil)

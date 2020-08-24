@@ -13,6 +13,8 @@
 		1716D9AC24E98ABA00750902 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1716D9AB24E98ABA00750902 /* ImageExtension.swift */; };
 		173BA66724E33DF800F7257A /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173BA66624E33DF800F7257A /* HelpView.swift */; };
 		174E594124F081D2008E1405 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174E594024F081D2008E1405 /* SidebarViewController.swift */; };
+		177C268324F2E778000AC6CA /* SkinFeaturesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177C268224F2E778000AC6CA /* SkinFeaturesList.swift */; };
+		177C268524F2F481000AC6CA /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177C268424F2F481000AC6CA /* DetailView.swift */; };
 		17C3E96C24DDAF5100C02F8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E96B24DDAF5100C02F8A /* AppDelegate.swift */; };
 		17C3E96E24DDAF5100C02F8A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E96D24DDAF5100C02F8A /* SceneDelegate.swift */; };
 		17C3E97324DDAF5100C02F8A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17C3E97124DDAF5100C02F8A /* Main.storyboard */; };
@@ -90,6 +92,8 @@
 		1716D9AB24E98ABA00750902 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		173BA66624E33DF800F7257A /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		174E594024F081D2008E1405 /* SidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
+		177C268224F2E778000AC6CA /* SkinFeaturesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinFeaturesList.swift; sourceTree = "<group>"; };
+		177C268424F2F481000AC6CA /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		17C3E96824DDAF5100C02F8A /* Chronoderm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chronoderm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17C3E96B24DDAF5100C02F8A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17C3E96D24DDAF5100C02F8A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -275,6 +279,7 @@
 		17CE23D624DDB59B00912D22 /* Views and Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1707CAE124EE566D00355F16 /* SidebarNavigation.swift */,
 				17CE23E824DDB59B00912D22 /* SkinFeatures */,
 				17CE23EF24DDB59B00912D22 /* AllEntries */,
 				17CE23FB24DDB59B00912D22 /* Add Features and Entries */,
@@ -314,6 +319,7 @@
 				17CE23E324DDB59B00912D22 /* DetailViewController.swift */,
 				17CE23E124DDB59B00912D22 /* DrawingViewController.swift */,
 				17CE23E224DDB59B00912D22 /* DrawingView.swift */,
+				177C268424F2F481000AC6CA /* DetailView.swift */,
 			);
 			path = "Detail and Drawing";
 			sourceTree = "<group>";
@@ -332,9 +338,9 @@
 			isa = PBXGroup;
 			children = (
 				17CE23E924DDB59B00912D22 /* ConditionsTableViewCell.xib */,
+				177C268224F2E778000AC6CA /* SkinFeaturesList.swift */,
 				17CE23EA24DDB59B00912D22 /* ConditionsTableViewCell.swift */,
 				17CE23EB24DDB59B00912D22 /* SkinFeaturesCellView.swift */,
-				1707CAE124EE566D00355F16 /* SidebarNavigation.swift */,
 				17CE23EC24DDB59B00912D22 /* ContextPreviewViewController.swift */,
 				17CE23ED24DDB59B00912D22 /* SkinFeaturesTableViewController.swift */,
 			);
@@ -529,6 +535,7 @@
 				17CE242624DDB59B00912D22 /* AddConditionTableViewController.swift in Sources */,
 				17CE241824DDB59B00912D22 /* SkinFeaturesTableViewController.swift in Sources */,
 				17CE241C24DDB59B00912D22 /* EntriesFlowLayout.swift in Sources */,
+				177C268324F2E778000AC6CA /* SkinFeaturesList.swift in Sources */,
 				17CE241024DDB59B00912D22 /* DetailViewController.swift in Sources */,
 				17CE240F24DDB59B00912D22 /* DrawingView.swift in Sources */,
 				17CE241E24DDB59B00912D22 /* Help.swift in Sources */,
@@ -547,6 +554,7 @@
 				17C3E9A424DDAFC400C02F8A /* NotificationName.swift in Sources */,
 				17CE241A24DDB59B00912D22 /* EntriesCollectionViewController.swift in Sources */,
 				17CE242724DDB59B00912D22 /* PhotoCaptureProcessor.swift in Sources */,
+				177C268524F2F481000AC6CA /* DetailView.swift in Sources */,
 				17C3E97624DDAF5100C02F8A /* Chronoderm.xcdatamodeld in Sources */,
 				17CE241F24DDB59B00912D22 /* HelpContentsTableViewController.swift in Sources */,
 				17CE240A24DDB59B00912D22 /* DetailNavController.swift in Sources */,

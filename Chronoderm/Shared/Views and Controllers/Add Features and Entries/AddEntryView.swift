@@ -12,13 +12,13 @@ import CoreData
 @available(iOS 14.0, *)
 struct AddEntryView: View {
     @Environment(\.managedObjectContext) var context
-    //@Binding var viewIsPresented: Bool
+    @Binding var viewIsPresented: Bool
     var vc: UIViewController?
     @State var entry: Entry?
     @State var image: UIImage?
     @State var date: Date
     @State var notes: String
-    @State var skinFeature: SkinFeature?
+    @ObservedObject var skinFeature: SkinFeature
     @State var addPhotoIsPresented: Bool = false
     
     var body: some View {
@@ -45,9 +45,10 @@ struct AddEntryView: View {
                 }
                 Section {
                     // Ensure the entry date isn't before the start date
-                    DatePicker(selection: $date, in: skinFeature?.startDate!... ?? Date(timeIntervalSince1970: 0)...) {
+                    DatePicker(selection: $date, in: skinFeature.startDate!...) {
                         Label("Date and Time", systemImage: "calendar")
                     }
+                    .datePickerStyle(GraphicalDatePickerStyle())
                    
                 }
                 Section(header: Text("Add Notes")) {
@@ -56,19 +57,28 @@ struct AddEntryView: View {
                 }
             }
             .navigationTitle("Add New Entry")
-            .navigationBarItems(leading:
-                                    Button("Cancel", action: {self.vc!.dismiss(animated: true)})
-                                    .keyboardShortcut(.cancelAction),
-                                trailing:
-                                    Button("Save", action: { self.saveEntry() }).keyboardShortcut(.defaultAction)
-                                    .disabled(image == nil)
-            )
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel", action: close)
+                }
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Save", action:  self.saveEntry )
+                    .disabled(image == nil)
+                }
+            }
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
     
+    func close() {
+        if let vc = vc {
+            vc.dismiss(animated: true, completion: nil)
+        } else {
+            viewIsPresented = false
+        }
+    }
+    
     func saveEntry() {
-        guard let feature = skinFeature else { return }
         let entry: Entry
         var uuid: UUID?
         if self.entry != nil {
@@ -89,7 +99,7 @@ struct AddEntryView: View {
         
         entry.setValue(entryDate, forKey: "date")
         entry.setValue(entryNotes, forKey: "notes")
-        entry.condition = feature
+        entry.condition = skinFeature
         
         if let entryImage = image {
             let attachment = Attachment(context: context)
@@ -113,7 +123,11 @@ struct AddEntryView: View {
         }
         
         self.entry = entry
-        vc?.dismiss(animated: true, completion: nil)
+        if let vc = vc {
+            vc.dismiss(animated: true, completion: nil)
+        } else {
+            viewIsPresented = false
+        }
     }
     
     func deleteEntryPhotos(entry: Entry) {
@@ -125,13 +139,13 @@ struct AddEntryView: View {
     }
     
 }
-
+/*
 @available(iOS 14.0, *)
 struct AddEntryView_Previews: PreviewProvider {
     @State static var viewIsPresented = true
     @State static var entry: Entry? = nil
     @State static var context: NSManagedObjectContext? = nil
     static var previews: some View {
-        AddEntryView(entry: entry, image: UIImage(named: "NewConditionUI"), date: Date(), notes: "")
+        AddEntryView(viewIsPresented: $viewIsPresented, entry: entry, image: UIImage(named: "NewConditionUI"), date: Date(), notes: "", skinFeature: nil)
     }
-}
+}*/

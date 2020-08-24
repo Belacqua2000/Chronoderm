@@ -9,8 +9,8 @@
 import UIKit
 import Foundation
 import CoreData
+import SwiftUI
 
-@available(iOS 13.0, *)
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
@@ -20,12 +20,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         print("Will connect to scenesession")
         
-        if #available(iOS 14, *) {
+        if #available(iOS 14, *) {/*
                     if window?.traitCollection.userInterfaceIdiom == .pad || window?.traitCollection.userInterfaceIdiom == .mac {
                         if let splitViewController = createThreeColumnSplitViewController() {
                             window?.rootViewController = splitViewController
                         }
-                    }
+                    }*//*
+            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
+                    // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath
+                    let contentView = SidebarNavigation().environment(\.managedObjectContext, context)
+
+                    // Use a UIHostingController as window root view controller.
+                    if let windowScene = scene as? UIWindowScene {
+                        let window = UIWindow(windowScene: windowScene)
+                        window.rootViewController = UIHostingController(rootView: contentView)
+                        self.window = window
+                        window.makeKeyAndVisible()
+                    }*/
                 }
         
         // Looks for Home Screen Quick Action, and acts on it
@@ -274,7 +286,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 @available(iOS 14, *)
 extension SceneDelegate {
-
+/*
     private func createThreeColumnSplitViewController() -> UISplitViewController? {
         guard
             let recipeListViewController = RecipeListViewController.instantiateFromStoryboard(),
@@ -293,5 +305,5 @@ extension SceneDelegate {
         
         return splitViewController
     }
-    
+    */
 }

@@ -12,6 +12,8 @@ struct EntriesView: View {
     @Environment(\.managedObjectContext) var context
     @ObservedObject var feature: SkinFeature
     
+    @State var isNewEntryShown: Bool = false
+    
     var entries: [Entry] {
         return feature.entry?.array as! [Entry]
     }
@@ -19,16 +21,60 @@ struct EntriesView: View {
     var columns: GridItem = GridItem(.adaptive(minimum: 120, maximum: 150), spacing: 20, alignment: .none)
     var body: some View {
         ScrollView {
+            VStack(spacing: 20) {
+                HStack {
+                    Text("Area of Body:")
+                    Text(feature.areaOfBody!)
+                    Spacer()
+                }
+                HStack {
+                    Text("Start Date:")
+                    Text(df.string(from: feature.startDate!))
+                    Spacer()
+                }
+            }
+            .padding()
+            .foregroundColor(.white)
+            .background(Color("Theme Colour 2"))
             LazyVGrid(columns: [columns] ) {
                 ForEach(entries, id: \.self) { entry in
-                    EntryCell(entry: entry)
-                        .cornerRadius(8)
+                    NavigationLink(destination: DetailView(skinFeature: feature)) {
+                        EntryCell(entry: entry)
+                            .cornerRadius(8)
+                            .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+                    }
                 }
-                AddEntryCell()
-                    .cornerRadius(8)
+                Button {
+                    isNewEntryShown = true
+                } label: {
+                    AddEntryCell()
+                        .cornerRadius(8)
+                        .sheet(isPresented: $isNewEntryShown, content: {
+                            AddEntryView(viewIsPresented: $isNewEntryShown, date: Date(), notes: "", skinFeature: feature)
+                        })
+                        .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+                }
+            }
+            .padding()
+        }
+        .toolbar {
+            ToolbarItemGroup(placement: .bottomBar) {
+                Button {
+                    
+                } label: {
+                    Image(systemName: "bell")
+                }
             }
         }
-        .background(Color(.secondarySystemBackground))
+        .navigationBarTitleDisplayMode(.automatic)
+        .navigationTitle(feature.name!)
+    }
+    
+    
+    var df: DateFormatter {
+        let df = DateFormatter()
+        df.dateStyle = .long
+        return df
     }
 }
 
@@ -41,11 +87,15 @@ struct EntriesView_Previews: PreviewProvider {
 }*/
 
 struct EntryCell: View {
-    var df = DateFormatter()
     var entry: Entry
+    var thumbnail: Image? {
+        guard let attachment = entry.image?.anyObject() as? Attachment else { return nil }
+        guard let thumbnailData = attachment.thumbnail else { return nil }
+        return Image(uiImage: UIImage(data: thumbnailData)!)
+    }
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Image("NewConditionUI")
+            thumbnail!
                 .resizable()
                 .aspectRatio(1, contentMode: .fill)
             Text(df.string(from: entry.date))
@@ -54,8 +104,15 @@ struct EntryCell: View {
             Spacer()
         }
         //.aspectRatio(0.5, contentMode: .fit)
-        .background(Color.white)
+        .background(Color(.secondarySystemBackground))
     }
+    
+    var df: DateFormatter {
+        let df = DateFormatter()
+        df.dateStyle = .short
+        return df
+    }
+    
 }
 
 struct AddEntryCell: View {
@@ -69,6 +126,6 @@ struct AddEntryCell: View {
             Text("Add Entry")
             Spacer()
         }
-        .background(Color.white)
+        .background(Color(.secondarySystemBackground))
     }
 }

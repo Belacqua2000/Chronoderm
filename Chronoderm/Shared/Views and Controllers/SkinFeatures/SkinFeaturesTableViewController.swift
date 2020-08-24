@@ -464,13 +464,13 @@ class SkinFeaturesTableViewController: UITableViewController, NSFetchedResultsCo
     
     @IBSegueAction func addFeatureSegue(_ coder: NSCoder) -> UIViewController? {
         let coder = coder
-        let rootView = AddFeatureView(vc: self, date: Date(), featureName: "", featureArea: "", context: container.viewContext)
+        let rootView = AddFeatureView(vc: self, date: Date(), featureName: "", featureArea: "", isViewShown: .constant(false)).environment(\.managedObjectContext, self.container.viewContext)
         return UIHostingController(coder: coder, rootView: rootView)
     }
     
     func editFeature(feature: SkinFeature) {
        // let coder = coder
-        let rootView = AddFeatureView(vc: self, editingSkinFeature: feature, date: feature.startDate!, featureName: feature.name!, featureArea: feature.areaOfBody!, context: container.viewContext)
+        let rootView = AddFeatureView(vc: self, editingSkinFeature: feature, date: feature.startDate!, featureName: feature.name!, featureArea: feature.areaOfBody!, isViewShown: .constant(false)).environment(\.managedObjectContext, self.container.viewContext)
         present(UIHostingController(rootView: rootView), animated: true, completion: nil)
     }
     
