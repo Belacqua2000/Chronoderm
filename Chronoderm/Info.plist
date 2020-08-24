@@ -27,7 +27,7 @@
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>"To add photos taken with the app to your camera roll"</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>"To add photos to an entry"</string>
+	<string>"To add photos to an entry, and add photos taken with the app to your camera roll"</string>
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>com.Baughan.Chronoderm.openentry</string>
