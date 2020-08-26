@@ -20,12 +20,29 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         print("Will connect to scenesession")
         
-        if #available(iOS 14, *) {/*
-                    if window?.traitCollection.userInterfaceIdiom == .pad || window?.traitCollection.userInterfaceIdiom == .mac {
+        // Mac Setup
+        #if targetEnvironment(macCatalyst)
+        guard let windowScene = scene as? UIWindowScene else { return }
+        let toolbar = NSToolbar(identifier: "main")
+        toolbar.delegate = toolbarDelegate
+        toolbar.displayMode = .default
+        toolbar.allowsUserCustomization = true
+        toolbar.autosavesConfiguration = true
+        
+        if let titlebar = windowScene.titlebar {
+            titlebar.toolbar = toolbar
+            if #available(macCatalyst 14.0, *) {
+            titlebar.toolbarStyle = .automatic
+            }
+        }
+        #endif
+        
+        if #available(iOS 14, *) {
+                   /* if window?.traitCollection.userInterfaceIdiom == .pad || window?.traitCollection.userInterfaceIdiom == .mac {
                         if let splitViewController = createThreeColumnSplitViewController() {
-                            window?.rootViewController = splitViewController
+                            //window?.rootViewController = splitViewController
                         }
-                    }*//*
+                    }*/
             let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
                     // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath
@@ -37,8 +54,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                         window.rootViewController = UIHostingController(rootView: contentView)
                         self.window = window
                         window.makeKeyAndVisible()
-                    }*/
-                }
+                    }
+        }// else {
         
         // Looks for Home Screen Quick Action, and acts on it
         #if !targetEnvironment(macCatalyst)
@@ -52,7 +69,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let splitViewController = window.rootViewController as? SplitViewController else { return }
         guard let navigationController = splitViewController.viewControllers.last as? UINavigationController else { return }
         splitViewController.preferredDisplayMode = .allVisible
-        splitViewController.primaryBackgroundStyle = .sidebar
+        //splitViewController.primaryBackgroundStyle = .sidebar
         navigationController.topViewController?.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
         navigationController.topViewController?.navigationItem.leftItemsSupplementBackButton = true
         navigationController.topViewController?.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
@@ -64,22 +81,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         tableVC.container = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
         print("Container set")
         
-        // Mac Setup
-        #if targetEnvironment(macCatalyst)
-        guard let windowScene = scene as? UIWindowScene else { return }
-        let toolbar = NSToolbar(identifier: "main")
-        toolbar.delegate = toolbarDelegate
-        toolbar.displayMode = .default
-        toolbar.allowsUserCustomization = true
-        toolbar.autosavesConfiguration = true
-        
-        if let titlebar = windowScene.titlebar {
-            titlebar.toolbar = toolbar
-            /*if #available(macCatalyst 14.0, *) {
-            titlebar.toolbarStyle = .automatic
-            }*/
-        }
-        #endif
         
         // If there is a user activity (e.g. drag and drop condition to create view), run the 'configure' function.
         if let userActivity = connectionOptions.userActivities.first ?? session.stateRestorationActivity {
@@ -88,6 +89,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 print("Failed to restore from \(userActivity)")
             }
         }
+        //}
     }
     
     
@@ -286,24 +288,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 @available(iOS 14, *)
 extension SceneDelegate {
-/*
-    private func createThreeColumnSplitViewController() -> UISplitViewController? {
-        guard
-            let recipeListViewController = RecipeListViewController.instantiateFromStoryboard(),
-            let recipeDetailViewController = RecipeDetailViewController.instantiateFromStoryboard()
-        else { return nil }
-        
-        let sidebarViewController = SidebarViewController()
 
-        let splitViewController = UISplitViewController(style: .tripleColumn)
+    private func createThreeColumnSplitViewController() -> UISplitViewController? {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let recipeDetailViewController = storyboard.instantiateViewController(identifier: "entriesNav")
+        
+        let sidebarViewController = SkinFeaturesViewController()
+        sidebarViewController.managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
+        let splitViewController = SplitViewController(style: .doubleColumn)
         splitViewController.primaryBackgroundStyle = .sidebar
-        splitViewController.preferredDisplayMode = .twoBesideSecondary
+        splitViewController.preferredDisplayMode = .oneBesideSecondary
 
         splitViewController.setViewController(sidebarViewController, for: .primary)
-        splitViewController.setViewController(recipeListViewController, for: .supplementary)
         splitViewController.setViewController(recipeDetailViewController, for: .secondary)
         
         return splitViewController
     }
-    */
+    
 }

@@ -48,7 +48,7 @@ struct AddEntryView: View {
                     DatePicker(selection: $date, in: skinFeature.startDate!...) {
                         Label("Date and Time", systemImage: "calendar")
                     }
-                    .datePickerStyle(GraphicalDatePickerStyle())
+                    //.datePickerStyle(GraphicalDatePickerStyle())
                    
                 }
                 Section(header: Text("Add Notes")) {

@@ -12,7 +12,7 @@ class SplitViewController: UISplitViewController, UISplitViewControllerDelegate 
     override func awakeFromNib() {
         super.awakeFromNib()
         delegate = self
-        preferredDisplayMode = .allVisible
+        setDisplayMode()
     }
     
     override func viewDidLoad() {
@@ -20,17 +20,9 @@ class SplitViewController: UISplitViewController, UISplitViewControllerDelegate 
         
         #if targetEnvironment(macCatalyst)
         primaryBackgroundStyle = .sidebar
-        #else
-        setDisplayMode()
         #endif
+        setDisplayMode()
         
-        if #available(iOS 13.0, *) {
-            let symbolConfig = UIImage.SymbolConfiguration(weight: .black)
-            tabBarItem.image = UIImage(systemName: "plus", withConfiguration: symbolConfig)
-            tabBarItem.selectedImage = UIImage(systemName: "plus", withConfiguration: symbolConfig)
-        } else {
-            
-        }
     }
     
     override class func awakeFromNib() {
@@ -61,7 +53,7 @@ class SplitViewController: UISplitViewController, UISplitViewControllerDelegate 
     }
     
     func setDisplayMode() {
-        preferredDisplayMode = .allVisible
+        preferredDisplayMode = .oneBesideSecondary
     }
     
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController:UIViewController, onto primaryViewController:UIViewController) -> Bool {
@@ -77,6 +69,7 @@ class SplitViewController: UISplitViewController, UISplitViewControllerDelegate 
 }
 
 // MARK: - NSToolbar
+/*
 #if targetEnvironment(macCatalyst)
 extension SplitViewController: NSToolbarDelegate {
     func toolbar(_ toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
@@ -153,3 +146,4 @@ extension SplitViewController: NSToolbarDelegate {
     
 }
 #endif
+*/

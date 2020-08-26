@@ -12,6 +12,7 @@ import UIKit
 struct DetailView: View {
     @ObservedObject var skinFeature: SkinFeature
     @State var entryNumber: Int = 0
+    @State var scale: CGFloat = 1
     var entry: Entry? {
         guard let entries = skinFeature.entry?.array as? [Entry] else { return nil }
         return entries[entryNumber]
@@ -27,6 +28,11 @@ struct DetailView: View {
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fill)
+                    .scaleEffect(scale)
+                    .gesture(MagnificationGesture()
+                                .onChanged({ value in
+                                    scale = value.magnitude
+                                }))
                 VStack {
                     Text("Title")
                     Spacer()
