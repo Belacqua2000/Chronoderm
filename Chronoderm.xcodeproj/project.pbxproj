@@ -12,12 +12,6 @@
 		1707CAE224EE566D00355F16 /* SidebarNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1707CAE124EE566D00355F16 /* SidebarNavigation.swift */; };
 		1716D9AC24E98ABA00750902 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1716D9AB24E98ABA00750902 /* ImageExtension.swift */; };
 		173BA66724E33DF800F7257A /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173BA66624E33DF800F7257A /* HelpView.swift */; };
-		17421C5D24F158DB0074530E /* ChronodermApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17421C3224F158D80074530E /* ChronodermApp.swift */; };
-		17421C5E24F158DB0074530E /* ChronodermApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17421C3224F158D80074530E /* ChronodermApp.swift */; };
-		17421C5F24F158DB0074530E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17421C3324F158D80074530E /* ContentView.swift */; };
-		17421C6024F158DB0074530E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17421C3324F158D80074530E /* ContentView.swift */; };
-		17421C6124F158DB0074530E /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17421C3424F158D90074530E /* Persistence.swift */; };
-		17421C6224F158DB0074530E /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17421C3424F158D90074530E /* Persistence.swift */; };
 		17421C7124F1590A0074530E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E96B24DDAF5100C02F8A /* AppDelegate.swift */; };
 		17421C7324F1590A0074530E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C3E96D24DDAF5100C02F8A /* SceneDelegate.swift */; };
 		17421C7724F1598A0074530E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 17421C7524F159890074530E /* Info.plist */; };
@@ -168,9 +162,6 @@
 		1707CAE124EE566D00355F16 /* SidebarNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarNavigation.swift; sourceTree = "<group>"; };
 		1716D9AB24E98ABA00750902 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		173BA66624E33DF800F7257A /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
-		17421C3224F158D80074530E /* ChronodermApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChronodermApp.swift; sourceTree = "<group>"; };
-		17421C3324F158D80074530E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		17421C3424F158D90074530E /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		17421C3A24F158DA0074530E /* Chronoderm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chronoderm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17421C4124F158DA0074530E /* Chronoderm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chronoderm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17421C4D24F158DB0074530E /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
@@ -283,9 +274,6 @@
 				17C3E97124DDAF5100C02F8A /* Main.storyboard */,
 				17C3E97924DDAF5200C02F8A /* LaunchScreen.storyboard */,
 				17C3E97724DDAF5200C02F8A /* Assets.xcassets */,
-				17421C3224F158D80074530E /* ChronodermApp.swift */,
-				17421C3324F158D80074530E /* ContentView.swift */,
-				17421C3424F158D90074530E /* Persistence.swift */,
 				17CE23D524DDB55800912D22 /* Model */,
 				17C3E99E24DDAFC400C02F8A /* Helpers */,
 				17CE23D624DDB59B00912D22 /* Views and Controllers */,
@@ -718,8 +706,6 @@
 				17421CD524F15A540074530E /* Help.swift in Sources */,
 				17421CBC24F15A470074530E /* SplitViewController.swift in Sources */,
 				17421C9524F15A330074530E /* ContextPreviewViewController.swift in Sources */,
-				17421C5D24F158DB0074530E /* ChronodermApp.swift in Sources */,
-				17421C6124F158DB0074530E /* Persistence.swift in Sources */,
 				17421C9324F15A330074530E /* SkinFeaturesTableViewController.swift in Sources */,
 				17421C8524F15A2C0074530E /* MenuBuilder.swift in Sources */,
 				17421CAE24F15A400074530E /* AddEntryTableViewController.swift in Sources */,
@@ -740,7 +726,6 @@
 				17421CAA24F15A400074530E /* AddEntryView.swift in Sources */,
 				17421CD324F15A540074530E /* HelpView.swift in Sources */,
 				17421C7124F1590A0074530E /* AppDelegate.swift in Sources */,
-				17421C5F24F158DB0074530E /* ContentView.swift in Sources */,
 				17421C7324F1590A0074530E /* SceneDelegate.swift in Sources */,
 				17421CD124F15A540074530E /* OnboardingView.swift in Sources */,
 				17421CD024F15A540074530E /* RemindersTableViewController.swift in Sources */,
@@ -752,9 +737,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17421C5E24F158DB0074530E /* ChronodermApp.swift in Sources */,
 				17421CDA24F15A540074530E /* HelpView.swift in Sources */,
-				17421C6224F158DB0074530E /* Persistence.swift in Sources */,
 				17421CD624F15A540074530E /* RemindersView.swift in Sources */,
 				17421C9924F15A340074530E /* SidebarNavigation.swift in Sources */,
 				17421CE424F15B990074530E /* AddEntryView.swift in Sources */,
@@ -765,7 +748,6 @@
 				17421CC724F15A4B0074530E /* DrawingView.swift in Sources */,
 				17421C8124F15A220074530E /* Chronoderm.xcdatamodeld in Sources */,
 				17421CDC24F15A540074530E /* Help.swift in Sources */,
-				17421C6024F158DB0074530E /* ContentView.swift in Sources */,
 				17421CE324F15B700074530E /* EntriesView.swift in Sources */,
 				17421C7D24F15A1E0074530E /* Entry+CoreDataProperties.swift in Sources */,
 				17421CCE24F15A4E0074530E /* PDFPreview.swift in Sources */,
