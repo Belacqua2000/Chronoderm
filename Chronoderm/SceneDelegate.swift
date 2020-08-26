@@ -38,11 +38,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         #endif
         
         if #available(iOS 14, *) {
-                   /* if window?.traitCollection.userInterfaceIdiom == .pad || window?.traitCollection.userInterfaceIdiom == .mac {
+                    if window?.traitCollection.userInterfaceIdiom == .pad || window?.traitCollection.userInterfaceIdiom == .mac {
                         if let splitViewController = createThreeColumnSplitViewController() {
-                            //window?.rootViewController = splitViewController
+                            window?.rootViewController = splitViewController
                         }
-                    }*/
+                    }/*
             let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
                     // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath
@@ -54,8 +54,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                         window.rootViewController = UIHostingController(rootView: contentView)
                         self.window = window
                         window.makeKeyAndVisible()
-                    }
-        }// else {
+                    }*/
+        } else {
         
         // Looks for Home Screen Quick Action, and acts on it
         #if !targetEnvironment(macCatalyst)
@@ -89,7 +89,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 print("Failed to restore from \(userActivity)")
             }
         }
-        //}
+        }
     }
     
     

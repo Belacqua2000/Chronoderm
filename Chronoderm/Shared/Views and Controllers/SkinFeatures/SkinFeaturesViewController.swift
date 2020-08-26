@@ -18,7 +18,7 @@ class SkinFeaturesViewController: UIViewController {
     }
     
     private enum SidebarSection: Int {
-        case entries, addEntry
+        case entries, newFeature
     }
     
     private struct SidebarItem: Hashable, Identifiable {
@@ -49,6 +49,7 @@ class SkinFeaturesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureView()
         configureCollectionView()
         configureDataSource()
         initialiseCoreData()
@@ -106,10 +107,30 @@ extension SkinFeaturesViewController {
     
     }
     */
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
+        
+        
+    }
+    
+    private func entriesViewController() -> EntriesCollectionViewController? {
+            guard
+                let splitViewController = self.splitViewController,
+                let entriesVC = splitViewController.viewController(for: .secondary)
+            else { return nil }
+            
+            return entriesVC as? EntriesCollectionViewController
+        }
+    
 }
 
 @available(iOS 14, *)
 extension SkinFeaturesViewController {
+    private func configureView() {
+        navigationItem.title = "Skin Features"
+        navigationController?.navigationBar.barTintColor = UIColor(named: "AccentColor")
+    }
 
     private func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
@@ -145,8 +166,8 @@ extension SkinFeaturesViewController {
                     
                     var contentConfiguration = UIListContentConfiguration.sidebarHeader()
                     contentConfiguration.text = item.title
-                    contentConfiguration.textProperties.font = .preferredFont(forTextStyle: .subheadline)
-                    contentConfiguration.textProperties.color = .secondaryLabel
+                    //contentConfiguration.textProperties.font = .preferredFont(forTextStyle: .subheadline)
+                    //contentConfiguration.textProperties.color = .secondaryLabel
                     
                     cell.contentConfiguration = contentConfiguration
                     cell.accessories = [.outlineDisclosure()]
@@ -167,7 +188,7 @@ extension SkinFeaturesViewController {
         let rowRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, SidebarItem> {
             (cell, indexPath, item) in
             
-            var contentConfiguration = UIListContentConfiguration.sidebarSubtitleCell()
+            var contentConfiguration = UIListContentConfiguration.sidebarCell()
             contentConfiguration.text = item.title
             contentConfiguration.secondaryText = item.subtitle
             contentConfiguration.image = item.image
@@ -191,8 +212,8 @@ extension SkinFeaturesViewController {
     
     private func featuresSnapshot() -> NSDiffableDataSourceSectionSnapshot<SidebarItem> {
         var snapshot = NSDiffableDataSourceSectionSnapshot<SidebarItem>()
-        let header = SidebarItem.header(title: "Skin Features")
-        let image = UIImage(systemName: "plus")
+        let header = SidebarItem.header(title: "All Features")
+        let image = UIImage(systemName: "photo")
         
         var items = [SidebarItem]()
         for object in fetchedResultsController.fetchedObjects! {
@@ -205,8 +226,17 @@ extension SkinFeaturesViewController {
         return snapshot
     }
     
+    private func newFeatureSnapshot() -> NSDiffableDataSourceSectionSnapshot<SidebarItem> {
+        var snapshot = NSDiffableDataSourceSectionSnapshot<SidebarItem>()
+        let newFeature = SidebarItem.row(title: "New Skin Feature", subtitle: nil, image: UIImage(systemName: "plus"))
+        
+        snapshot.append([newFeature])
+        return snapshot
+    }
+    
     private func applyInitialSnapshot() {
         dataSource.apply(featuresSnapshot(), to: .entries, animatingDifferences: false)
+        dataSource.apply(newFeatureSnapshot(), to: .newFeature, animatingDifferences: true)
     }
     
 }
@@ -276,48 +306,7 @@ extension SkinFeaturesViewController {
 // MARK: NSFetchedController
 @available(iOS 14, *)
 extension SkinFeaturesViewController: NSFetchedResultsControllerDelegate {
-    /*
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
-        switch type {
-        case .insert:
-            skinFeaturesCollectionView.insertSections(IndexSet(integer: sectionIndex))
-        case .delete:
-            skinFeaturesCollectionView.deleteSections(IndexSet(integer: sectionIndex))
-        case .move:
-            break
-        case .update:
-            break
-        @unknown default:
-            break
-        }
-    }
-     
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        switch type {
-        case .insert:
-            self.skinFeaturesCollectionView.performBatchUpdates({
-                self.skinFeaturesCollectionView.insertItems(at: [newIndexPath!])
-                self.skinFeaturesCollectionView.reloadSections(IndexSet.init(integer: 0))
-            },completion: {_ in})
-        case .delete:
-            self.skinFeaturesCollectionView.deleteItems(at: [indexPath!])
-            self.skinFeaturesCollectionView.reloadSections(IndexSet.init(integer: 0))
-        case .update:
-            skinFeaturesCollectionView.reloadItems(at: [indexPath!])
-        case .move:
-            self.skinFeaturesCollectionView.performBatchUpdates({
-                self.skinFeaturesCollectionView.moveItem(at: indexPath!, to: newIndexPath!)
-                self.skinFeaturesCollectionView.reloadSections(IndexSet.init(integer: 0))
-            },completion: {_ in})
-        @unknown default:
-            break
-        }
-    }
-     
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        skinFeaturesCollectionView.performBatchUpdates(nil, completion: nil)
-    }
- */
+    
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         self.dataSource.apply(self.featuresSnapshot(), to: .entries)
