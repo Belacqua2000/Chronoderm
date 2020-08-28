@@ -44,12 +44,14 @@ extension ToolbarDelegate {
     }
     
 }
-
+@available(iOS 14, *)
 extension ToolbarDelegate: NSToolbarDelegate {
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
             let identifiers: [NSToolbarItem.Identifier] = [
+                //.flexibleSpace,
+                //.newFeature,
+                //.primarySidebarTrackingSeparatorItemIdentifier,
                 .toggleSidebar,
-                .newFeature,
                 .flexibleSpace,
                 .reminders,
                 .createPDF
@@ -60,6 +62,7 @@ extension ToolbarDelegate: NSToolbarDelegate {
     func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         let identifiers: [NSToolbarItem.Identifier] = [
             .toggleSidebar,
+            //.primarySidebarTrackingSeparatorItemIdentifier,
             .newFeature,
             .reminders,
             .createPDF,

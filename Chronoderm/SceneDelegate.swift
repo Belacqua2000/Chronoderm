@@ -293,7 +293,7 @@ extension SceneDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let recipeDetailViewController = storyboard.instantiateViewController(identifier: "entriesNav")
         
-        let sidebarViewController = SkinFeaturesViewController()
+        let sidebarViewController = storyboard.instantiateViewController(identifier: "skinFeaturesView") as! SkinFeaturesViewController
         sidebarViewController.managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
         let splitViewController = SplitViewController(style: .doubleColumn)

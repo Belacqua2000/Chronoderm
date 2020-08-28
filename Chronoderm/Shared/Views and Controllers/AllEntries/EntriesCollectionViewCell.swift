@@ -17,4 +17,16 @@ class EntriesCollectionViewCell: UICollectionViewCell {
     @IBOutlet var addEntryImageView: UIImageView!
     @IBOutlet var newEntryLabel: UILabel!
     
+    func configure(with entry: Entry) {
+        let df = DateFormatter()
+        df.dateStyle = .short
+        cellDateLabel.text = df.string(from: entry.date)
+        
+        if let attachment = entry.image?.anyObject() as? Attachment {
+            if let imageData = attachment.fullImage?.fullImage {
+                cellImageView.image = UIImage(data: imageData)
+            }
+        }
+    }
+    
 }

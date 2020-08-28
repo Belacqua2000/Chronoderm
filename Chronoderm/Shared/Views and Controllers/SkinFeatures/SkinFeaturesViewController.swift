@@ -18,7 +18,7 @@ class SkinFeaturesViewController: UIViewController {
     }
     
     private enum SidebarSection: Int {
-        case entries, newFeature
+        case allEntries, entries, newFeature
     }
     
     private struct SidebarItem: Hashable, Identifiable {
@@ -27,17 +27,18 @@ class SkinFeaturesViewController: UIViewController {
             let title: String
             let subtitle: String?
             let image: UIImage?
+        let skinFeature: SkinFeature?
         
         static func header(title: String, id: UUID = UUID()) -> Self {
-                    return SidebarItem(id: id, type: .header, title: title, subtitle: nil, image: nil)
+            return SidebarItem(id: id, type: .header, title: title, subtitle: nil, image: nil, skinFeature: nil)
                 }
         
         static func expandableRow(title: String, subtitle: String?, image: UIImage?, id: UUID = UUID()) -> Self {
-                    return SidebarItem(id: id, type: .expandableRow, title: title, subtitle: subtitle, image: image)
+            return SidebarItem(id: id, type: .expandableRow, title: title, subtitle: subtitle, image: image, skinFeature: nil)
                 }
         
-        static func row(title: String, subtitle: String?, image: UIImage?, id: UUID = UUID()) -> Self {
-                    return SidebarItem(id: id, type: .row, title: title, subtitle: subtitle, image: image)
+        static func row(title: String, subtitle: String?, image: UIImage?, id: UUID = UUID(), skinFeature: SkinFeature?) -> Self {
+            return SidebarItem(id: id, type: .row, title: title, subtitle: subtitle, image: image, skinFeature: skinFeature)
                 }
         }
     
@@ -63,20 +64,27 @@ class SkinFeaturesViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: animated)
         #endif
     }
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+        switch segue.identifier {
+        case "showEntries":
+            guard let detailVC = (segue.destination as? DetailNavController)?.topViewController as? EntriesCollectionViewController else { return }
+            detailVC.managedObjectContext = managedObjectContext
+            if let sender = sender as? SkinFeature {
+                detailVC.condition = sender
+            }
+        default:
+            break
+        }
     }
-    */
+    
 
 }
 
 @available(iOS 14, *)
-extension SkinFeaturesViewController {
+extension SkinFeaturesViewController: UICollectionViewDelegate {
     // MARK: UICollectionViewDelegate
 
     /*
@@ -111,17 +119,55 @@ extension SkinFeaturesViewController {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
         
+        switch indexPath.section {
+        case SidebarSection.allEntries.rawValue:
+            didSelectAllEntries()
+        case SidebarSection.entries.rawValue:
+            guard let feature = item.skinFeature else { break }
+            didSelectSkinFeature(with: feature)
+        case SidebarSection.newFeature.rawValue:
+            didSelectNewFeature()
+        default:
+            didSelectAllEntries()
+        }
+    }
+    
+    private func didSelectAllEntries() {
+        if let splitVC = splitViewController as? SplitViewController {
+            print(splitVC.viewController(for: .secondary))
+            if let detailVC = splitVC.viewController(for: .secondary) as? DetailNavController {
+                if let entriesVC = detailVC.topViewController as? EntriesCollectionViewController {
+                    entriesVC.showEntries(selectionType: .all)
+                }
+            }
+        }
+    }
+    
+    private func didSelectSkinFeature(with skinFeature: SkinFeature) {
+        performSegue(withIdentifier: "showEntries", sender: skinFeature)
+        /*if let splitVC = splitViewController as? SplitViewController {
+            if let entriesVC = splitVC.viewController(for: .secondary) as? EntriesCollectionViewController {
+                entriesVC.condition = skinFeature
+                entriesVC.showEntries(selectionType: .all)
+            }
+        }*/
+    }
+    
+    private func didSelectNewFeature() {
         
     }
     
+    
     private func entriesViewController() -> EntriesCollectionViewController? {
-            guard
-                let splitViewController = self.splitViewController,
-                let entriesVC = splitViewController.viewController(for: .secondary)
+        guard
+            let splitViewController = self.splitViewController,
+            let entriesVC = splitViewController.viewController(for: .secondary)
             else { return nil }
             
             return entriesVC as? EntriesCollectionViewController
         }
+    
+    
     
 }
 
@@ -129,7 +175,8 @@ extension SkinFeaturesViewController {
 extension SkinFeaturesViewController {
     private func configureView() {
         navigationItem.title = "Skin Features"
-        navigationController?.navigationBar.barTintColor = UIColor(named: "AccentColor")
+        navigationController?.navigationBar.prefersLargeTitles = true
+        //navigationController?.navigationBar.barTintColor = UIColor(named: "AccentColor")
     }
 
     private func configureCollectionView() {
@@ -151,11 +198,6 @@ extension SkinFeaturesViewController {
             return layout
         }
 
-}
-
-@available(iOS 14, *)
-extension SkinFeaturesViewController: UICollectionViewDelegate {
-    
 }
 
 @available(iOS 14, *)
@@ -210,31 +252,42 @@ extension SkinFeaturesViewController {
         }
     }
     
+    private func allEntriesSnapshot() -> NSDiffableDataSourceSectionSnapshot<SidebarItem> {
+        var snapshot = NSDiffableDataSourceSectionSnapshot<SidebarItem>()
+        let allEntries = SidebarItem.row(title: "All Entries", subtitle: nil, image: UIImage(systemName: "square.grid.3x2"), skinFeature: nil)
+        
+        snapshot.append([allEntries])
+        return snapshot
+    }
+    
     private func featuresSnapshot() -> NSDiffableDataSourceSectionSnapshot<SidebarItem> {
         var snapshot = NSDiffableDataSourceSectionSnapshot<SidebarItem>()
-        let header = SidebarItem.header(title: "All Features")
-        let image = UIImage(systemName: "photo")
-        
-        var items = [SidebarItem]()
-        for object in fetchedResultsController.fetchedObjects! {
-            items.append(.row(title: object.name!, subtitle: object.areaOfBody, image: image))
+        for section in fetchedResultsController.sections! {
+            let header = SidebarItem.header(title: section.name == "0" ? "Current" : "Archived")
+            let image = UIImage(systemName: "photo")
+            
+            var items = [SidebarItem]()
+            for object in fetchedResultsController.fetchedObjects! {
+                items.append(.row(title: object.name!, subtitle: object.areaOfBody, image: image, skinFeature: object))
+            }
+            
+            snapshot.append([header])
+            snapshot.expand([header])
+            snapshot.append(items, to: header)
         }
-        
-        snapshot.append([header])
-        snapshot.expand([header])
-        snapshot.append(items, to: header)
         return snapshot
     }
     
     private func newFeatureSnapshot() -> NSDiffableDataSourceSectionSnapshot<SidebarItem> {
         var snapshot = NSDiffableDataSourceSectionSnapshot<SidebarItem>()
-        let newFeature = SidebarItem.row(title: "New Skin Feature", subtitle: nil, image: UIImage(systemName: "plus"))
+        let newFeature = SidebarItem.row(title: "New Skin Feature", subtitle: nil, image: UIImage(systemName: "plus"), skinFeature: nil)
         
         snapshot.append([newFeature])
         return snapshot
     }
     
     private func applyInitialSnapshot() {
+        dataSource.apply(allEntriesSnapshot(), to: .allEntries, animatingDifferences: false)
         dataSource.apply(featuresSnapshot(), to: .entries, animatingDifferences: false)
         dataSource.apply(newFeatureSnapshot(), to: .newFeature, animatingDifferences: true)
     }

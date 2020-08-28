@@ -20,11 +20,17 @@ class EntriesCollectionViewController: UICollectionViewController, NSFetchedResu
     var noCondition: Bool {
         return condition == nil
     }
-    var sortOldest: Bool = true {
-        didSet {
-            
-        }
+    private enum Section {
+        case entries
     }
+    
+    enum SelectionType {
+        case all, skinFeature
+    }
+    
+    var selectedType: SelectionType = .all
+    
+    private var dataSource: UICollectionViewDiffableDataSource<Section,Entry>!
     private var remindersSubscriber: AnyCancellable?
     private var pdfSubscriber: AnyCancellable?
     private var toggleCompleteSubscriber: AnyCancellable?
@@ -42,10 +48,8 @@ class EntriesCollectionViewController: UICollectionViewController, NSFetchedResu
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
-        //Flow layout delegate
-        collectionView.collectionViewLayout = EntriesFlowLayout()
-        collectionView.delegate = self
-        collectionView.dragDelegate = self
+        //setupCollectionView()
+        //configureDataSource()
         
         // Register notifications for toolbar/keycommand actions
         let notificationCenter = NotificationCenter.default
@@ -147,13 +151,13 @@ class EntriesCollectionViewController: UICollectionViewController, NSFetchedResu
         cell.contentView.layer.borderColor = UIColor.clear.cgColor
         cell.contentView.layer.masksToBounds = true
 
-        /*
+        
         cell.layer.shadowColor = UIColor.black.cgColor
         cell.layer.shadowOffset = CGSize(width: 0, height: 2.0)
         cell.layer.shadowRadius = 2.0
         cell.layer.shadowOpacity = 0.5
         cell.layer.masksToBounds = false
-        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath */
+        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.layer.cornerRadius).cgPath
     }
     
     func configureCell(_ cell: EntriesCollectionViewCell, withEntry entry: Entry, atIndexPath indexPath: IndexPath) {
@@ -378,10 +382,10 @@ class EntriesCollectionViewController: UICollectionViewController, NSFetchedResu
 
     func initialiseCoreData() {
         let request = NSFetchRequest<Entry>(entityName: "Entry")
-        let predicate = NSPredicate(format: "condition == %@", condition!)
+        //let predicate = NSPredicate(format: "condition == %@", condition!)
         let dateSort = NSSortDescriptor(key: "date", ascending: true)
         request.sortDescriptors = [dateSort]
-        request.predicate = predicate
+        //request.predicate = predicate
         
         // to group, set sectionNameKeyPath to "dateSection" as specified in Entry class file
         fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
@@ -419,6 +423,10 @@ class EntriesCollectionViewController: UICollectionViewController, NSFetchedResu
             break
         }
     }
+    
+    /*func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        apply()
+    }*/
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         collectionView.performBatchUpdates(nil, completion: nil)
@@ -565,8 +573,84 @@ extension EntriesCollectionViewController: UICollectionViewDragDelegate {
     
     
 }
+
+extension EntriesCollectionViewController {
+    func setupCollectionView() {
+        collectionView.delegate = self
+        collectionView.alwaysBounceVertical = true
+        collectionView.collectionViewLayout = createCollectionViewLayout()
+    }
+    
+    func createCollectionViewLayout() -> UICollectionViewLayout {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(100), heightDimension: .absolute(150))
+        let entryItem = NSCollectionLayoutItem(layoutSize: itemSize)
+        entryItem.contentInsets = NSDirectionalEdgeInsets(top: 5.0, leading: 10.0, bottom: 5.0, trailing: 10.0)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(0.375))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: entryItem, count: 2)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        
+        return layout
+    }
+}
+
+extension EntriesCollectionViewController {
+    
+    func configureDataSource() {
+        // Register the cell that displays a recipe in the collection view.
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+
+        // Create a diffable data source, and configure the cell with recipe data.
+        dataSource = UICollectionViewDiffableDataSource <Section, Entry>(collectionView: self.collectionView) { (
+            collectionView: UICollectionView,
+            indexPath: IndexPath,
+            entry: Entry) -> UICollectionViewCell? in
+        
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+            
+            if let entryCell = cell as? EntriesCollectionViewCell {
+                entryCell.configure(with: entry)
+            }
+        
+            return cell
+        }
+    }
+    
+    func apply() {
+        guard let entries = fetchedResultsController?.fetchedObjects as? [Entry] else { return }
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Entry>()
+        snapshot.appendSections([.entries])
+        switch selectedType {
+        case .all:
+            snapshot.appendItems(entries)
+        case .skinFeature:
+            if let skinFeature = self.condition {
+                let skinFeatureEntries = entries.filter { $0.condition == skinFeature }
+                snapshot.appendItems(skinFeatureEntries)
+            }
+        }
+        dataSource.apply(snapshot, animatingDifferences: true)
+    }
+
+}
+
+extension EntriesCollectionViewController {
+    func showEntries(selectionType: SelectionType) {
+        switch selectionType {
+        case .all:
+            selectedType = .all
+            apply()
+        case .skinFeature:
+            selectedType = .skinFeature
+            apply()
+        }
+    }
+}
     
 // MARK: - Flow Layout
+
 extension EntriesCollectionViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
